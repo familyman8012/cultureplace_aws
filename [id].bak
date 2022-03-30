@@ -1,0 +1,36 @@
+import axios from "axios";
+import type { NextApiRequest, NextApiResponse } from "next";
+import createHandler from "../middleware";
+import convert from "xml-js";
+
+const infoRouter = createHandler();
+
+const servicekey = "0b6e49379ade4cf98c956ca55d40b5a4";
+
+infoRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { id, title } = req.query;
+    const info_url = `http://www.kopis.or.kr/openApi/restful/pblprfr/${id}?service=${servicekey}`;
+
+    const blog_url = `https://openapi.naver.com/v1/search/blog?query=${title}&display=20&start=1&sort=sim`;
+    const [result, result2] = await Promise.all([
+      axios.get(info_url),
+      axios.get(blog_url, {
+        headers: {
+          "X-Naver-Client-Id": "ie9BKWPG17OliQXhjOOz",
+          "X-Naver-Client-Secret": "R8Z_9g4fgD"
+        }
+      })
+    ]);
+    const jsonResult = convert.xml2js(result.data);
+    console.log("result, result", result2);
+    return res.send([jsonResult, result2]);
+  } catch {
+    res.status(500).send(err);
+  }
+});
+
+export default infoRouter;
+function err(err: any) {
+  throw new Error("Function not implemented.");
+}

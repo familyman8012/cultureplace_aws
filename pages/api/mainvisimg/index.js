@@ -1,0 +1,26 @@
+import createHandler from "../middleware";
+import Mainvisimg from "../models/mainvisimg";
+
+const mainvisimgRouter = createHandler();
+
+mainvisimgRouter.post(async (req, res) => {
+  try {
+    const mainvisimgs = new Mainvisimg(req.body);
+    await mainvisimgs.save();
+    return res.send(mainvisimgs);
+  } catch {
+    res.status(500).send(err);
+  }
+});
+
+mainvisimgRouter.get(async (req, res) => {
+  try {
+    const mainvisimgs = await Mainvisimg.find({});
+    return res.send(mainvisimgs);
+  } catch {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
+export default mainvisimgRouter;
