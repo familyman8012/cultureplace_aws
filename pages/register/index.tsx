@@ -11,6 +11,7 @@ import RegisterForm from "../../components/pageComp/register/styles";
 import { GetServerSideProps } from "next";
 import { IUser } from "@src/typings/db";
 import { ErrorTxt } from "pages/admin/product/styles";
+import { RegisterSeo } from "@components/elements/CommonSeo";
 
 export default function Register({ providers, csrfToken }: ISignIn) {
   const {
@@ -67,6 +68,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
 
   return (
     <Layout>
+      <RegisterSeo />
       <RegisterForm>
         <div className="login_form">
           <h2>회원가입</h2>

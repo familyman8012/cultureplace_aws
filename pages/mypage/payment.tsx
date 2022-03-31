@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { usePayment } from "@src/hooks/api/usePayments";
 import axios from "axios";
 import { MypageWrap, WrapPayedInfo } from "@components/pageComp/mypage/styles";
+import { MypageSeo } from "@components/elements/CommonSeo";
 
 function Index() {
   const [session] = useSession();
@@ -28,6 +29,7 @@ function Index() {
   };
   return (
     <Layout>
+      <MypageSeo />
       <MypageWrap>
         <div className="wrap_menu">
           <div className="profile">

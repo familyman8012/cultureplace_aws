@@ -26,6 +26,7 @@ import Modal from "@components/elements/Modal";
 import Review from "@components/pageComp/detailview/Review";
 import { useSession } from "next-auth/client";
 import Curriculum from "@components/pageComp/detailview/Curriculum";
+import { DetailSeo } from "@components/elements/CommonSeo";
 
 export interface IDetail {
   item: IProduct;
@@ -40,6 +41,11 @@ const DetailView = ({ item }: IDetail) => {
 
   return (
     <Layout className="detail">
+      <DetailSeo
+        _id={String(_id)}
+        imgurl={String(data?.imgurl)}
+        title={String(data?.title)}
+      />
       <DetailViewWrap>
         {data && _id !== undefined && (
           <>

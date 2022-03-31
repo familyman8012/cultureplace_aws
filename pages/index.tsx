@@ -13,12 +13,13 @@ import {
 import { fetchProducts } from "@src/hooks/api/useProducts";
 import { GetServerSideProps } from "next";
 import { ISSR } from "@src/typings/db";
+import { IndexSeo } from "@components/elements/CommonSeo";
 
 const Home = ({ SsrData }: ISSR) => {
-  const { blogData, noticeData } = SsrData;
+  const { blogData, noticeData, products } = SsrData;
 
-  const { data } = useQuery(["list", "main"], () => fetchProducts(90, 1));
-  const productsData = data?.products;
+  // const { data } = useQuery(["list", "main"], () => fetchProducts(90, 1));
+  const productsData = products;
 
   const genreTitle = [
     { title: "내가 만든 작품이 전시되는 날", url: "/view/art" },
@@ -59,6 +60,7 @@ const Home = ({ SsrData }: ISSR) => {
 
   return (
     <Layout>
+      <IndexSeo />
       <MainVisual />
       <WrapIndex>
         <CategoryMenu />
@@ -75,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
   await dbConnect();
 
-  const [result, result2] = await Promise.all([
+  const [result, result2, result3] = await Promise.all([
     Notice.find(
       { category: "블로그" },
       { body: false, createdAt: false, updatedAt: false }
@@ -87,20 +89,20 @@ export const getServerSideProps: GetServerSideProps = async () => {
       { body: false, createdAt: false, updatedAt: false }
     )
       .limit(4)
+      .lean(),
+    Product.find(
+      { isvod: { $ne: true }, islive: { $ne: false } },
+      { body: false }
+    )
+      .sort({ firstmeet: 1 })
+      .limit(90)
       .lean()
-    // Product.find(
-    //   { isvod: { $ne: true }, islive: { $ne: false } },
-    //   { body: false }
-    // )
-    //   .sort({ firstmeet: 1 })
-    //   .limit(90)
-    //   .lean()
   ]);
 
   const SsrData = {
     blogData: JSON.parse(JSON.stringify(result)),
-    noticeData: JSON.parse(JSON.stringify(result2))
-    // products: JSON.parse(JSON.stringify(result3))
+    noticeData: JSON.parse(JSON.stringify(result2)),
+    products: JSON.parse(JSON.stringify(result3))
   };
 
   await queryClient.prefetchQuery(["list", "main"], () => SsrData);

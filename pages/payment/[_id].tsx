@@ -4,6 +4,7 @@ import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { PaymentCompleteSeo, PaymentSeo } from "@components/elements/CommonSeo";
 
 function Payment() {
   const [session] = useSession();
@@ -38,17 +39,23 @@ function Payment() {
     <>
       {!payComplete ? (
         data && session ? (
-          <PaymentInfo
-            data={data}
-            session={session}
-            setcompleteData={setcompleteData}
-            setpayComplete={setpayComplete}
-          />
+          <>
+            <PaymentSeo />
+            <PaymentInfo
+              data={data}
+              session={session}
+              setcompleteData={setcompleteData}
+              setpayComplete={setpayComplete}
+            />
+          </>
         ) : (
           <div></div>
         )
       ) : (
-        <PaymentComplete completeData={completeData} />
+        <>
+          <PaymentCompleteSeo />
+          <PaymentComplete completeData={completeData} />
+        </>
       )}
     </>
   );

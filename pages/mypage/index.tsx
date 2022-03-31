@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { MypageWrap } from "@components/pageComp/mypage/styles";
 import { useFavorite, useJoin } from "@src/hooks/api/useMypage";
+import { MypageSeo } from "@components/elements/CommonSeo";
 
 function Index() {
   const [session] = useSession();
@@ -18,6 +19,7 @@ function Index() {
   }, [router, session]);
   return (
     <Layout>
+      <MypageSeo />
       {session ? (
         <MypageWrap>
           <div className="wrap_menu">

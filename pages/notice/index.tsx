@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { dehydrate, QueryClient } from "react-query";
 import { dbConnect, Notice } from "../../pages/api";
+import { NewsSeo } from "@components/elements/CommonSeo";
 
 interface INoticeList {
   noticeData: INotice[];
@@ -43,6 +44,7 @@ function Index({ noticeData }: INoticeList) {
 
   return (
     <Layout>
+      <NewsSeo />
       <div
         css={css`
           display: none;

@@ -18,13 +18,12 @@ export const CategoryLink = [
   { title: "1Day", url: "oneday" },
   { title: "1Month", url: "month" },
   { title: "미술", url: "art" },
-  { title: "뮤직", url: "music" },
+  { title: "음악", url: "music" },
   { title: "공연", url: "theater" },
   { title: "힐링산책", url: "healing" },
-  { title: "미식", url: "food" },
+  { title: "요리", url: "food" },
   { title: "사진, 영상", url: "movie" },
-  // { title: "패션", url: "fashion" },
-  { title: "페션/지식", url: "wisdom" },
+  { title: "패션/지식", url: "wisdom" },
   { title: "VOD", url: "vodmain" }
 ];
 

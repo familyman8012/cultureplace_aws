@@ -1,9 +1,11 @@
+import { PolicySeo } from "@components/elements/CommonSeo";
 import Layout from "@components/layouts";
 import { WrapYakwan } from "../../components/pageComp/yakwan/styles";
 
 function Policy() {
   return (
     <Layout>
+      <PolicySeo />
       <WrapYakwan>
         <h1>개인정보처리방침</h1>
         <div className="modal-body">

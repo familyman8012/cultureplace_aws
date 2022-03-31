@@ -15,6 +15,12 @@ import { dehydrate, QueryClient, useQuery } from "react-query";
 import { CategoryLink } from "@components/layouts/Head";
 import { WrapCategoryView } from "@components/pageComp/categoryview/styles";
 import { PaginationStyle } from "@components/elements/PaginationStyle/styles";
+import { GenreSeo } from "@components/elements/CommonSeo";
+
+interface IUrl {
+  url: string | string[] | undefined;
+  text: string;
+}
 
 function Oneday({ SsrData }: any) {
   const router = useRouter();
@@ -23,6 +29,7 @@ function Oneday({ SsrData }: any) {
   const [pageSize, setPageSize] = useState(20);
   const [showPage, setShowPage] = useState(true);
   const [curPage, setCurPage] = useState(1);
+  const [genreString, setGenreString] = useState("");
   const { data, error, isLoading, isFetching, refetch } = useProducts(
     pageSize,
     curPage,
@@ -37,6 +44,13 @@ function Oneday({ SsrData }: any) {
     setShowPage(true);
   }, [genre]);
 
+  // 장르 title 가져오기
+  useEffect(() => {
+    setGenreString(
+      CategoryLink[CategoryLink.findIndex(el => el.url === genre)].title
+    );
+  }, [genre]);
+
   const handlePageChange = useCallback((page: number) => {
     setCurPage(page);
     window.scrollTo(0, 0);
@@ -44,6 +58,7 @@ function Oneday({ SsrData }: any) {
 
   return (
     <Layout>
+      <GenreSeo url={String(genre)} text={genreString} />
       <WrapCategoryView>
         <div>
           {isLoading &&

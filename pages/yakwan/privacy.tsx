@@ -1,9 +1,11 @@
+import { YakwanSeo } from "@components/elements/CommonSeo";
 import Layout from "@components/layouts";
 import { WrapYakwan } from "../../components/pageComp/yakwan/styles";
 
 function Privacy() {
   return (
     <Layout>
+      <YakwanSeo />
       <WrapYakwan>
         <h1>이용약관</h1>
         <div className="modal-body">

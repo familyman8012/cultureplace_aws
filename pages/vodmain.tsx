@@ -4,6 +4,7 @@ import { WrapIndex, CardSlideArea } from "@components/pageComp/indexpage";
 import { useState, useEffect } from "react";
 import { fetchVodProducts } from "@src/hooks/api/useVodProducts";
 import VodVisual from "@components/pageComp/vodmain/VodVisual";
+import { VodSeo } from "@components/elements/CommonSeo";
 
 const Home = () => {
   const [winReady, setwinReady] = useState(false);
@@ -30,6 +31,7 @@ const Home = () => {
     <>
       {winReady && (
         <Layout>
+          <VodSeo />
           <VodVisual winReady={winReady} />
           <WrapIndex>
             <CardSlideArea

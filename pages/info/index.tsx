@@ -14,6 +14,7 @@ import { GetStaticProps } from "next";
 import { dbConnect, Notice } from "../../pages/api";
 import convert from "xml-js";
 import { InfoWrap } from "@components/pageComp/info/styles";
+import { BoxofficeSeo } from "@components/elements/CommonSeo";
 
 const genre = ["뮤지컬", "연극", "음악(복합)", "음악(클래식)", "음악(국악)"];
 
@@ -22,6 +23,7 @@ function Index({ item }: any) {
 
   return (
     <Layout>
+      <BoxofficeSeo />
       <InfoWrap>
         <div className="box_info">
           <div className="tit-heading-wrap">

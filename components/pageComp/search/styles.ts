@@ -3,8 +3,15 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const SearchWrap = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  width: 90vw;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  .txt_result {
+    margin-top: 20px;
+    ${mq[0]} {
+      margin-top: 0;
+    }
+  }
   ${mq[0]} {
     width: 100%;
     padding: 20px;

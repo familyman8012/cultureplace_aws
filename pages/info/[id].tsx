@@ -11,6 +11,7 @@ import {
   DetailInfo,
   BlogInfo
 } from "@components/pageComp/info/styles";
+import { BoxofficeSeo } from "@components/elements/CommonSeo";
 
 function Index() {
   const router = useRouter();
@@ -26,6 +27,7 @@ function Index() {
 
   return (
     <Layout>
+      <BoxofficeSeo />
       {isLoading ? (
         <InfoContWrap></InfoContWrap>
       ) : (

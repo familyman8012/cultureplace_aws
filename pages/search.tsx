@@ -9,6 +9,7 @@ import React, { Fragment, useCallback, useEffect, useState } from "react";
 import "rc-pagination/assets/index.css";
 import Pagination from "rc-pagination";
 import { SearchWrap, CardWrap } from "@components/pageComp/search/styles";
+import { SearchSeo } from "@components/elements/CommonSeo";
 
 function Search() {
   const router = useRouter();
@@ -48,8 +49,9 @@ function Search() {
 
   return (
     <Layout>
+      <SearchSeo keyword={String(keyword)} />
       <SearchWrap>
-        <p>
+        <p className="txt_result">
           연관검색 포함 검색결과 총 {searchResult?.productsCount}가
           검색되었습니다. 이 모임을 원하시나요?
         </p>

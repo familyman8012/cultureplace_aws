@@ -1,7 +1,13 @@
+import { MonthSeo } from "@components/elements/CommonSeo";
 import InfinityCards from "@components/modules/InfinityCards";
 
 function Month() {
-  return <InfinityCards querykey={"month"} type="other" />;
+  return (
+    <>
+      <MonthSeo />
+      <InfinityCards querykey={"month"} type="other" />
+    </>
+  );
 }
 
 export default Month;

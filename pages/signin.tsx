@@ -8,6 +8,7 @@ import {
   InfoRegArea,
   LoginWrapper
 } from "@components/pageComp/signin/style";
+import { SignInSeo } from "@components/elements/CommonSeo";
 
 export interface ISignIn {
   providers: object;
@@ -23,6 +24,7 @@ export default function SignIn({ providers, csrfToken }: ISignIn) {
   }
   return (
     <>
+      <SignInSeo />
       <LoginWrapper>
         <div className="login_area">
           <div className="login_form">
