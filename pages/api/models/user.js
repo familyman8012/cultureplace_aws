@@ -19,6 +19,10 @@ const schema = new Schema(
     role: {
       type: String,
       default: "user"
+    },
+    passwordResetCode: {
+      data: String,
+      default: ""
     }
   },
   {

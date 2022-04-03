@@ -155,7 +155,7 @@ function Index({
         </SearchInputWrap>
         <ResultBtnWrap>
           <div className="title">조합검색</div>
-          <div>
+          <div className="box_btn">
             <button className="onSubmit" onClick={handlerApply}>
               적용
             </button>

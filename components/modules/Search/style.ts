@@ -76,7 +76,11 @@ export const SearchWrap = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: fill-available;
+    padding: 0;
+    margin: 0;
     background: #fff;
 
     .title {
@@ -147,6 +151,9 @@ export const FilterFindWrap = styled.ul`
       padding: 0;
     }
   }
+  ${mq[0]} {
+    padding: 0 18px;
+  }
 `;
 
 export const SearchInputWrap = styled.div`
@@ -158,6 +165,7 @@ export const SearchInputWrap = styled.div`
     text-align: left;
   }
   ${mq[0]} {
+    padding: 0 18px;
     input[name="searchInput"] {
       font-size: 12px;
     }
@@ -171,9 +179,13 @@ export const ResultBtnWrap = styled.div`
     .title {
       display: none;
     }
-    .onSubmit,  .onReset {
-      position: absolute;
+    .box_btn {
+      position: fixed;
       bottom: 0;
+      width:100%;
+    }
+    .onSubmit,  .onReset {
+     
       width: 50%;
       height: 50px;
       margin: 0;
@@ -182,14 +194,12 @@ export const ResultBtnWrap = styled.div`
       background: #ff005a;
     }
       .onSubmit {
-        left: 0;
         color: #fff;
         border: 1px solid #ff005a;
         background: #ff005a;
       }
 
       .onReset {
-        right: 0;
         color: #ff005a;
         border: 1px solid #ff005a;
         background: #fff;

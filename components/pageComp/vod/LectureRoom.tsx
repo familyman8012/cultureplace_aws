@@ -307,7 +307,7 @@ function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
         <SimpleBar className="simplebar">
           <div
             css={css`
-              min-height: calc(100vh - 249px);
+              min-height: calc((var(--vh, 1vh) * 100) - 249px);
             `}
           >
             {data?.curriculum.map(

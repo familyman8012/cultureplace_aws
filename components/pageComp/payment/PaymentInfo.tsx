@@ -1,7 +1,7 @@
 import { IProduct } from "@src/typings/db";
 import axios from "axios";
 import { Session } from "next-auth";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import WrapPayment from "./styles";
 import Layout from "@components/layouts";
 import { css } from "@emotion/react";
@@ -51,6 +51,21 @@ function PaymentInfo({
 
   const productid = data._id;
 
+  //뒤로가기 막기
+  useEffect(() => {
+    const preventGoBack = () => {
+      // change start
+      history.pushState(null, "", location.href);
+      // change end
+      console.log("prevent go back!");
+    };
+
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", preventGoBack);
+
+    return () => window.removeEventListener("popstate", preventGoBack);
+  }, []);
+
   function onClickRequest() {
     if (paymentInfo.phone === "" || paymentInfo.phone === undefined) {
       alert("구매자 전화번호를 입력하셔야합니다.");
@@ -69,7 +84,7 @@ function PaymentInfo({
       pg,
       method: "card", //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
       payment_name: "카드결제",
-      show_agree_window: 1, // 부트페이 정보 동의 창 보이기 여부
+      // show_agree_window: 1, // 부트페이 정보 동의 창 보이기 여부
       user_info: {
         username,
         email,

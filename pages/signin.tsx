@@ -9,6 +9,7 @@ import {
   LoginWrapper
 } from "@components/pageComp/signin/style";
 import { SignInSeo } from "@components/elements/CommonSeo";
+import MobMenu from "@components/layouts/MobMenu";
 
 export interface ISignIn {
   providers: object;
@@ -83,6 +84,7 @@ export default function SignIn({ providers, csrfToken }: ISignIn) {
         </div>
         <div className="login_mv"></div>
       </LoginWrapper>
+      <MobMenu />
     </>
   );
 }

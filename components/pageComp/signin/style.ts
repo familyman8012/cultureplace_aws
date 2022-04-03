@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 
 export const LoginWrapper = styled.div`
   display: flex;
-  height: 100vh;
-
+  height: calc((var(--vh, 1vh) * 100) - 28px);
   * {
     font-family: "Noto Sans KR", "Arial", sans-serif;
     line-height: 1;

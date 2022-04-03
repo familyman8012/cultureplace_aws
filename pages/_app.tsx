@@ -24,27 +24,13 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
 
-  const router = useRouter();
-
-  // queryClient.removeQueries();
-  // useEffect(() => {
-  //   const handleRouteChange = (url: string) => {
-  //     console.log("/detailview", url.includes("/detailview"));
-  //     console.log(`App is changing to ${url}`);
-  //     if (url === "/month") {
-  //       queryClient.removeQueries(["list", "oneday"]);
-  //     } else if (url === "/oneday") {
-  //       queryClient.removeQueries(["list", "month"]);
-  //     } else if (
-  //       !url.includes("/detailview") &&
-  //       (searchStore.filterFind.every((el: []) => el.length === 0) ||
-  //         searchStore.searchInput !== "")
-  //     ) {
-  //       queryClient.removeQueries("list");
-  //     }
-  //   };
-  //   router.events.on("routeChangeStart", handleRouteChange);
-  // }, []);
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

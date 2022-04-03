@@ -41,6 +41,15 @@ export default function Infinity({ querykey, type }: IQuerykey) {
     setFilterView(prev => !prev);
   };
 
+  useEffect(() => {
+    if (filterView) {
+      document.body.style.overflow = "hidden";
+    }
+    if (!filterView) {
+      document.body.style.overflow = "unset";
+    }
+  }, [filterView]);
+
   return (
     <Layout>
       <FilterBtn onClick={handlerFilterView}>
