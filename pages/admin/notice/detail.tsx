@@ -28,7 +28,7 @@ function Detail() {
     noticeStore.selCategory = e.currentTarget.value;
   };
 
-  // 이전 : 이전 내용을 바꾸고 싶다면
+  // 이전 : 이전화면으로 돌아가기
   const onPrev = useCallback(() => {
     router.back();
   }, []);
@@ -124,7 +124,7 @@ function Detail() {
               </select>
             </BoxInput>
           </div>
-          <QuillEditorView category="상품등록" />
+          <QuillEditorView category="공지사항" />
           <AdminBoxBtn>
             <button onClick={onPrev}>이전으로 가기</button>
             {QuillStore.state === "create" ? (

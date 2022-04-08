@@ -45,9 +45,11 @@ function MyApp({ Component, pageProps }: AppProps) {
               gray: "#838380",
               lightgray: "#6e6e6c",
               white: "#fff;",
+              pastelGreen: "#21DBD6",
               event: "#1778b5",
               primary: "#337ab7",
-              submit: "#c9302c"
+              submit: "#c9302c",
+              black: "#000"
             }
           }}
         >

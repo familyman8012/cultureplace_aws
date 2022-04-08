@@ -19,7 +19,8 @@ const sizes: ISizes = {
     height: "48px"
   },
   l: {
-    height: "56px"
+    height: "56px",
+    fontSize: "14px"
   }
 };
 

@@ -32,7 +32,8 @@ const options = {
             name: t.data.name,
             email: t.data.email,
             phone: t.data.phone,
-            role: t.data.role
+            role: t.data.role,
+            nickname: t.data.nickname
           };
           return user;
         }
@@ -69,6 +70,9 @@ const options = {
       session.user.role
         ? session.user.role
         : (session.user.role = user.user.role);
+      session.user.nickname
+        ? session.user.nickname
+        : (session.user.nickname = user.user.nickname);
       return Promise.resolve(session);
     }
   },

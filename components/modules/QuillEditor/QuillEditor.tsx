@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import ReactS3Client from "react-aws-s3-typescript";
 import { QuillStore } from "@/../src/mobx/store";
+import { runInAction } from "mobx";
 import { QuillStyle } from "./styles";
 
 import dayjs from "dayjs";
@@ -24,7 +25,9 @@ export default function QuillEditor({ mountBody }) {
                innerHTML만 body로 바꿉니다. 이 조건이 없을 시 툴바가 중복되어 여러 개 나타나게
                됩니다. */
       const quill = quillInstance.current;
-      quill.root.innerHTML = QuillStore.data;
+      runInAction(() => {
+        quill.root.innerHTML = QuillStore.data;
+      });
       return;
     }
     if (quillElement.current && window.Quill) {
@@ -62,7 +65,7 @@ export default function QuillEditor({ mountBody }) {
         true
       );
 
-      Quill.register("modules/htmlEditButton", htmlEditButton);
+      // Quill.register("modules/htmlEditButton", htmlEditButton);
       quillInstance.current = new window.Quill(quillElement.current, {
         modules: {
           history: {
@@ -72,7 +75,7 @@ export default function QuillEditor({ mountBody }) {
           },
           // syntax: true,
           toolbar: toolbarOptions,
-          htmlEditButton: {},
+          // htmlEditButton: {},
           table: true,
           tableUI: true,
           imageResize: {
@@ -88,7 +91,6 @@ export default function QuillEditor({ mountBody }) {
 
       // 이미지 S3에 보냄.
       const toolbar = quill.getModule("toolbar");
-      console.log("toolbar", toolbar);
       toolbar.addHandler("image", () => {
         onClickImageBtn();
       });

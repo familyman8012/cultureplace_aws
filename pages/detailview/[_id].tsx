@@ -40,35 +40,38 @@ const DetailView = ({ item }: IDetail) => {
   const { data } = useQuery("detail", () => item);
 
   return (
-    <Layout className="detail">
+    <>
       <DetailSeo
         _id={String(_id)}
         imgurl={String(data?.imgurl)}
         title={String(data?.title)}
       />
-      <DetailViewWrap>
-        {data && _id !== undefined && (
-          <>
-            <InfoCard data={data} _id={String(_id)} session={session} />
-            <Content>
-              <EditTxt dangerouslySetInnerHTML={{ __html: data?.body }} />
-              {data.isvod ? (
-                <Curriculum data={data} />
-              ) : (
-                <ClubDetailInfo item={data} />
-              )}
-              <InfoMemberChart />
+      <Layout className="detail">
+        <DetailViewWrap>
+          {data && _id !== undefined && (
+            <>
+              <InfoCard data={data} _id={String(_id)} session={session} />
 
-              <Review item={data} id={String(_id)} />
-              <WePlay />
-              <Benefit />
-              <Refund title={data.title} />
-              <Faq />
-            </Content>
-          </>
-        )}
-      </DetailViewWrap>
-    </Layout>
+              <Content>
+                <EditTxt dangerouslySetInnerHTML={{ __html: data?.body }} />
+                {data.isvod ? (
+                  <Curriculum data={data} />
+                ) : (
+                  <ClubDetailInfo item={data} />
+                )}
+                <InfoMemberChart />
+
+                <Review item={data} id={String(_id)} />
+                <WePlay />
+                <Benefit />
+                <Refund title={data.title} />
+                <Faq />
+              </Content>
+            </>
+          )}
+        </DetailViewWrap>
+      </Layout>
+    </>
   );
 };
 

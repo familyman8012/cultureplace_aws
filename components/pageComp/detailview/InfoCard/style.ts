@@ -31,7 +31,9 @@ export const InfoCard = styled.div`
     border-bottom: 8px solid rgb(244, 244, 244);
   }
   .txtbox {
-    padding: 0 20px;
+    ${mq[0]} {
+      padding: 0 20px;
+    }
     h2 {
       margin: 20px 0 9px;
       color: #2a2a2c;
@@ -97,8 +99,13 @@ export const InfoCard = styled.div`
   }
   .box_btn {
     display: flex;
-    button:last-child {
-      margin-left: auto;
+    button:nth-of-type(2) {
+      margin: 0 5px;
+    }
+    button:last-of-type {
+      width: 76px;
+      height: auto;
+      font-size: 14px;
     }
     ${mq[0]} {
       position: fixed;

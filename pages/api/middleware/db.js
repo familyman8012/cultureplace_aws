@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 export async function dbConnect() {
   if (mongoose.connection.readyState >= 1) return;
 
-  return mongoose.connect(process.env.DB_CONN_STR, {
+  return await mongoose.connect(process.env.DB_CONN_STR, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    bufferCommands: false,
+    bufferCommands: true,
     useCreateIndex: true
   });
 }

@@ -19,7 +19,7 @@ function MyDocument() {
           src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.min.js"
         ></script>
 
-        <script defer src="/script/quill/quill.htmlEditButton.min.js"></script>
+        {/* <script defer src="/script/quill/quill.htmlEditButton.min.js"></script> */}
 
         <script defer src="/script/quill/table.js"></script>
         <script defer src="/script/quill/imgresize.js"></script>

@@ -62,7 +62,7 @@ function QuillEditorView({ category }: Props) {
 
   return (
     <>
-      {category !== "vod등록" && (
+      {(category === "상품등록" || category === "공지사항") && (
         <div className="area_template_select">
           <p>템플릿 선택 : </p>
           <select onChange={handleSelectTemplate}>

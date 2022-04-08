@@ -13,6 +13,7 @@ const schema = new Schema(
     phone: String,
     salt: String,
     name: String,
+    nickname: String,
     gender: String,
     agegroup: String,
     image: String,

@@ -156,6 +156,13 @@ function Index({ data, _id, session }: InfoCard) {
                 )}
               </>
             )}
+            <Button
+              color="pastelGreen"
+              size="m"
+              onClick={() => router.push(`/community/${_id}`)}
+            >
+              커뮤니티
+            </Button>
           </div>
         </InfoCard>
       ) : (

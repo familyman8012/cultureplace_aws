@@ -1,4 +1,4 @@
-import { INotice, IProduct } from "@src/typings/db";
+import { IBoard, INotice, IProduct } from "@src/typings/db";
 import axios, { AxiosResponse } from "axios";
 import router from "next/router";
 import { ChangeEvent, MutableRefObject } from "react";
@@ -62,6 +62,49 @@ const prodUpStore = observable({
   },
   get viewProduct() {
     return this.data.length;
+  }
+});
+
+const boardStore = observable({
+  productId: "",
+  parentId: "",
+  searchInput: "",
+  searchKeyword: "",
+  noticeCheckBox: false,
+  onsearchInput(e: ChangeEvent<HTMLInputElement>) {
+    this.searchInput = e.target.value;
+  },
+  moveCreateBoard(productId: string, boardName: string) {
+    QuillStore.reset();
+    QuillStore.state = "create";
+    QuillStore.dir = boardName;
+    //router.push(detailUrl);
+  },
+  onApply() {
+    this.searchKeyword = this.searchInput;
+  },
+  async moveModifyBoard(_id: string, boardName: string, boardCheck: boolean) {
+    this.reset();
+    QuillStore.state = "modify";
+    //s3 경로
+    QuillStore.dir = boardName;
+    QuillStore.modifyId = _id;
+    await axios.get(`/api/board/${_id}`).then((resp: { data: IBoard }) => {
+      QuillStore.titleData = resp.data.title;
+      QuillStore.data = resp.data.body;
+      // 댓글일때는 QullEditor 의 ql-editor 안의 내용이 자동으로 반영이 안되서, dom으로 때려박음
+      if (!boardCheck) {
+        let qlEditor = document.querySelector(".ql-editor");
+        if (qlEditor !== null) qlEditor.innerHTML = String(resp?.data?.body);
+      }
+      this.parentId = resp.data.parentId;
+      this.noticeCheckBox = resp.data.noticecheck;
+      boardCheck && router.push(`/community/write/${this.parentId}`);
+    });
+  },
+  reset() {
+    QuillStore.reset();
+    this.parentId = "";
   }
 });
 
@@ -173,4 +216,11 @@ const infoStore = observable({
   // }
 });
 
-export { prodUpStore, QuillStore, noticeStore, searchStore, infoStore };
+export {
+  prodUpStore,
+  QuillStore,
+  noticeStore,
+  searchStore,
+  infoStore,
+  boardStore
+};

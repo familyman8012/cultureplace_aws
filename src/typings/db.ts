@@ -1,11 +1,6 @@
-export interface IProduct {
+export interface IProductOrigin {
   curriculum: ICurriculum[];
   _id: string;
-  creator: {
-    name: string;
-    email: string;
-    phone: number;
-  };
   title: string;
   desc: string;
   todo: string;
@@ -27,6 +22,18 @@ export interface IProduct {
   joinMembr: string[];
   favoriteduser: string[];
   review: string[];
+}
+
+export interface IProduct extends IProductOrigin {
+  creator: {
+    name: string;
+    email: string;
+    phone: number;
+  };
+}
+
+export interface IProductType2 extends IProductOrigin {
+  creator: string;
 }
 
 export interface ICurriculum {
@@ -72,6 +79,25 @@ export interface INotice {
   updatedAt: string;
 }
 
+export interface IBoard {
+  _id: string;
+  productId: string;
+  parentId: string;
+  noticecheck?: boolean;
+  title: string;
+  body?: string;
+  userid: string;
+  nickname: string;
+  readcount: number;
+  commentcount: number;
+  createdAt: Date;
+}
+
+export interface IBoardList {
+  board: IBoard[];
+  noticeboard: IBoard[];
+  boardCount: number;
+}
 export interface IMainVis {
   _id: string;
   pclocation: string;
@@ -115,6 +141,7 @@ export interface IReviewEdit {
 export interface IUser {
   email: string;
   name: string;
+  nickname?: string;
   userpwd: string;
   phone: string;
   agegroup: string;

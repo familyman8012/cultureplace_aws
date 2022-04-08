@@ -34,12 +34,13 @@ export default function Register({ providers, csrfToken }: ISignIn) {
 
   const onSubmit = async (data: IUser) => {
     setLoading(true);
-    const { email, name, userpwd, phone, agegroup, gender } = data;
+    const { email, name, nickname, userpwd, phone, agegroup, gender } = data;
 
     axios
       .post("/api/user/user", {
         email,
         name,
+        nickname,
         userpwd,
         phone,
         agegroup,
@@ -94,6 +95,30 @@ export default function Register({ providers, csrfToken }: ISignIn) {
             {errors.name && errors.name.type === "pattern" && (
               <ErrorTxt>
                 이름 형식에 맞지 않습니다. 한글로 올바르게 이름을 입력해주세요.
+              </ErrorTxt>
+            )}
+            <label>
+              <div className="tit">Name</div>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder="닉네임을 입력해주세요."
+                  autoComplete="off"
+                  {...register("nickname", {
+                    required: true,
+                    pattern: /^[가-힣]{2,7}$/
+                  })}
+                />
+              </div>
+            </label>
+            {errors.nickname && errors.nickname.type === "required" && (
+              <ErrorTxt>닉네임을 입력해주세요.</ErrorTxt>
+            )}
+            {errors.nickname && errors.nickname.type === "pattern" && (
+              <ErrorTxt>
+                닉네임 형식에 맞지 않습니다. 한글로 올바르게 이름을
+                입력해주세요.(2글자 이상, 7글자 이하)
               </ErrorTxt>
             )}
             <label>

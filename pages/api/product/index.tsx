@@ -48,7 +48,7 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
       return res.send({ products, productsCount });
     } else if (!genre) {
       console.log("메인페이지");
-      User.find({ _id: creator });
+      const user = User.find({ _id: creator });
       const [products, productsCount] = await Promise.all([
         Product.find(creatorLevel, { body: false })
           .populate("creator", "name email phone")

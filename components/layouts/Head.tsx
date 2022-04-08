@@ -100,6 +100,16 @@ function Head() {
           <aside>
             <ul>
               <li>
+                <Link href="/community">
+                  <a>질문</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/live">
+                  <a>라이브</a>
+                </Link>
+              </li>
+              <li>
                 <a>크리에이터 지원</a>
               </li>
               <li className="my">
