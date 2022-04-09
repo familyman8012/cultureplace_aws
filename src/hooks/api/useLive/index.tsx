@@ -8,7 +8,9 @@ const fetchLives = async () => {
 };
 
 const useLives = () => {
-  return useQuery<ILive[], AxiosError>("liveData", () => fetchLives());
+  return useQuery<ILive[], AxiosError>("liveData", () => fetchLives(), {
+    refetchOnWindowFocus: false
+  });
 };
 
 export { useLives, fetchLives };
