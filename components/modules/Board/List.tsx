@@ -12,7 +12,7 @@ import { observer } from "mobx-react";
 import { BoardTable, WrapBoardContent, WrapReply } from "./styles";
 import Button from "@components/elements/Button";
 import SearchComForm from "@components/elements/SearchComForm";
-import dayjs from "dayjs";
+import { DayCal } from "lib";
 // import dayjs from "dayjs";
 
 interface IList {
@@ -22,12 +22,17 @@ interface IList {
 }
 
 function List({ parentId, boardname, boardCheck }: IList) {
+  const queryClient = useQueryClient();
+
   /* 테이블 data 구성 및 pagination */
   const [pageSize, setPageSize] = useState(20);
   const [curPage, setCurPage] = useState(1);
 
   // 검색을 위한 useState
   const [findKeyWord, setfindKeyWord] = useState("");
+
+  // 버튼클릭시 2번 안눌리게
+  const [btnDisable, setbtnDisable] = useState(false);
 
   // 게시물 리스트 가져오기
   const { status, data, error, refetch } = useBoard(
@@ -76,11 +81,43 @@ function List({ parentId, boardname, boardCheck }: IList) {
   );
 
   //답글 날짜
+  const DayFunc = useCallback(diffday => DayCal(diffday), []);
+
+  //답글 수정, 삭제
+  //공지사항 수정
+  const modifyBoard = useCallback(
+    (_id: string) => {
+      runInAction(() => {
+        boardStore.moveModifyBoard(_id, boardCheck);
+      });
+      setbtnDisable(false);
+    },
+    [boardCheck]
+  );
+
+  //공지사항 삭제
+  const deleteMutation = useMutation(
+    (_id: string) =>
+      axios.delete(`/api/board/${_id}`).then(res => {
+        return res.data;
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["boardlist"]);
+        setbtnDisable(false);
+      },
+      onError: (error, variables, context) => {
+        // I will fire first
+        console.log(error, variables);
+        setbtnDisable(false);
+      }
+    }
+  );
 
   return (
     <>
       {status === "loading" ? (
-        <span>Loading...</span>
+        <span></span>
       ) : status === "error" ? (
         <span>Error: {error?.message}</span>
       ) : boardCheck ? (
@@ -139,7 +176,7 @@ function List({ parentId, boardname, boardCheck }: IList) {
                     <td>
                       <span>{el.title}</span>
                       <span className="comment_count">
-                        {/* {el.commentcount > 0 && `[${el.commentcount}]`} */}
+                        {el.commentcount > 0 && `[${el.commentcount}]`}
                       </span>
                     </td>
                     <td>{el.nickname}</td>
@@ -168,24 +205,59 @@ function List({ parentId, boardname, boardCheck }: IList) {
             <div className="header__title">
               총 {ReplyLength}개의 답글이 달렸습니다
             </div>
-            <div className="answer__comment" data-id="171442">
-              <div className="comment__index">1</div>
-              <div className="comment__card">
-                <div className="comment__header flex-row">
-                  <div className="flex-column">
-                    <div className="flex-row">
-                      <a href="/users/@zerocho" className="comment__user-name">
-                        조현영
-                      </a>
+            {data &&
+              boardListData?.map((el, i) => (
+                <div key={el._id} className="answer__comment" data-id="171442">
+                  <div className="comment__index">{i + 1}</div>
+                  <div className="comment__card">
+                    <div className="comment__header flex-row">
+                      <div className="flex-column">
+                        <div className="flex-row">
+                          <span>{el.nickname}</span>
+                        </div>
+                        <span className="comment__updated-at">
+                          {DayFunc(el.createdAt)}
+                        </span>
+                      </div>
                     </div>
-                    <span className="comment__updated-at"></span>
+                    <div className="comment__body markdown-body">
+                      <div
+                        className="content"
+                        dangerouslySetInnerHTML={{ __html: String(el.body) }}
+                      />
+                      <div className="comment__features flex-row">
+                        <div className="flex-right">
+                          <button
+                            className="ac-button"
+                            onClick={e => {
+                              e.stopPropagation();
+                              runInAction(() => {
+                                boardStore.replyModify = true;
+                              });
+                              modifyBoard(el._id);
+                              setbtnDisable(true);
+                            }}
+                            disabled={btnDisable}
+                          >
+                            수정
+                          </button>
+
+                          <button
+                            className="ac-button"
+                            onClick={e => {
+                              e.stopPropagation();
+                              deleteMutation.mutate(el._id);
+                              setbtnDisable(true);
+                            }}
+                          >
+                            삭제
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="comment__body markdown-body">
-                  <p>네 개발 후에는 faker 삭제하시는 게 좋습니다.</p>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </WrapReply>
       )}

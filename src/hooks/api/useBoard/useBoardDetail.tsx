@@ -11,10 +11,7 @@ const fetchBoard = async (_id: string) => {
 const useBoardDetail = (_id: string) => {
   return useQuery<IBoard, AxiosError<{ err: string }>>(
     ["detailBoardData", _id],
-    async () => await fetchBoard(_id),
-    {
-      refetchOnWindowFocus: false
-    }
+    async () => await fetchBoard(_id)
   );
 };
 

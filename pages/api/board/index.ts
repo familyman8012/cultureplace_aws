@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import createHandler from "../middleware";
 import Board from "../models/board";
 import User from "../models/user";
+import mongoose from "mongoose";
 
 const boardRouter = createHandler();
 

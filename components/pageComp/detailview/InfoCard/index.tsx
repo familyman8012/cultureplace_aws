@@ -18,9 +18,10 @@ interface InfoCard {
   data: IProduct;
   _id: string;
   session: Session | null;
+  community?: boolean;
 }
 
-function Index({ data, _id, session }: InfoCard) {
+function Index({ data, _id, session, community }: InfoCard) {
   const { data: buttonData, isFetched } = useProdDetail(String(_id));
 
   const {
@@ -156,13 +157,23 @@ function Index({ data, _id, session }: InfoCard) {
                 )}
               </>
             )}
-            <Button
-              color="pastelGreen"
-              size="m"
-              onClick={() => router.push(`/community/${_id}`)}
-            >
-              커뮤니티
-            </Button>
+            {community ? (
+              <Button
+                color="black"
+                size="m"
+                onClick={() => router.push(`/detailview/${_id}`)}
+              >
+                소개
+              </Button>
+            ) : (
+              <Button
+                color="pastelGreen"
+                size="m"
+                onClick={() => router.push(`/community/${_id}`)}
+              >
+                커뮤니티
+              </Button>
+            )}
           </div>
         </InfoCard>
       ) : (

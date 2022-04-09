@@ -91,6 +91,7 @@ export interface IBoard {
   readcount: number;
   commentcount: number;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IBoardList {

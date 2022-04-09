@@ -26,7 +26,7 @@ const useBoard = (
   return useQuery<IBoardList, AxiosError>(
     ["boardlist", parentId, String(pageParam)],
     async () => await fetchBoard(parentId, limit, pageParam, searchKeyword),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
+    { keepPreviousData: true }
   );
 };
 

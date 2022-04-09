@@ -16,19 +16,23 @@ function Write({
   session,
   boardname,
   boardCheck,
-  noticeManager
+  noticeManager,
+  listMove
 }: {
   _id: string;
   session: Session;
   boardname: string;
   boardCheck: boolean;
   noticeManager: boolean;
+  listMove?: string;
 }) {
   const queryClient = useQueryClient();
 
   const [noticeCheckBox, setnoticeCheckBox] = useState(
     boardStore.noticeCheckBox
   );
+
+  const [btnDisable, setbtnDisable] = useState(false);
 
   const onTitle = (e: ChangeEvent<HTMLInputElement>) => {
     runInAction(() => {
@@ -38,9 +42,9 @@ function Write({
 
   // 이전 : 이전화면으로 돌아가기
   const onPrev = useCallback(() => {
-    router.back();
+    boardCheck ? router.back() : router.push(`/community/${listMove}`);
     QuillStore.reset();
-  }, []);
+  }, [boardCheck, listMove]);
 
   // 글쓰기
   const onSubmitMutation = useMutation(
@@ -60,12 +64,14 @@ function Write({
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();
+          setbtnDisable(false);
         }),
     {
       onSuccess: () => queryClient.invalidateQueries(["boardlist", _id]),
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
+        setbtnDisable(false);
       }
     }
   );
@@ -84,64 +90,110 @@ function Write({
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();
+          setbtnDisable(false);
           // router.back();
           // noticeStore.reset();
         }),
     {
-      onSuccess: () => queryClient.invalidateQueries(["detailBoardData", _id]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["boardlist", _id]);
+        if (!boardCheck) {
+          runInAction(() => {
+            boardStore.replyModify = false;
+          });
+        }
+      },
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
+        setbtnDisable(false);
       }
     }
   );
 
   return (
-    <WrapCommunityWrite>
-      {boardCheck && (
-        <>
-          <div>
-            <input
-              type="text"
-              name="title"
-              onChange={onTitle}
-              value={undefined}
-              defaultValue={QuillStore.titleData}
-              placeholder="제목을 입력해 주세요."
-            />
-          </div>
-          {noticeManager && (
-            <div className="box_notice_chk">
+    <>
+      <WrapCommunityWrite className={boardStore.replyModify ? "on" : "off"}>
+        {boardCheck && (
+          <>
+            <div>
               <input
-                type="checkbox"
-                name="notice"
-                id="noticeChk"
-                value="noticeChk"
-                checked={noticeCheckBox}
-                onChange={() => setnoticeCheckBox((prev: boolean) => !prev)}
+                type="text"
+                name="title"
+                onChange={onTitle}
+                value={undefined}
+                defaultValue={QuillStore.titleData}
+                placeholder="제목을 입력해 주세요."
               />
-              <label
-                htmlFor="noticeChk"
-                css={css`
-                  cursor: pointer;
-                `}
-              >
-                공지로 등록
-              </label>
+            </div>
+            {noticeManager && (
+              <div className="box_notice_chk">
+                <input
+                  type="checkbox"
+                  name="notice"
+                  id="noticeChk"
+                  value="noticeChk"
+                  checked={noticeCheckBox}
+                  onChange={() => setnoticeCheckBox((prev: boolean) => !prev)}
+                />
+                <label
+                  htmlFor="noticeChk"
+                  css={css`
+                    cursor: pointer;
+                  `}
+                >
+                  공지로 등록
+                </label>
+              </div>
+            )}
+          </>
+        )}
+        <div className={boardCheck ? "post" : "reply"}>
+          {!boardCheck && (
+            <div className="comment__header flex-row">
+              <div className="flex-column">
+                <h5 className="comment__user-name">
+                  {session.user.nickname}님, 답글을 남겨보세요!
+                </h5>
+              </div>
             </div>
           )}
-        </>
-      )}
-      <QuillEditorView category="board" />
-      <AdminBoxBtn>
-        <button onClick={onPrev}>이전으로 가기</button>
-        {QuillStore.state === "modify" ? (
-          <button onClick={() => onModifyMutation.mutate()}>글수정</button>
-        ) : (
-          <button onClick={() => onSubmitMutation.mutate()}>글등록</button>
-        )}
-      </AdminBoxBtn>
-    </WrapCommunityWrite>
+          <QuillEditorView category="board" />
+          <AdminBoxBtn>
+            <button onClick={onPrev}>목록으로 이동</button>
+            {QuillStore.state === "modify" ? (
+              <button
+                onClick={() => {
+                  onModifyMutation.mutate();
+                  setbtnDisable(true);
+                }}
+              >
+                글수정
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  if (
+                    QuillStore.data === "" ||
+                    QuillStore.data === "<p><br></p>"
+                  ) {
+                    alert("답글을 남겨보세요!");
+                  } else {
+                    onSubmitMutation.mutate();
+                    setbtnDisable(true);
+                  }
+                }}
+                disabled={btnDisable}
+              >
+                {boardCheck ? "글등록" : "답글등록"}
+              </button>
+            )}
+          </AdminBoxBtn>
+        </div>
+      </WrapCommunityWrite>
+
+      <div className="dimm"></div>
+    </>
   );
 }
 

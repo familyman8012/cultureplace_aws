@@ -9,7 +9,12 @@ function QuestionLayout({ children, data, _id, session }: any) {
   return (
     <Layout className="detail">
       <DetailViewWrap>
-        <InfoCard data={data} _id={String(_id)} session={session} />
+        <InfoCard
+          data={data}
+          _id={String(_id)}
+          session={session}
+          community={true}
+        />
         <Content>{children}</Content>
       </DetailViewWrap>
     </Layout>

@@ -50,7 +50,12 @@ const DetailView = ({ item }: IDetail) => {
         <DetailViewWrap>
           {data && _id !== undefined && (
             <>
-              <InfoCard data={data} _id={String(_id)} session={session} />
+              <InfoCard
+                data={data}
+                _id={String(_id)}
+                session={session}
+                community={false}
+              />
 
               <Content>
                 <EditTxt dangerouslySetInnerHTML={{ __html: data?.body }} />

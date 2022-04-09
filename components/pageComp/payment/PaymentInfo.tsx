@@ -1,4 +1,4 @@
-import { IProduct } from "@src/typings/db";
+import { IProductType2 } from "@src/typings/db";
 import axios from "axios";
 import { Session } from "next-auth";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import Layout from "@components/layouts";
 import { css } from "@emotion/react";
 
 interface IPaymentInfo {
-  data: IProduct;
+  data: IProductType2;
   session: Session;
   setcompleteData: Dispatch<SetStateAction<any>>;
   setpayComplete: Dispatch<SetStateAction<boolean>>;

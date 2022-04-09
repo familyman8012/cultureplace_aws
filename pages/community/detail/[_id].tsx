@@ -6,12 +6,12 @@ import {
 } from "@components/modules/Board/styles";
 import Write from "@components/modules/Board/Write";
 import { useBoardDetail } from "@src/hooks/api/useBoard/useBoardDetail";
+import Errorhandler from "lib";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Errorhandler from "../lib/errorhandler";
 
 function BoardDetail() {
   const router = useRouter();
@@ -38,7 +38,7 @@ function BoardDetail() {
     <WrapBoardDetail>
       <>
         {status === "loading" ? (
-          "Loading..."
+          <div></div>
         ) : status === "error" ? (
           <>
             {/* <span>Error: {error.response?.data.err}</span> */}
@@ -69,17 +69,19 @@ function BoardDetail() {
                       boardname="community"
                       boardCheck={false}
                       noticeManager={false}
+                      listMove={data.productId}
                     />
                   )}
                 </WrapBoardReplyArea>
               </>
             ) : (
-              <div></div>
+              <div>
+                <ToastContainer />
+              </div>
             )}
           </>
         )}
       </>
-      )
     </WrapBoardDetail>
   );
 }

@@ -1,13 +1,11 @@
 import List from "@components/modules/Board/List";
 import { useSession } from "next-auth/client";
-import QuestionLayout from "./layout";
+import QuestionLayout from "../../components/pageComp/community/layout";
 import { useEffect, useState } from "react";
-import { boardStore } from "@src/mobx/store";
-import { GetServerSideProps } from "next";
 import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import { useRouter } from "next/router";
-import { css } from "@emotion/react";
-import Errorhandler from "./lib/errorhandler";
+import Errorhandler from "lib";
+import { ToastContainer } from "react-toastify";
 
 function Board() {
   const router = useRouter();
@@ -45,7 +43,9 @@ function Board() {
           />
         </QuestionLayout>
       ) : (
-        <div></div>
+        <div>
+          <ToastContainer />
+        </div>
       )}
     </>
   );

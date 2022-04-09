@@ -12,14 +12,14 @@ const { observable } = require("mobx");
 const QuillStore = observable({
   state: null,
   modifyId: null,
-  titleData: null,
-  data: null,
+  titleData: "",
+  data: "",
   dir: null,
   writeContent(data: string) {
     this.data = data;
   },
   reset() {
-    (this.titleData = null), (this.data = null), (this.state = null);
+    (this.titleData = ""), (this.data = ""), (this.state = null);
   },
   modifyContent(url: string) {
     axios.get(url).then((resp: { data: IQuill[] }) => {
@@ -71,6 +71,7 @@ const boardStore = observable({
   searchInput: "",
   searchKeyword: "",
   noticeCheckBox: false,
+  replyModify: false,
   onsearchInput(e: ChangeEvent<HTMLInputElement>) {
     this.searchInput = e.target.value;
   },

@@ -11,24 +11,25 @@ export const WrapBoardContent = styled.div`
   margin: 0 auto;
 
   ${mq[0]} {
-    width: 100%;
-    p {
-      text-align: center;
-      color: #fff;
-    }
+    padding: 10px 0 30px 0;
   }
   .rc-pagination {
     display: flex;
     margin-top: 30px;
     justify-content: center;
+    ${mq[0]} {
+      transform: scale(0.8);
+    }
   }
 
   .btn_box {
     display: flex;
 
     button {
-      width: 100px;
+      width: 80px;
+      height: 34px;
       margin: 15px 0 0 auto;
+      font-size: 14px;
     }
   }
 `;
@@ -88,6 +89,24 @@ export const BoardTable = styled.table`
     }
     color: #000;
   }
+  ${mq[0]} {
+    width: 100%;
+    th,
+    td {
+      font-size: 12px;
+    }
+    col:nth-of-type(1),
+    th:nth-of-type(1),
+    td:nth-of-type(1) {
+      display: none;
+    }
+    th:nth-of-type(2),
+    td:nth-of-type(2) {
+      text-align: left;
+      padding-left: 10px;
+      width: 70%;
+    }
+  }
 `;
 
 // 글쓰기 게시판
@@ -96,7 +115,17 @@ export const WrapCommunityWrite = styled.div`
   width: 98%;
   margin: 0 auto;
   padding: 30px 0;
-  background: #fff;
+
+  &.on {
+    position: fixed;
+    z-index: 5;
+    width: 98%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50px);
+    padding: 0;
+    margin-top: -100px;
+  }
 
   input[name="title"] {
     width: 100%;
@@ -116,6 +145,40 @@ export const WrapCommunityWrite = styled.div`
 
   .ql-container.ql-snow {
     height: 60vh;
+  }
+  .reply {
+    max-width: 750px;
+    margin: 0 auto;
+    .ql-container.ql-snow {
+      height: 200px;
+    }
+    .comment__header {
+      padding: 20px 29px;
+      border-bottom: none;
+      background: #fff;
+      position: relative;
+      border: 1px solid #e9ecef;
+      border-bottom: none;
+      border-radius: 8px 8px 0px 0px;
+      background-color: #fff;
+    }
+    .comment__user-name {
+      margin-bottom: 4px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1b1c1d;
+      line-height: 1.47;
+    }
+  }
+
+  &.on + .dimm {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
   }
 
   .area_template_select {
@@ -144,6 +207,9 @@ export const WrapPost = styled.section`
   width: 95%;
   max-width: 750px;
   margin: 43px auto 30px;
+  ${mq[0]} {
+    margin: 20px auto 30px;
+  }
   .wrap_header {
     padding: 0 0 15px;
     border-bottom: 1px solid #ccc;
@@ -221,8 +287,22 @@ export const WrapPost = styled.section`
 // 답글
 export const WrapReply = styled.div`
   width: 95%;
-  max-width: 750px;
+  max-width: 820px;
   margin: 0 auto;
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
 
   .answer-info__header {
     padding: 16px 30px 8px;
@@ -233,6 +313,75 @@ export const WrapReply = styled.div`
       font-size: 16px;
       letter-spacing: -0.3px;
       color: #616568;
+    }
+  }
+  .answer__comment {
+    position: relative;
+    margin-bottom: 16px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  .comment__index {
+    position: absolute;
+    top: 16px;
+    left: -40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #e9bd05;
+    border: 1px solid #e2b600;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .comment__card {
+    padding: 20px 29px;
+    border-bottom: 1px solid #f1f3f5;
+    overflow-x: auto;
+    .comment__header {
+      padding-bottom: 20px;
+      align-items: center;
+      border-bottom: 1px solid #f1f3f5;
+    }
+
+    .comment__user-profile {
+      margin-right: 8px;
+      width: 48px;
+      height: 48px;
+      border-radius: 100px;
+      border: 1px solid #f1f3f5;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+    .comment__updated-at {
+      font-size: 13px;
+      font-weight: 400;
+      color: #abb0b5;
+      letter-spacing: -0.3px;
+      line-height: 1.38;
+    }
+    .comment__body {
+      padding: 20px 0;
+      overflow-x: auto;
+      .comment__features {
+        overflow-x: auto;
+      }
+      .content {
+        margin-bottom: 20px;
+      }
+      .ac-button {
+        text-decoration: underline;
+        height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.43;
+        color: #616568;
+        margin-left: 16px;
+      }
     }
   }
 `;
