@@ -20,7 +20,7 @@ const StreamChat = ({ username }) => {
   useEffect(() => {
     const socketInitializer = async () => {
       await fetch("/api/socket");
-      socket = io();
+      socket = io({ reconnection: false });
 
       socket.on("connect", () => {
         console.log("connected");

@@ -34,9 +34,12 @@ const SocketHandler = (req, res) => {
       });
       socket.on("enter_room", roomName => {
         socket.join(roomName);
-        socket
-          .to(roomName)
-          .emit("welcome", roomName, socket.nickname, countRoom(roomName));
+        io.to(roomName).emit(
+          "welcome",
+          roomName,
+          socket.nickname,
+          countRoom(roomName)
+        );
         io.sockets.emit("room_change", publicRooms());
       });
       socket.on("disconnecting", () => {
@@ -50,7 +53,10 @@ const SocketHandler = (req, res) => {
         io.sockets.emit("room_change", publicRooms());
       });
       socket.on("new_message", (msg, room) => {
-        io.to(room).emit("new_message", `${socket.nickname}: ${msg}`);
+        io.to(room).emit(
+          "new_message",
+          `<span class="nickname">${socket.nickname}</span> : <span class="msg">${msg}<span>`
+        );
       });
       socket.on("nickname", nickname => (socket["nickname"] = nickname));
     });

@@ -217,4 +217,28 @@ export interface ICulutreInfo {
 //   [key: string]: string
 // }
 
-export interface IinfinityData {}
+export interface ILive {
+  _id: string;
+  result: {
+    uid: string;
+    rtmps: {
+      url: string;
+      streamKey: string;
+    };
+    srt: {
+      url: string;
+      streamId: string;
+      passphrase: string;
+    };
+    created: Date;
+    modified: Date;
+    meta: { name: string };
+    status: null;
+    recording: {
+      mode: string;
+      timeoutSeconds: number;
+      requireSignedURLs: boolean;
+      allowedOrigins: string[];
+    };
+  };
+}
