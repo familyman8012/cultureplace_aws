@@ -1,8 +1,7 @@
-import Chat from "@components/pageComp/live/Chat";
-import LiveVod from "@components/pageComp/live/LiveVod";
-
-import { css } from "@emotion/react";
 import React, { useState } from "react";
+import Chat from "@components/pageComp/live/Chat";
+import LiveStream from "@components/pageComp/live/LiveStream";
+import { LiveStreamWrap } from "@components/pageComp/live/styles";
 
 function Live() {
   const [showRoom, setShowRoom] = useState({
@@ -10,16 +9,10 @@ function Live() {
     liveRoom: false
   });
   return (
-    <div
-      css={css`
-        display: flex;
-        max-width: 1650px;
-        margin: 60px auto 0;
-      `}
-    >
-      {showRoom.liveRoom && <LiveVod />}
+    <LiveStreamWrap>
+      {showRoom.liveRoom && <LiveStream />}
       <Chat showRoom={showRoom} setShowRoom={setShowRoom} />
-    </div>
+    </LiveStreamWrap>
   );
 }
 

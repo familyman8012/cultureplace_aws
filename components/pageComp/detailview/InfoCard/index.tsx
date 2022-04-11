@@ -142,7 +142,9 @@ function Index({ data, _id, session, community }: InfoCard) {
             )}
             {buttonData && isvod && (
               <>
-                {buttonData?.joinMembr?.includes(String(session?.user?.uid)) ? (
+                {buttonData?.joinMembr?.some(
+                  (user: any) => user._id === String(session?.user?.uid)
+                ) ? (
                   <Button
                     color="brand2"
                     size="l"

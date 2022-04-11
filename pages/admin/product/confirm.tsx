@@ -10,7 +10,6 @@ function Confirm() {
   // 데이터불러오기
   if (prodUpStore.data !== null) {
     prodUpStore.data.body = QuillStore.data;
-    console.log("prodUpStore.data", prodUpStore.data);
     if (
       prodUpStore.data.saleprice === "" ||
       prodUpStore.data.saleprice === null
@@ -26,7 +25,6 @@ function Confirm() {
 
     //등록
     const saveProduct = () => {
-      console.log("prodUpStore?.data", prodUpStore?.data);
       axios.post("/api/product/", prodUpStore?.data).then(function (resp) {
         prodUpStore.reset();
         router.push("/admin/product");

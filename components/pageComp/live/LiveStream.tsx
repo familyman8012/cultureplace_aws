@@ -1,25 +1,12 @@
-import React, {
-  SyntheticEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React, { useCallback, useState } from "react";
 import { useSession } from "next-auth/client";
-import { useRouter } from "next/router";
-import { css } from "@emotion/react";
-import io, { Socket } from "socket.io-client";
-import { DefaultEventsMap } from "@socket.io/component-emitter";
 import Button from "@components/elements/Button";
 import axios from "axios";
 import { useLives } from "@src/hooks/api/useLive";
-import { LiveVodWrap, VideoArea } from "./styles";
+import { LiveVodWrap, ObsInfo, VideoArea } from "./styles";
 
-let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
-
-function LiveVod() {
+function LiveStream() {
   const [session] = useSession();
-  const router = useRouter();
   const [videoLoad, setVideoLoad] = useState({ Load: false, Loaded: false });
   const videoAreaRef = React.useRef<HTMLDivElement>(null);
 
@@ -61,13 +48,8 @@ function LiveVod() {
     <>
       <LiveVodWrap>
         <VideoArea
-          css={css`
-            ${videoLoad.Loaded
-              ? "height:auto !important"
-              : `height:${
-                  Number(videoAreaRef?.current?.offsetWidth) * 0.563
-                }px`}
-          `}
+          videoLoad={videoLoad}
+          videoAreaRef={videoAreaRef}
           ref={videoAreaRef}
         >
           {data && (
@@ -78,61 +60,23 @@ function LiveVod() {
             ></iframe>
           )}
         </VideoArea>
-        <div>
+        <ObsInfo>
           {session?.user.role === "master" && (
-            <div
-              css={css`
-                display: flex;
-                margin: 20px 0;
-                align-items: center;
-              `}
-            >
+            <div className="box_btn">
               OBS 설정을 위한 URL, streamkey 구하기
               {Number(data?.length) >= 1 ? (
-                <Button
-                  color="submit"
-                  size="xs"
-                  onClick={() => liveDelete()}
-                  css={css`
-                    width: fit-content;
-                    padding: 0 10px;
-                    margin-left: 10px;
-                  `}
-                >
+                <Button color="submit" size="xs" onClick={() => liveDelete()}>
                   라이브삭제
                 </Button>
               ) : (
-                <Button
-                  color="primary"
-                  size="xs"
-                  onClick={liveStart}
-                  css={css`
-                    width: fit-content;
-                    padding: 0 10px;
-                    margin-left: 10px;
-                  `}
-                >
+                <Button color="primary" size="xs" onClick={liveStart}>
                   라이브만들기
                 </Button>
               )}
             </div>
           )}
           {Number(data?.length) >= 1 && (
-            <table
-              css={css`
-                border-collapse: collapse;
-                td {
-                  padding: 8px;
-                  &:nth-of-type(1) {
-                    width: 20%;
-                  }
-                  &:nth-of-type(2) {
-                    width: 80%;
-                  }
-                  border: 1px solid;
-                }
-              `}
-            >
+            <table>
               <tbody>
                 <tr>
                   <td>URL</td>
@@ -145,10 +89,10 @@ function LiveVod() {
               </tbody>
             </table>
           )}
-        </div>
+        </ObsInfo>
       </LiveVodWrap>
     </>
   );
 }
 
-export default LiveVod;
+export default LiveStream;

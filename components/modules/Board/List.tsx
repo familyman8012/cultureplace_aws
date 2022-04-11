@@ -147,45 +147,66 @@ function List({ parentId, boardname, boardCheck }: IList) {
               </tr>
             </thead>
             <tbody>
-              {data?.noticeboard?.map((el, i) => (
-                <tr
-                  key={el._id}
-                  onClick={() => router.push(`/${boardname}/detail/${el._id}`)}
-                  className="noticeTr"
-                >
-                  <td>
-                    <strong className="badge_notice">공지사항</strong>
+              {data && data?.board?.length > 0 ? (
+                <>
+                  {data?.noticeboard?.map(el => (
+                    <tr
+                      key={el._id}
+                      onClick={() =>
+                        router.push(`/${boardname}/detail/${el._id}`)
+                      }
+                      className="noticeTr"
+                    >
+                      <td>
+                        <strong className="badge_notice">공지사항</strong>
+                      </td>
+                      <td className="title">
+                        <span>{el.title}</span>
+                        <span className="comment_count">
+                          {el.commentcount > 0 && `[${el.commentcount}]`}
+                        </span>
+                      </td>
+                      <td>{el.nickname}</td>
+                      <td>{el.readcount}</td>
+                    </tr>
+                  ))}
+                  {data &&
+                    boardListData?.map((el, i) => (
+                      <tr
+                        key={el._id}
+                        onClick={() =>
+                          router.push(`/${boardname}/detail/${el._id}`)
+                        }
+                      >
+                        <td>
+                          {data?.boardCount - ((curPage - 1) * pageSize + i)}
+                        </td>
+                        <td>
+                          <span>{el.title}</span>
+                          <span className="comment_count">
+                            {el.commentcount > 0 && `[${el.commentcount}]`}
+                          </span>
+                        </td>
+                        <td>{el.nickname}</td>
+                        {/* <td>{dayjs(el.createdAt).format(`YY.MM.DD`)}</td> */}
+                        <td>{el.readcount}</td>
+                      </tr>
+                    ))}
+                </>
+              ) : (
+                <tr>
+                  <td colSpan={4}>
+                    <p
+                      css={css`
+                        font-size: 15px;
+                        padding: 15px !important;
+                      `}
+                    >
+                      첫 글을 올려주세요
+                    </p>
                   </td>
-                  <td className="title">
-                    <span>{el.title}</span>
-                    <span className="comment_count">
-                      {el.commentcount > 0 && `[${el.commentcount}]`}
-                    </span>
-                  </td>
-                  <td>{el.nickname}</td>
-                  <td>{el.readcount}</td>
                 </tr>
-              ))}
-              {data &&
-                boardListData?.map((el, i) => (
-                  <tr
-                    key={el._id}
-                    onClick={() =>
-                      router.push(`/${boardname}/detail/${el._id}`)
-                    }
-                  >
-                    <td>{data?.boardCount - ((curPage - 1) * pageSize + i)}</td>
-                    <td>
-                      <span>{el.title}</span>
-                      <span className="comment_count">
-                        {el.commentcount > 0 && `[${el.commentcount}]`}
-                      </span>
-                    </td>
-                    <td>{el.nickname}</td>
-                    {/* <td>{dayjs(el.createdAt).format(`YY.MM.DD`)}</td> */}
-                    <td>{el.readcount}</td>
-                  </tr>
-                ))}
+              )}
             </tbody>
           </BoardTable>
           <Pagination

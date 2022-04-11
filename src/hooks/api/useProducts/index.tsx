@@ -14,6 +14,7 @@ const fetchProducts = async (
   if (creator !== undefined) {
     session = await getSession();
   }
+
   let parse = await axios.get(
     `/api/product?searchKeyword=${searchKeyword}&limit=${limit}&page=${pageParam}${
       genre ? `&genre=${genre}&` : `&`
@@ -35,7 +36,7 @@ const useProducts = (
   return useQuery<IProductList, Error>(
     ["list", genre, String(pageParam)],
     async () =>
-      await fetchProducts(limit, pageParam, genre, creator, searchKeyword),
+      await fetchProducts(limit, pageParam, genre, searchKeyword, creator),
     { refetchOnWindowFocus: false, keepPreviousData: true, initialData }
   );
 };

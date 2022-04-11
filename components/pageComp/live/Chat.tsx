@@ -8,10 +8,18 @@ import React, {
 } from "react";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { css } from "@emotion/react";
 import io, { Socket } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 import Button from "@components/elements/Button";
+import {
+  ChatWrap,
+  ExitArea,
+  LiveChatStart,
+  LiveRoom,
+  WriteArea
+} from "./styles";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 
@@ -102,7 +110,7 @@ function Chat({ showRoom, setShowRoom }: IChat) {
       // change start
       history.pushState(null, "", location.href);
       // change end
-      console.log("prevent go back!");
+      toast("라이브방을 나가실 때는 오른쪽 상단의 나기기를 클릭해주세요.");
     };
 
     history.pushState(null, "", location.href);
@@ -125,14 +133,6 @@ function Chat({ showRoom, setShowRoom }: IChat) {
     setInputMessage("");
   };
 
-  // const handleRoomSubmit = (e) => {
-  //   e.preventDefault();
-  //   //socket.emit("input-change", e.target.value);
-  //   socket.emit("enter_room", input, handlerShowRoom);
-  //   setRoomName(input);
-  //   setInput("");
-  // };
-
   const handlerJoinBtn = () => {
     socket.emit("nickname", session?.user.name);
     socket.emit("enter_room", "live");
@@ -145,18 +145,9 @@ function Chat({ showRoom, setShowRoom }: IChat) {
   //chat end
 
   return (
-    <div>
-      <div
-        css={css`
-          position: fixed;
-          top: 50px;
-          right: 100px;
-        `}
-      >
+    <ChatWrap>
+      <ExitArea className="exit_area">
         <button
-          css={css`
-            font-size: 20px;
-          `}
           onClick={() => {
             socket.disconnect();
             router.push("/");
@@ -164,177 +155,50 @@ function Chat({ showRoom, setShowRoom }: IChat) {
         >
           나가기
         </button>
-      </div>
-      <div
-        css={css`
-          position: fixed;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-        `}
-      >
+      </ExitArea>
+      <LiveChatStart>
         {showRoom.liveMain && (
-          <div
-            onClick={handlerJoinBtn}
-            css={css`
-              cursor: pointer;
-            `}
-          >
+          <div className="wrap" onClick={handlerJoinBtn}>
             <div>
               <img src="/images/livestream.jpg" alt="Live Stream" />
             </div>
-            <div
-              css={css`
-                text-align: center;
-              `}
-            >
-              <h1
-                css={css`
-                  margin: 10px 0;
-                  font-size: 30px;
-                `}
-              >
-                스트리밍 라이브서비스 123!
-              </h1>
+            <div className="txtbox">
+              <h1>스트리밍 라이브서비스 123!</h1>
               <p>입장</p>
             </div>
           </div>
         )}
-      </div>
-      <div
-        css={css`
-          max-width: 382px;
-          height: 100%;
-          padding: 24px 12px;
-        `}
-      >
-        <div
-          css={css`
-            width: 100%;
-            height: 100%;
-          `}
-        >
-          {showRoom.liveRoom && (
-            <div
-              id="room"
-              css={css`
-                width: 100%;
-                height: 100%;
-              `}
-            >
-              <h3
-                css={css`
-                  display: flex;
-                  align-items: center;
-                  padding-left: 15px;
-                  height: 48px;
-                  border: 1px solid #e0e0e0;
-                `}
-              >
-                {roomTItle}
-              </h3>
-              <ul
-                ref={messageBoxRef}
-                css={css`
-                  overflow: auto;
-                  height: calc(100% - 163px);
-                  border: 1px solid #e0e0e0;
-                  border-top: none;
-                  border-bottom: none;
-                  padding: 10px 15px;
-                `}
-              >
-                {chat.map((el, i) => (
-                  <li
-                    key={i}
-                    css={css`
-                      margin-bottom: 8px;
-                      font-size: 15px;
-                      .nickname {
-                        color: #6e6e6e;
-                      }
-                      .msg {
-                        color: #030352;
-                      }
-                      .notice {
-                        display: block;
-                        border-radius: 4px;
-                        padding: 3px 16px;
-                        text-align: center;
-                        background: #eeeeee;
-                      }
-                    `}
-                    dangerouslySetInnerHTML={{ __html: String(el) }}
+      </LiveChatStart>
+      <LiveRoom>
+        {showRoom.liveRoom && (
+          <div id="room">
+            <h1>{roomTItle}</h1>
+            <ul ref={messageBoxRef}>
+              {chat.map((el, i) => (
+                <li key={i} dangerouslySetInnerHTML={{ __html: String(el) }} />
+              ))}
+            </ul>
+            <WriteArea>
+              <form onSubmit={handleMessageSubmit}>
+                <div className="box">
+                  <input
+                    placeholder="message"
+                    value={inputMessage}
+                    required
+                    type="text"
+                    onChange={onChangeMessage}
                   />
-                ))}
-              </ul>
-              <div
-                css={css`
-                  position: relative;
-                  display: flex;
-                  align-items: center;
-                  height: 45px;
-                  padding: 8px;
-                  border: 1px solid #e0e0e0;
-                `}
-              >
-                <form
-                  onSubmit={handleMessageSubmit}
-                  css={css`
-                    width: 100%;
-                  `}
-                >
-                  <div
-                    css={css`
-                      display: flex;
-                      width: 100%;
-                    `}
-                  >
-                    <input
-                      placeholder="message"
-                      value={inputMessage}
-                      required
-                      type="text"
-                      onChange={onChangeMessage}
-                      css={css`
-                        width: 70%;
-                        padding-left: 8px;
-                        border-radius: 5px;
-                        border: 1px solid #e0e0e0;
-                      `}
-                    />
-                    <Button
-                      color="black"
-                      size="xs"
-                      type="submit"
-                      css={css`
-                        width: 28%;
-                        margin-left: auto;
-                      `}
-                    >
-                      전송
-                    </Button>
-                    {/* <p
-                      css={css`
-                        position: absolute;
-                        bottom: -70px;
-                        font-size: 12px;
-                        border: 1px solid #ccc;
-                        padding: 0 8px;
-                      `}
-                    >
-                      * 이모지 단축키
-                      <br /> 윈도우 : (윈도우 로고키) + (마침표키)
-                      <br /> 맥 : Ctrl+Cmd+Space
-                    </p> */}
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+                  <Button color="black" size="xs" type="submit">
+                    전송
+                  </Button>
+                </div>
+              </form>
+            </WriteArea>
+          </div>
+        )}
+      </LiveRoom>
+      <ToastContainer position="top-center" />
+    </ChatWrap>
   );
 }
 

@@ -27,6 +27,7 @@ export interface IProductOrigin {
 export interface IProduct extends IProductOrigin {
   joinMembr: string[];
   creator: {
+    _id: string;
     name: string;
     email: string;
     phone: number;

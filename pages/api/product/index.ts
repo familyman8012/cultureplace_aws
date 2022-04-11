@@ -44,7 +44,7 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
         Product.find({ genre }).countDocuments()
       ]);
       return res.send({ products, productsCount });
-    } else if (!genre && !searchKeyword) {
+    } else if ((!genre && !searchKeyword) || (!genre && searchKeyword == "")) {
       const user = User.find({ _id: creator });
       const [products, productsCount] = await Promise.all([
         Product.find(creatorLevel, { body: false })

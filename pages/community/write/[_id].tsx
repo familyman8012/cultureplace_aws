@@ -23,7 +23,7 @@ function BoardWrite() {
   }, [router, session]);
 
   const { data: productData } = useProdDetail(String(boardId));
-  const noticeManager = productData?.creator === session?.user.uid;
+  const noticeManager = productData?.creator._id === session?.user.uid;
 
   return (
     <>

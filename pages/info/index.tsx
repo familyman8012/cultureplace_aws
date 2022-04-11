@@ -175,6 +175,6 @@ export const getStaticProps: GetStaticProps = async ctx => {
     props: {
       item: result
     },
-    revalidate: 60 * 60 * 24 //하루 지나면 재검증
+    revalidate: 60 * 60 * 24 * 7 //1주일 지나면 재검증
   };
 };
