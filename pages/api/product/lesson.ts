@@ -23,7 +23,7 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
     const { title, content, mediaId, filename } = req.body.lessons;
-    W;
+
     const products = await Product.updateOne(
       { _id },
       { $push: { lessons: { title, content, mediaId, filename } } },
