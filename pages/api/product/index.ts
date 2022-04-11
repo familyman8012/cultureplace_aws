@@ -11,8 +11,6 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const Numberlimit = Number(limit);
   const searchOption = omitBy({ genre, creator }, isUndefined);
 
-  console.log("creator, creator", creator);
-
   // 크리에이터 레벨에 따라, 마스터의 경우는 모든 걸 보여주고, 그외에는 자신이 등록한 것만 보여주도록 함.
   let creatorLevel;
   if (creator === "61c9a8f21179d30608ba85d7") {
@@ -47,7 +45,6 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
       ]);
       return res.send({ products, productsCount });
     } else if (!genre && !searchKeyword) {
-      console.log("메인페이지");
       const user = User.find({ _id: creator });
       const [products, productsCount] = await Promise.all([
         Product.find(creatorLevel, { body: false })

@@ -12,10 +12,6 @@ export interface IMainVisImgs {
 function Index() {
   const [windowWidthSize, setWindowWidthSize] = useState<number>(1000);
 
-  useEffect(() => {
-    console.log("aa");
-  });
-
   const handleResize = debounce(() => {
     setWindowWidthSize(window.innerWidth);
   }, 25);

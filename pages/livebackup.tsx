@@ -27,8 +27,6 @@ function LiveStream() {
   //
   const { status, data, error, refetch } = useLives();
 
-  console.log("uselive", data);
-
   //chat
   const [inputMessage, setInputMessage] = useState("");
   const [showRoom, setShowRoom] = useState({
@@ -154,7 +152,6 @@ function LiveStream() {
     axios
       .post(`/api/live`)
       .then((res: any) => {
-        console.log(res);
         setliveStartData(res);
         refetch();
       })

@@ -166,7 +166,6 @@ const searchStore = observable({
   },
   onViewSel(i: number) {
     this.viewSelList = i;
-    console.log(this.viewSelList);
   },
   onCheckboxChange(i: number, value: string) {
     if (this.filterFind[i].some((x: string) => x === value)) {
@@ -175,7 +174,6 @@ const searchStore = observable({
     } else {
       let newArray = [...this.filterFind[i], value];
       this.filterFind[i] = newArray;
-      console.log(this.filterFind);
     }
   },
   onApply(pageNum: number) {
@@ -188,7 +186,6 @@ const searchStore = observable({
   onReset(pageNum: number) {
     this.searchInput = "";
     // this.filterFind = [[], [], []];
-    console.log("리셋 데이터", this.searchInput);
     pageNum = 1;
 
     this.searchOption = {
@@ -206,7 +203,6 @@ const infoStore = observable({
     this.showGenre = [];
     this.showGenre = JSON.parse(this.item[i]).elements[0].elements;
     this.showTitle = title;
-    console.log(this.showGenre);
   }
   // onApply(pageNum: number) {
   //   pageNum = 1;

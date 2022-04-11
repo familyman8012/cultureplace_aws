@@ -29,7 +29,6 @@ function FavoriteButton({ _id, data }: { _id: string; data: IProduct }) {
       onMutate: async () => {
         await queryClient.cancelQueries("detail");
         const previousDetail = queryClient.getQueryData<IProduct>("detail");
-        console.log("previousDetail", previousDetail);
         if (previousDetail) {
           if (!favorite && session) {
             queryClient.setQueryData<IProduct>("detail", {

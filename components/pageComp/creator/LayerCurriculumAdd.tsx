@@ -32,9 +32,7 @@ function LayerCurriculumAdd({
             title: writeCurriculumTitle
           }
         })
-        .then(res => {
-          console.log(res);
-        }),
+        .then(res => {}),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["curriculum"]);
@@ -55,15 +53,11 @@ function LayerCurriculumAdd({
   //커리큘럼 수정
   const handlerModifyCuriculumn = useMutation(
     (curriculumId: string) =>
-      axios
-        .put(`/api/curriculum/${_id}?curriculumId=${curriculumId}`, {
-          curriculum: {
-            title: writeCurriculumTitle
-          }
-        })
-        .then(res => {
-          console.log(res);
-        }),
+      axios.put(`/api/curriculum/${_id}?curriculumId=${curriculumId}`, {
+        curriculum: {
+          title: writeCurriculumTitle
+        }
+      }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["curriculum"]);
@@ -77,6 +71,7 @@ function LayerCurriculumAdd({
       },
       onError: (error, variables, context) => {
         // I will fire first
+        console.log(error, variables);
       }
     }
   );

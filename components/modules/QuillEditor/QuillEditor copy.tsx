@@ -122,7 +122,6 @@ export default function QuillEditor({ mountBody }) {
 
       // 이미지 S3에 보냄.
       const toolbar = quill.getModule("toolbar");
-      console.log("toolbar", toolbar);
       toolbar.addHandler("image", () => {
         onClickImageBtn();
       });

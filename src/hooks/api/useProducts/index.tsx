@@ -14,8 +14,6 @@ const fetchProducts = async (
   if (creator !== undefined) {
     session = await getSession();
   }
-  console.log("creator creator creator느느느느는", session?.user.uid);
-  console.log("findKeyWord findKeyWord findKeyWord", searchKeyword);
   let parse = await axios.get(
     `/api/product?searchKeyword=${searchKeyword}&limit=${limit}&page=${pageParam}${
       genre ? `&genre=${genre}&` : `&`

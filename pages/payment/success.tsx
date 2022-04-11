@@ -32,7 +32,6 @@ function Success() {
           paymentKey: String(paymentKey)
         })
         .then(res => {
-          console.log(res);
           if (res?.data?.status === "DONE") {
             setcompleteData(res.data);
           } else {
@@ -57,7 +56,6 @@ function Success() {
           userid: session?.user?.uid
         })
         .then(res => {
-          console.log("payment db 저장 완료?", res);
           setcompleteData({ ...completeData, status: "SUCCESS" });
         })
         .catch(err => {
@@ -66,8 +64,6 @@ function Success() {
         });
     }
   }, [completeData, productid, router, session?.user?.uid]);
-
-  useEffect(() => console.log("completeData", completeData), [completeData]);
 
   return (
     <>

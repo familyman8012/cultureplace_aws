@@ -7,12 +7,8 @@ import { searchStore } from "@src/mobx/store";
 const useInfinity = (querykey: string) => {
   const { searchInput, filterFind } = searchStore.searchOption;
 
-  console.log("처음부터 잘됐으면... 두번눌러야 반영?", searchInput, filterFind);
-
   // useInfiniteQuery에서 쓸 함수
   const fetchPosts = async ({ pageParam = 1 }) => {
-    console.log("처음부터 잘됐으면...");
-
     const response = await axios.post(
       `/api/product/search?meetingcycle=${querykey}&limit=12&page=${pageParam}`,
       searchStore.searchOption

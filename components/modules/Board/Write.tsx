@@ -93,7 +93,6 @@ function Write({
           body: QuillStore.data
         })
         .then((resp: AxiosResponse<IBoardWrite>) => {
-          console.log(resp);
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();

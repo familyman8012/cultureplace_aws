@@ -50,8 +50,6 @@ function LiveVod() {
         }`
       )
       .then(res => {
-        console.log("//라이브 삭제", res);
-        console.log(res);
         refetch();
       })
       .catch(err => {

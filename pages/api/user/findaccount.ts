@@ -17,11 +17,9 @@ const handler = createHandler();
 
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    console.log("req.query", req.query);
     const users = await User.find(req.query, {
       email: true
     });
-    console.log(users);
     return res.send(users);
   } catch (err) {
     console.log(JSON.stringify(err));
@@ -78,7 +76,6 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
     const emailSent = SES.sendEmail(params).promise();
     emailSent
       .then(data => {
-        console.log(data);
         res.json({ ok: true });
       })
       .catch(err => {
@@ -92,8 +89,6 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
 handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     let { email, code, newPassword } = req.body;
-
-    console.log(email, code, newPassword);
 
     crypto.randomBytes(64, (err, buf) => {
       crypto.pbkdf2(

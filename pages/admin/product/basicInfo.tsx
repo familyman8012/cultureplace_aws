@@ -38,8 +38,6 @@ function App() {
         return alert("대표 이미지를 등록하셔야 합니다.");
       }
 
-      console.log("수정할때 왜 지랄?", imgData, typeof imgData);
-
       const productData = {
         ...data,
         meetday: dayjs(data.firstmeet).format("ddd요일"),

@@ -35,8 +35,6 @@ function Index({ genreData, isLoading, genreTitle, type }: IGenreData) {
     }
   };
 
-  console.log("isLoading isLoading isLoading", isLoading);
-
   return (
     <div
       className={type === "vod" ? "wrap_vod" : "wrap_product"}

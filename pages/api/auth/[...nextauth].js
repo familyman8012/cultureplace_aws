@@ -24,7 +24,6 @@ const options = {
           credentials
         );
         var t = response.data;
-        console.log("role 은 왱?", t.data.role);
         if (t.data.status !== 0) {
           const user = {
             uid: t.data._id,

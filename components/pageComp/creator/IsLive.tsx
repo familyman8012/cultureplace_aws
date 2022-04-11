@@ -32,7 +32,6 @@ function IsLive({ showLiveModal, setShowLiveModal, refetch }: ILive) {
         islive: !showLiveModal.islive
       })
       .then(res => {
-        console.log(res);
         handlerCloseLiveModal();
         refetch();
       });

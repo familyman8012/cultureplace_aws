@@ -76,7 +76,6 @@ handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
 handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
-    console.log("_id", _id, "req.body", req.body);
     const users = await User.findByIdAndUpdate(_id, req.body, {
       new: true
     });

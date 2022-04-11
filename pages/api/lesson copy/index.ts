@@ -8,7 +8,6 @@ const productRouter = createHandler();
 productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
-    console.log("_id", _id);
 
     const products = await Product.find({ _id });
     console.log(products);
@@ -25,7 +24,6 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id } = req.query;
     const { title, content, mediaId, filename } = req.body.lessons;
 
-    console.log(title, content, mediaId);
     const products = await Product.updateOne(
       { _id },
       { $push: { lessons: { title, content, mediaId, filename } } },

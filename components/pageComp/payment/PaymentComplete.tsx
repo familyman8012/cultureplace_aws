@@ -6,7 +6,6 @@ import WrapPayment from "./styles";
 function PaymentComplete({ completeData }: { completeData: ITossPay }) {
   const { orderName, orderId, card, totalAmount } = completeData;
 
-  console.log("completeData completeData", completeData);
   return (
     <Layout>
       <WrapPayment type="complete">

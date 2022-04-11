@@ -8,13 +8,10 @@ const productRouter = createHandler();
 productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
-    console.log("_id", _id);
 
     const products = await Product.find({ _id });
-    console.log(products);
     return res.send(products);
   } catch (err) {
-    console.log(JSON.stringify(err));
     res.status(500).send(JSON.stringify(err));
   }
 });
@@ -25,7 +22,6 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id } = req.query;
     const { title } = req.body.curriculum;
 
-    console.log(title);
     const products = await Product.updateOne(
       { _id },
       { $push: { curriculum: { title } } },
@@ -33,7 +29,6 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
     );
     return res.send(products);
   } catch (err) {
-    console.log(JSON.stringify(err));
     res.status(500).send(JSON.stringify(err));
   }
 });
@@ -47,7 +42,6 @@ productRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
     // });
     const { _id, curriculumId } = req.query;
     const { title } = req.body.curriculum;
-    console.log("_id, curriculumId, title", _id, curriculumId, title);
     const products = await Product.updateOne(
       {
         _id,
@@ -77,7 +71,6 @@ productRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
 productRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id, curriculumId } = req.query;
-    console.log("_id, curriculumId", _id, curriculumId);
     const products = await Product.findByIdAndUpdate(_id, {
       $pull: { curriculum: { _id: curriculumId } }
     }).exec();

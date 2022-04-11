@@ -47,8 +47,6 @@ function LayerLessonAdd({
   const resetRef = useRef<HTMLInputElement>(null);
 
   const handlerWrite = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    // setLessonInfo({ ...lessonInfo, [e.target.name]: e.target.value });
     runInAction(() => {
       QuillStore.titleData = e.target.value;
     });
@@ -89,7 +87,6 @@ function LayerLessonAdd({
         },
         onProgress: function (bytesUploaded, bytesTotal) {
           var percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
-          console.log(bytesUploaded, bytesTotal, percentage + "%");
           setPercent(Number(percentage));
         },
         onSuccess: async function () {
@@ -97,7 +94,6 @@ function LayerLessonAdd({
             addLessonFunc();
           } else if (buttonTitle === "mod") {
             modLessonFunc();
-            console.log("mediaTime2 mediaTime2", mediaTime);
           }
         },
         onAfterResponse: function (req, res) {
@@ -116,7 +112,6 @@ function LayerLessonAdd({
                     (document.getElementById("vid") as HTMLMediaElement)
                       ?.duration
                   );
-                  console.log("mediaTime mediaTime", mediaTime);
                 });
             }
             resolve();
@@ -137,8 +132,6 @@ function LayerLessonAdd({
           // 업로드 시작
           upload && upload.start();
         });
-
-    console.log("upload upload", upload);
   };
 
   const modAxios = () => {
@@ -156,7 +149,6 @@ function LayerLessonAdd({
         }
       )
       .then(res => {
-        console.log(res);
         refetch();
         lessonLayerClose();
         alert("레슨수정이 완료되었습니다.");
@@ -193,9 +185,6 @@ function LayerLessonAdd({
         }
       )
       .then(res => {
-        if (res.status === 200) {
-          console.log("vod 수정시 기존 vod 삭제");
-        }
         modAxios();
       })
       .catch(error => {

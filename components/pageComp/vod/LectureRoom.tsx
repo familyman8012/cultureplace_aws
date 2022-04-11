@@ -125,9 +125,7 @@ function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
           productId: _id,
           lessonId: selLesson?._id
         })
-        .then(res => {
-          console.log(res);
-        }),
+        .then(res => {}),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["complete"]);
@@ -182,7 +180,6 @@ function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
           menuArry.find(el => el?.lessonId === completeItem)
         )
         .reduce((acc: number, cur: IMenuArry) => {
-          console.log("acc acc", acc, "cur cur", cur?.mediaTime);
           return Number(acc) + Number(cur?.mediaTime);
         }, 0)
     );

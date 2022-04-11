@@ -19,18 +19,14 @@ const useDeleteImg = (
 
       const s3 = new ReactS3Client(s3Config);
 
-      console.log("deleteFileLocaition", deleteFileLocaition);
-
       const key = deleteFileLocaition.replace(
         "https://cultureplace.s3-ap-northeast-2.amazonaws.com/",
         ""
       );
 
-      console.log(key);
-
       try {
         const res = await s3.deleteFile(key);
-        console.log("res", res);
+
         // setData(res.message);
       } catch (error) {
         console.log(error);

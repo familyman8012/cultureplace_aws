@@ -91,8 +91,6 @@ function Index({
     };
   }, [handlerReset]);
 
-  console.log("className", className);
-
   return (
     <SearchWrap className={className}>
       <MobileLayerHead>

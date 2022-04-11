@@ -46,9 +46,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
         agegroup,
         gender
       })
-      .then(function (resp) {
-        console.log("response.data", "adsadssadfs", resp.data, resp);
-      })
+      .then(function (resp) {})
       .catch(e => {
         if (axios.isAxiosError(e)) {
           console.log({

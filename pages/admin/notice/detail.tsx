@@ -67,8 +67,6 @@ function Detail() {
 
   console.log("noticeStore", noticeStore);
 
-  console.log("imgData 느느느느??!23213", typeof imgData);
-
   return (
     <AdminLayout>
       <WrapNotice>

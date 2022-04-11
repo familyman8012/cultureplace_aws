@@ -48,11 +48,7 @@ function LayerCurriculumMain({
   //커리큘럼 레이어 삭제 버튼
   const handlerDelCuriculumn = useMutation(
     (curriculumId: string) =>
-      axios
-        .delete(`/api/curriculum/${_id}?curriculumId=${curriculumId}`)
-        .then(res => {
-          console.log(res);
-        }),
+      axios.delete(`/api/curriculum/${_id}?curriculumId=${curriculumId}`),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["curriculum"]);

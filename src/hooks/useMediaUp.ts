@@ -29,13 +29,6 @@ const useMediaUp = (
         const res = await s3.uploadFile(file, fileName);
 
         setData(res.location);
-        console.log(
-          "type of img",
-          typeof res.location,
-          res.location,
-          "res",
-          res
-        );
       } catch (error) {
         console.log(error);
       }

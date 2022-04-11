@@ -6,7 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 function Success() {
   const router = useRouter();
   const { message } = router.query;
-  console.log(router.query);
 
   useEffect(() => {
     toast.error("결제에 실패했습니다.", {

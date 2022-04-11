@@ -8,9 +8,7 @@ interface IReivewData {
 }
 
 const fetchReview = async (_id: string, page: number) => {
-  console.log("fetchReview");
   const res = await axios.get(`/api/review/${_id}?page=${page}`);
-  console.log("review res", res);
   return res.data;
 };
 

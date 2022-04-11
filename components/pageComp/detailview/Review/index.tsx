@@ -58,7 +58,7 @@ function Index({ item, id }: { item: IProduct; id: string }) {
   const queryClient = useQueryClient();
 
   const saveReviewMutation = useMutation(
-    () => axios.post(`/api/review/${id}`, review).then(res => console.log(res)),
+    () => axios.post(`/api/review/${id}`, review).then(res => {}),
     {
       onSuccess: () => queryClient.invalidateQueries("reviewData"),
       onError: (error, variables, context) => {
@@ -69,8 +69,7 @@ function Index({ item, id }: { item: IProduct; id: string }) {
   );
 
   const updateReviewMutation = useMutation(
-    (_id: string) =>
-      axios.put(`/api/review/${_id}`, review).then(res => console.log(res)),
+    (_id: string) => axios.put(`/api/review/${_id}`, review).then(res => {}),
     {
       onSuccess: () => queryClient.invalidateQueries("reviewData"),
       onError: (error, variables, context) => {
@@ -81,8 +80,7 @@ function Index({ item, id }: { item: IProduct; id: string }) {
   );
 
   const delReviewMutation = useMutation(
-    (_id: string) =>
-      axios.delete(`/api/review/${_id}`).then(res => console.log(res)),
+    (_id: string) => axios.delete(`/api/review/${_id}`).then(res => {}),
     {
       onSuccess: () => queryClient.invalidateQueries("reviewData"),
       onError: (error, variables, context) => {
@@ -112,7 +110,6 @@ function Index({ item, id }: { item: IProduct; id: string }) {
                 <div>리뷰가 아직 등록되지 않았습니다.</div>
               ) : (
                 reviewData?.reviews.map((el, i) => {
-                  console.log("reviewData", reviewData);
                   return (
                     <ListItem
                       key={el.title}

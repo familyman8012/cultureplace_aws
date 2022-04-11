@@ -63,7 +63,6 @@ function LessonManagement({
 
   //레슨 삭제 -> video 까지.
   const deleteVideoHandler = (lessonId: string, mediaId: string) => {
-    console.log(lessonId, mediaId);
     axios
       .delete(
         `https://api.cloudflare.com/client/v4/accounts/${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT}/stream/${mediaId}`,
@@ -81,7 +80,6 @@ function LessonManagement({
               `/api/lesson/${_id}?curriculumId=${curriculumId}&lessonId=${lessonId}`
             )
             .then(res => {
-              console.log(res);
               alert("레슨 삭제되었습니다.");
               refetch();
             });
@@ -96,11 +94,9 @@ function LessonManagement({
     index: number,
     mediaId: string
   ) => {
-    console.log("lessonId", lessonId);
     const modLesson = selCurriculum?.lessons.find(
       (el: ILesson) => el._id === lessonId
     );
-    console.log("modLesson", modLesson);
     QuillStore.titleData = modLesson?.title;
     QuillStore.data = modLesson?.content;
     setLessonLayer({ state: "modify", show: true, selectIndex: index });
@@ -112,14 +108,10 @@ function LessonManagement({
   // 레슨 순서 수정
   const handlerModLessonList = useMutation(
     () =>
-      axios
-        .put(
-          `/api/lesson/${_id}?curriculumId=${curriculumId}`,
-          selCurriculum?.lessons
-        )
-        .then(res => {
-          console.log(res);
-        }),
+      axios.put(
+        `/api/lesson/${_id}?curriculumId=${curriculumId}`,
+        selCurriculum?.lessons
+      ),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["curriculum"]);
@@ -132,24 +124,14 @@ function LessonManagement({
 
   //드래그 & 드로그
   const handleChange = (result: any) => {
-    console.log("result", result);
     if (!result.destination) return;
     const items = selCurriculum && [...selCurriculum.lessons];
     const [reorderedItem] =
       result.destination && items?.splice(result.source.index, 1);
-    console.log(
-      "reorderedItem",
-      [reorderedItem],
-      "result.destination.index",
-      result.destination.index
-    );
     items?.splice(result.destination.index, 0, reorderedItem);
-    console.log("items", items);
     setSelCurriculum(
       selCurriculum && items && { ...selCurriculum, lessons: [...items] }
     );
-
-    console.log("새로정렬", items);
   };
 
   const handleShowLayerLesson = (_id: string) => {

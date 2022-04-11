@@ -15,16 +15,10 @@ function Index() {
 
   const { status, data, error } = usePayment(session?.user.uid);
 
-  console.log("res.data.data", data);
-
-  // console.log(session?.user.uid, data);
-
   const withdrawal = () => {
     axios
       .delete(`/api/user/user?_id=${session?.user.uid}`)
       .then(function (resp) {
-        console.log("resp resp resp113213", resp);
-
         signOut();
       });
 

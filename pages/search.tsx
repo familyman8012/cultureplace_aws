@@ -24,8 +24,6 @@ function Search() {
   const [curPage, setCurPage] = useState(1);
   const [searchResult, setsearchResult] = useState<ISearch>({});
 
-  console.log("keyword", router.query.hasOwnProperty("keyword"));
-
   useEffect(() => {
     setCurPage(1);
   }, [keyword, router]);

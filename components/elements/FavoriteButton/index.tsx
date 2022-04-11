@@ -55,8 +55,6 @@ function Index({ data, querykey }: IFavoritebtn) {
           IProductList | IinfinityProduct
         >(newQuerykey.length ? ["list", ...newQuerykey] : ["list", querykey]);
 
-        console.log("previousDetail", previousDetail);
-
         let updateProduct: any[] = [];
         if (previousDetail && "pages" in previousDetail) {
           previousDetail?.pages.forEach(function (item: any) {

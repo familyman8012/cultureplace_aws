@@ -62,8 +62,6 @@ export default function List() {
     }
   );
 
-  console.log("data", data);
-
   const HandlerShowMember = (
     e: React.MouseEvent<HTMLSpanElement>,
     i: number

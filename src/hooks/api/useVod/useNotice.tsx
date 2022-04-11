@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 
 const fetchCurriculum = async (_id: string) => {
   const res: { data: IProduct[] } = await axios.get(`/api/curriculum/${_id}`);
-  console.log("fetchLesson res", res);
   return res.data[0];
 };
 const useVod = (_id: string) => {

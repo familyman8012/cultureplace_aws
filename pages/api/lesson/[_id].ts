@@ -8,7 +8,6 @@ const productRouter = createHandler();
 productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
-    console.log("_id", _id);
 
     const products = await Product.find({ _id });
     console.log(products);
@@ -25,16 +24,6 @@ productRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id, curriculumId } = req.query;
     const { title, content, mediaId, mediaTime, filename } = req.body.lessons;
     // const { title, content, mediaId, filename } = req.body.lessons;
-
-    console.log("_id, curriculumId", _id, curriculumId);
-    console.log(
-      "title, content, mediaId",
-      title,
-      content,
-      mediaId,
-      mediaTime,
-      filename
-    );
 
     const products = await Product.updateOne(
       {
@@ -74,16 +63,6 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
     const { title, content, mediaId, mediaTime, filename } = req.body.lessons;
     // const { title, content, mediaId, filename } = req.body.lessons;
 
-    console.log("_id, curriculumId", _id, curriculumId, lessonIndex);
-    console.log(
-      "title, content, mediaId",
-      title,
-      content,
-      mediaId,
-      mediaTime,
-      filename
-    );
-
     const products = await Product.updateOne(
       {
         _id,
@@ -122,8 +101,6 @@ productRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id, curriculumId, lessonId } = req.query;
     // const { title, content, mediaId, filename } = req.body.lessons;
 
-    console.log("_id, curriculumId, lessonId", _id, curriculumId, lessonId);
-
     const products = await Product.updateOne(
       {
         _id,
@@ -152,8 +129,6 @@ productRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
     // const { title, content, mediaId } = req.body.lessons;
     // const { title, content, mediaId, filename } = req.body.lessons;
 
-    console.log("_id, curriculumId", _id, curriculumId);
-    console.log("lesson", req.body);
     // console.log("title, content, mediaId", title, content, mediaId);
 
     const products = await Product.updateOne(

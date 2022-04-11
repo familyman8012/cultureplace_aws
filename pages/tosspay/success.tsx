@@ -5,16 +5,13 @@ import React, { useEffect } from "react";
 function Success() {
   const router = useRouter();
   const { amount, orderId, paymentKey } = router.query;
-  console.log(router.query);
   useEffect(() => {
     amount &&
       orderId &&
       paymentKey &&
       axios
         .post("/api/tosspay", { amount, orderId, paymentKey })
-        .then(res => {
-          console.log(res);
-        })
+        .then(res => {})
         .catch(err => console.log(err));
   }, [amount, orderId, paymentKey]);
 

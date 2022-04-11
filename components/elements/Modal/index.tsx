@@ -14,7 +14,6 @@ interface IModal {
 }
 
 function Modal({ title, children, onClick }: IModal) {
-  console.log("onClick", typeof onClick);
   return (
     <ModalOverlay>
       <ModalWrap>

@@ -32,7 +32,6 @@ liveRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
       .then(async data => {
         var lives = new Live(data);
         await lives.save();
-        console.log(lives);
         res.send(data);
       });
   } catch (e) {
@@ -42,7 +41,6 @@ liveRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
 
 liveRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   const { liveid, dbid } = req.query;
-  console.log(liveid, dbid);
   try {
     fetch(
       `https://api.cloudflare.com/client/v4/accounts/${account}/stream/live_inputs/${liveid}`,
@@ -55,7 +53,6 @@ liveRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
     )
       .then(response => response.json())
       .then(async data => {
-        console.log(data);
         await Live.findByIdAndDelete({ _id: dbid });
         res.send(data);
       });

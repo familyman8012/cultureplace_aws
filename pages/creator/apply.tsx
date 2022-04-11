@@ -10,8 +10,6 @@ function Apply() {
   //   session?.user.role === "creator" && router.push("./");
   // }, [session?.user.role]);
 
-  console.log("session?.user.role", session?.user.role);
-
   const apply = useCallback(() => {
     axios
       .patch(`/api/user/user?_id=${session?.user.uid}`, {

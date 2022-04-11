@@ -29,8 +29,6 @@ export default function Register() {
     setLoading(true);
     const { name, phone } = data;
 
-    console.log(name, phone);
-
     axios
       .get<IFindId[]>("/api/user/findaccount", { params: { name, phone } })
       .then(resp => {

@@ -54,7 +54,6 @@ boardRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
         }
       );
     }
-    console.log(boards);
     return res.send(boards);
   } catch (err) {
     console.log(err);

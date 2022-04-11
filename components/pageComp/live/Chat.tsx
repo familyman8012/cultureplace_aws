@@ -116,7 +116,6 @@ function Chat({ showRoom, setShowRoom }: IChat) {
   };
 
   const addMessage = (message: string) => {
-    console.log(message);
     setChat(previousMessages => [...previousMessages, message]);
   };
 

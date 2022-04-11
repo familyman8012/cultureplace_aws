@@ -18,21 +18,17 @@ const fetchPosts = async (querykey: string, pageParam = 0) => {
 
   let url;
   if (querykey === "oneday" || querykey === "month") {
-    console.log("이게 들어와야하는뎅");
     url = `/api/product?meetingcycle=${querykey}&limit=12&page=${pageParam}`;
   } else {
-    console.log("이게 들어오네");
     url = `/api/product?genre=${querykey}&limit=8&page=${pageParam}`;
   }
   res = await axios.get(`${url !== undefined && url}`);
-  console.log("result 값이 어떻게 나오나??", res.data);
   return res.data;
 };
 
 const useInfinity = (querykey: string) => {
   const pageNum = useRef(1);
 
-  console.log("pageNum", pageNum.current);
   return useInfiniteQuery(
     ["list", querykey],
     async ({ pageParam = pageNum.current }) => {
