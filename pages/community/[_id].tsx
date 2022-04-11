@@ -4,7 +4,7 @@ import QuestionLayout from "../../components/pageComp/community/layout";
 import { useEffect, useState } from "react";
 import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import { useRouter } from "next/router";
-import Errorhandler from "lib";
+import { Errorhandler } from "lib";
 import { ToastContainer } from "react-toastify";
 
 function Board() {

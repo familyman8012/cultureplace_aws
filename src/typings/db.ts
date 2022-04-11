@@ -19,12 +19,13 @@ export interface IProductOrigin {
   quanity: number;
   islive: boolean;
   isvod?: boolean;
-  joinMembr: string[];
+
   favoriteduser: string[];
   review: string[];
 }
 
 export interface IProduct extends IProductOrigin {
+  joinMembr: string[];
   creator: {
     name: string;
     email: string;
@@ -33,6 +34,7 @@ export interface IProduct extends IProductOrigin {
 }
 
 export interface IProductType2 extends IProductOrigin {
+  joinMembr: string[];
   creator: string;
 }
 
@@ -108,7 +110,7 @@ export interface IMainVis {
 
 export interface ISSR {
   SsrData: {
-    products: IProduct[];
+    products: IProductList;
     blogData: INotice[];
     noticeData: INotice[];
   };
@@ -195,6 +197,92 @@ export interface IPayment {
   userid: string;
 }
 
+export interface IBoardWrite {
+  _id?: string;
+  noticecheck: boolean;
+  readcount?: number;
+  commentcount?: number;
+  title: string;
+  body: string;
+  userid?: string;
+  nickname?: string | null | undefined;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+export interface ITossPay {
+  approvedAt: string;
+  balanceAmount: number;
+  message?: string;
+  cancels:
+    | null
+    | {
+        cancelAmount: number;
+        cancelReason: string;
+        taxFreeAmount: string;
+        taxAmount: null | number;
+        refundableAmount: number;
+        canceledAt: string;
+      }[];
+  card: {
+    acquireStatus: string;
+    approveNo: string;
+    cardType: string;
+    company: string;
+    installmentPlanMonths: number;
+    isInterestFree: false;
+    number: string;
+    ownerType: string;
+    receiptUrl: string;
+    useCardPoint: false;
+  };
+  cashReceipt: {
+    type: string;
+    amount: number;
+    taxFreeAmount: number;
+    issueNumber: string;
+    receiptUrl: string;
+  };
+  country: string;
+  cultureExpense: boolean;
+  currency: string;
+  discount: null | { amount: number };
+  easyPay: null | string;
+  failure: null | { code: string; message: string };
+  giftCertificate: null | { approveNo: string; settlementStatus: string };
+  isPartialCancelable: boolean;
+  discountAmount: number;
+  mId: string;
+  method: string;
+  mobilePhone: null;
+  orderId: string;
+  orderName: string;
+  paymentKey: string;
+  requestedAt: string;
+  secret: string;
+  status: string;
+  suppliedAmount: number;
+  taxFreeAmount: number;
+  totalAmount: number;
+  transactionKey: string;
+  transfer: null | { bank: string; settlementStatus: string };
+  type: string;
+  useCashReceipt: boolean;
+  useDiscount: boolean;
+  useEscrow: boolean;
+  vat: number;
+  version: string;
+  virtualAccount: {
+    accountType: string;
+    accountNumber: string;
+    bank: string;
+    customerName: string;
+    dueDate: string;
+    refundStatus: string;
+    expired: boolean;
+    settlementStatus: string;
+  };
+}
+
 export interface ICulutreInfo {
   data: {
     elements: {
@@ -241,4 +329,10 @@ export interface ILive {
       allowedOrigins: string[];
     };
   };
+}
+
+export interface IComplete {
+  userId: string;
+  productId: string;
+  lessonId: string[];
 }

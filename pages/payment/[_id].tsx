@@ -12,19 +12,12 @@ function Payment() {
   const router = useRouter();
   const { _id } = router.query;
 
-  const [completeData, setcompleteData] = useState<any>({
-    data: { item_name: "", order_id: "", payment_data: "" }
-  });
-  const [payComplete, setpayComplete] = useState(false);
-
   const { status, data, error, isLoading, isError } = useProdDetail(
     String(_id)
   );
 
-  console.log("dataaa", data);
-
   useEffect(() => {
-    !session && router.push("/signin");
+    !session && router.push("/");
   }, [router, session]);
 
   if (isLoading) {
@@ -37,24 +30,10 @@ function Payment() {
 
   return (
     <>
-      {!payComplete ? (
-        data && session ? (
-          <>
-            <PaymentSeo />
-            <PaymentInfo
-              data={data}
-              session={session}
-              setcompleteData={setcompleteData}
-              setpayComplete={setpayComplete}
-            />
-          </>
-        ) : (
-          <div></div>
-        )
-      ) : (
+      {data && session && (
         <>
-          <PaymentCompleteSeo />
-          <PaymentComplete completeData={completeData} />
+          <PaymentSeo />
+          <PaymentInfo data={data} session={session} />
         </>
       )}
     </>

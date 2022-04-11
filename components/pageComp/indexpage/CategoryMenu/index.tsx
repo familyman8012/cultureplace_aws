@@ -11,7 +11,7 @@ function index() {
         <Link
           href={
             el.title === "1Day" || el.title === "1Month" || el.title === "VOD"
-              ? `${el.url}`
+              ? `/${el.url}`
               : `/view/${el.url}`
           }
           key={i}

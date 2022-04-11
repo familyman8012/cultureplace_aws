@@ -31,15 +31,11 @@ function Detail({
 }) {
   const queryClient = useQueryClient();
 
-  // 버튼클릭시 2번 안눌리게
-  const [btnDisable, setbtnDisable] = useState(false);
-
   //게시물 수정하러가기
   const modifyBoard = useCallback(() => {
     runInAction(() => {
       boardStore.moveModifyBoard(_id, `${boardname}`, boardCheck);
     });
-    setbtnDisable(false);
   }, [_id, boardCheck, boardname]);
 
   //게시물 삭제
@@ -50,14 +46,12 @@ function Detail({
       }),
     {
       onSuccess: () => {
-        setbtnDisable(false);
         queryClient.invalidateQueries(["boardlist", _id]);
         router.push(`/${boardname}/${data?.productId}`);
       },
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
-        setbtnDisable(false);
       }
     }
   );
@@ -86,19 +80,15 @@ function Detail({
               <>
                 <button
                   onClick={() => {
-                    modifyBoard;
-                    setbtnDisable(true);
+                    modifyBoard();
                   }}
-                  disabled={btnDisable}
                 >
                   수정
                 </button>
                 <button
                   onClick={() => {
                     deleteMutation.mutate(_id);
-                    setbtnDisable(true);
                   }}
-                  disabled={btnDisable}
                 >
                   삭제
                 </button>

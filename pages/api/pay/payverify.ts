@@ -1,6 +1,10 @@
 import { RestClient } from "@bootpay/server-rest-client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   // Process a POST request
 
   const receiptId = req.body.receipt_id;

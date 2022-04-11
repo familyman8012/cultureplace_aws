@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import createHandler from "../middleware";
 import Product from "../models/product";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const productRouter = createHandler();
 
@@ -78,12 +78,9 @@ productRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
       is_last = true;
     }
     return res.send({ products, productsCount, is_last });
-  } catch {
+  } catch (err) {
     res.status(500).send(err);
   }
 });
 
 export default productRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

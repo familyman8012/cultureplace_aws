@@ -6,8 +6,23 @@ export const WrapIndexContent = styled.div`
   width: 95%;
   margin: 0 auto;
 
+  .wrap_search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
   ${mq[0]} {
     width: 100%;
+    .wrap_search {
+      display: block;
+      width: 80%;
+      margin: 30px auto;
+      form {
+        margin-top: 30px;
+      }
+    }
+
     p {
       text-align: center;
       color: #fff;
@@ -471,6 +486,17 @@ export const ConfirmView = styled.div`
 
 // 모임정보 Layer
 export const MeetInfoLayer = styled.div`
+  width: 426px;
+  height: 300px;
+  ${mq[0]} {
+    width: 80%;
+    * {
+      font-size: 13px;
+    }
+    td {
+      font-size: 11px;
+    }
+  }
   .btn_close {
     position: absolute;
     top: 10px;
@@ -484,6 +510,7 @@ export const MeetInfoLayer = styled.div`
   .memberArea {
     overflow: auto;
     max-height: 500px;
+    margin-top: 10px;
   }
 `;
 

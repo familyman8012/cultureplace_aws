@@ -11,15 +11,11 @@ const fetchVodProducts = async (limit: number, pageParam: number) => {
   return result;
 };
 
-const useVodProducts = (
-  limit: number,
-  pageParam: number,
-  initialData?: any
-) => {
+const useVodProducts = (limit: number, pageParam: number) => {
   return useQuery<IProductList, Error>(
     ["listvod", String(pageParam)],
     async () => await fetchVodProducts(limit, pageParam),
-    { keepPreviousData: true, initialData }
+    { keepPreviousData: true }
   );
 };
 

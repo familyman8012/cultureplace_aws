@@ -28,7 +28,7 @@ export const DayCal = (diffDay: Date) => {
   }
 };
 
-function Errorhandler(status: string) {
+export function Errorhandler(status: string) {
   const router = useRouter();
 
   useEffect(() => {
@@ -43,4 +43,10 @@ function Errorhandler(status: string) {
   }, [router, status]);
 }
 
-export default Errorhandler;
+export function isEmptyObj(obj: object) {
+  if (obj.constructor === Object && Object.keys(obj).length === 0) {
+    return true;
+  }
+
+  return false;
+}

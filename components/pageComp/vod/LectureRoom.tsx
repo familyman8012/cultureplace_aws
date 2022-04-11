@@ -42,6 +42,10 @@ interface IMenuArry {
   mediaTime: Number;
 }
 
+interface ILectureRoom extends StreamPlayerApi {
+  duration: number;
+}
+
 function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -60,10 +64,11 @@ function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
   const [listCollapse, setListCollapse] = useState(false);
 
   // React.MutableRefObject<StreamPlayerApi | undefined> 가 맞으나, cloudflare측에서 type 을 잘못제공함.
-  const videoInput: React.MutableRefObject<any | undefined> | undefined =
-    useRef();
+  const videoInput:
+    | React.MutableRefObject<ILectureRoom | undefined>
+    | undefined = useRef();
   const interval: { current: NodeJS.Timeout | null } = useRef(null);
-  const videoAreaRef: React.MutableRefObject<any> = useRef();
+  const videoAreaRef = React.useRef<HTMLDivElement>(null);
 
   let menuArry: IMenuArry[] = useMemo(() => [], []);
 
@@ -224,7 +229,9 @@ function LectureRoom({ _id, sessionId }: { _id: string; sessionId: string }) {
               css={css`
                 ${videoLoad.Loaded
                   ? "height:auto !important"
-                  : `height:${videoAreaRef?.current?.offsetWidth * 0.563}px`}
+                  : `height:${
+                      Number(videoAreaRef?.current?.offsetWidth) * 0.563
+                    }px`}
               `}
               ref={videoAreaRef}
             >

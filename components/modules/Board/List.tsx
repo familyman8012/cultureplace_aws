@@ -31,9 +31,6 @@ function List({ parentId, boardname, boardCheck }: IList) {
   // 검색을 위한 useState
   const [findKeyWord, setfindKeyWord] = useState("");
 
-  // 버튼클릭시 2번 안눌리게
-  const [btnDisable, setbtnDisable] = useState(false);
-
   // 게시물 리스트 가져오기
   const { status, data, error, refetch } = useBoard(
     parentId,
@@ -90,7 +87,6 @@ function List({ parentId, boardname, boardCheck }: IList) {
       runInAction(() => {
         boardStore.moveModifyBoard(_id, boardCheck);
       });
-      setbtnDisable(false);
     },
     [boardCheck]
   );
@@ -104,12 +100,10 @@ function List({ parentId, boardname, boardCheck }: IList) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["boardlist"]);
-        setbtnDisable(false);
       },
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
-        setbtnDisable(false);
       }
     }
   );
@@ -235,9 +229,7 @@ function List({ parentId, boardname, boardCheck }: IList) {
                                 boardStore.replyModify = true;
                               });
                               modifyBoard(el._id);
-                              setbtnDisable(true);
                             }}
-                            disabled={btnDisable}
                           >
                             수정
                           </button>
@@ -247,7 +239,6 @@ function List({ parentId, boardname, boardCheck }: IList) {
                             onClick={e => {
                               e.stopPropagation();
                               deleteMutation.mutate(el._id);
-                              setbtnDisable(true);
                             }}
                           >
                             삭제

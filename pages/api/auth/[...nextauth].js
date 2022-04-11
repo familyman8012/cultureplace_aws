@@ -10,8 +10,7 @@ const options = {
     }),
     Providers.Google({
       clientId: process.env.Google_ID,
-      clientSecret: process.env.Google_SECRET,
-      redirect_uri: process.env.Google_REDIRECT_URL
+      clientSecret: process.env.Google_SECRET
     }),
     Providers.Credentials({
       name: "Custom Provider",

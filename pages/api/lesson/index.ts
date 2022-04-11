@@ -39,6 +39,3 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
 });
 
 export default productRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

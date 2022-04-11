@@ -1,15 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import createHandler from "../middleware";
 import Product from "../models/product";
+import User from "../models/user";
 
 const productRouter = createHandler();
 
 productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { _id } = req.query;
-    const products = await Product.find({ _id });
+    const user = User.find({}).limit(1);
+    const products = await Product.find({ _id })
+      .populate("creator", "name email phone")
+      .populate("joinMembr", "name email phone");
     return res.send(products);
-  } catch {
+  } catch (err) {
     res.status(500).send(JSON.stringify(err));
   }
 });
@@ -21,7 +25,7 @@ productRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
       new: true
     });
     return res.send(products);
-  } catch {
+  } catch (err) {
     res.status(500).send(JSON.stringify(err));
   }
 });
@@ -31,7 +35,7 @@ productRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id } = req.query;
     const products = await Product.findByIdAndDelete(_id);
     return res.send(products);
-  } catch {
+  } catch (err) {
     res.status(500).send(JSON.stringify(err));
   }
 });
@@ -60,6 +64,3 @@ productRouter.patch(async (req: NextApiRequest, res: NextApiResponse) => {
 });
 
 export default productRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

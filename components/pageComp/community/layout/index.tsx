@@ -4,8 +4,17 @@ import {
   Content
 } from "@components/pageComp/detailview/styles";
 import { InfoCard } from "@components/pageComp/detailview";
+import { IProduct } from "@src/typings/db";
+import { Session } from "next-auth";
 
-function QuestionLayout({ children, data, _id, session }: any) {
+interface IQuestionLayout {
+  children: React.ReactNode;
+  data: IProduct;
+  _id: string;
+  session: Session;
+}
+
+function QuestionLayout({ children, data, _id, session }: IQuestionLayout) {
   return (
     <Layout className="detail">
       <DetailViewWrap>

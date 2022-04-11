@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import Card from "@components/elements/Card";
 import Layout from "@components/layouts";
 import { IProduct } from "@src/typings/db";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
@@ -11,13 +11,18 @@ import Pagination from "rc-pagination";
 import { SearchWrap, CardWrap } from "@components/pageComp/search/styles";
 import { SearchSeo } from "@components/elements/CommonSeo";
 
+interface ISearch {
+  productsCount?: number;
+  products?: IProduct[];
+}
+
 function Search() {
   const router = useRouter();
   const { keyword } = router.query;
 
   const [pageSize, setPageSize] = useState(5);
   const [curPage, setCurPage] = useState(1);
-  const [searchResult, setsearchResult] = useState<any>({});
+  const [searchResult, setsearchResult] = useState<ISearch>({});
 
   console.log("keyword", router.query.hasOwnProperty("keyword"));
 
@@ -32,12 +37,12 @@ function Search() {
   useEffect(() => {
     const searchFunc = async () => {
       if (router.query.hasOwnProperty("keyword")) {
-        const searchTxt = await axios.post(
-          `/api/product/search?meetingcycle=oneday&page=1`,
-          {
-            searchInput: keyword
-          }
-        );
+        const searchTxt = await axios.post<
+          { searchInput: string },
+          AxiosResponse<ISearch>
+        >(`/api/product/search?meetingcycle=oneday&page=1`, {
+          searchInput: String(keyword)
+        });
         setsearchResult(searchTxt.data);
       } else {
         alert("잘 못된 접근입니다.");

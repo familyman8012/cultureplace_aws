@@ -31,6 +31,4 @@ infoRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
 });
 
 export default infoRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}
+

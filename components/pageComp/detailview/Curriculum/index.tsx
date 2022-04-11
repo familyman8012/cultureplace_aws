@@ -1,8 +1,8 @@
 import React from "react";
-import { ICurriculum, ILesson } from "@src/typings/db";
+import { ICurriculum, ILesson, IProduct } from "@src/typings/db";
 import { CurriculumList } from "./style";
 
-function Curriculum({ data }: any) {
+function Curriculum({ data }: { data: IProduct }) {
   return (
     <CurriculumList>
       <h2>커리큘럼</h2>

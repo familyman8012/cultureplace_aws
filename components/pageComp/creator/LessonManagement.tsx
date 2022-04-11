@@ -132,6 +132,7 @@ function LessonManagement({
 
   //드래그 & 드로그
   const handleChange = (result: any) => {
+    console.log("result", result);
     if (!result.destination) return;
     const items = selCurriculum && [...selCurriculum.lessons];
     const [reorderedItem] =

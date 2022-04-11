@@ -14,12 +14,13 @@ import { fetchProducts } from "@src/hooks/api/useProducts";
 import { GetServerSideProps } from "next";
 import { ISSR } from "@src/typings/db";
 import { IndexSeo } from "@components/elements/CommonSeo";
+import { useProductsMain } from "@src/hooks/api/useProducts/useProductsMain";
 
 const Home = ({ SsrData }: ISSR) => {
   const { blogData, noticeData, products } = SsrData;
 
-  // const { data } = useQuery(["list", "main"], () => fetchProducts(90, 1));
-  const productsData = products;
+  const { data } = useProductsMain(products);
+  const productsData = data?.products;
 
   const genreTitle = [
     { title: "내가 만든 작품이 전시되는 날", url: "/view/art" },

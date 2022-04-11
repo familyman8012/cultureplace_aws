@@ -30,7 +30,7 @@ boardRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
           }
         },
         { $match: { parentId } }
-      ]).sort({ createdAt: -1 });
+      ]);
       const boardCount = await board.length;
       return res.send({ board, boardCount });
     }
@@ -54,6 +54,7 @@ boardRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
         }
       );
     }
+    console.log(boards);
     return res.send(boards);
   } catch (err) {
     console.log(err);

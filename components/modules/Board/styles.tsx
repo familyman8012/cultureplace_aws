@@ -125,17 +125,22 @@ export const WrapCommunityWrite = styled.div`
     transform: translate(-50%, -50px);
     padding: 0;
     margin-top: -100px;
+
+    .btn_go_list {
+      display: none;
+    }
   }
 
   input[name="title"] {
     width: 100%;
     padding: 5px;
+    margin-bottom: 15px;
   }
 
   .box_notice_chk {
     display: flex;
     align-items: center;
-    margin: 15px 0;
+    margin: 0 0 15px;
     font-size: 13px;
 
     input[type="checkbox"] {

@@ -7,6 +7,7 @@ import { usePayment } from "@src/hooks/api/usePayments";
 import axios from "axios";
 import { MypageWrap, WrapPayedInfo } from "@components/pageComp/mypage/styles";
 import { MypageSeo } from "@components/elements/CommonSeo";
+import dayjs from "dayjs";
 
 function Index() {
   const [session] = useSession();
@@ -14,7 +15,9 @@ function Index() {
 
   const { status, data, error } = usePayment(session?.user.uid);
 
-  console.log(session?.user.uid, data);
+  console.log("res.data.data", data);
+
+  // console.log(session?.user.uid, data);
 
   const withdrawal = () => {
     axios
@@ -54,27 +57,27 @@ function Index() {
               <div className="payed_list">
                 {data?.map((el, i) => {
                   const {
-                    order_id,
-                    purchased_at,
-                    item_name,
-                    price,
-                    payment_data,
-                    method,
-                    receipt_url
+                    orderId,
+                    approvedAt,
+                    orderName,
+                    totalAmount,
+                    card,
+                    method
                   } = el.data;
                   return (
                     <div className="item" key={`payinfo${i}`}>
                       <div className="top">
-                        <span className="txt_number">{order_id}</span>
+                        <span className="txt_number">ORDER ID :{orderId}</span>
                         <span className="txt_pay_date">
-                          주문일자 {purchased_at}
+                          주문일자{" "}
+                          {dayjs(approvedAt).format("YYYY.MM.DD / HH : MM")}
                         </span>
                       </div>
                       <div className="box_payment_info">
                         <dl className="box box_counselling">
                           <dt>결제한 상담</dt>
-                          <dd className="txt">{item_name}</dd>
-                          <dd className="price">{price}원</dd>
+                          <dd className="txt">{orderName}</dd>
+                          <dd className="price">{totalAmount}원</dd>
                         </dl>
                         <dl className="box box_user">
                           <dt>주문자정보</dt>
@@ -85,15 +88,13 @@ function Index() {
                         <dl className="box box_payment_method">
                           <dt>결제정보</dt>
                           <dd className="name">
-                            {method === "card"
-                              ? payment_data.card_name
-                              : method}
+                            {method === "card" ? card.company : method}
                           </dd>
-                          <dd className="tel">({payment_data.card_no})</dd>
+                          <dd className="tel">({card.number})</dd>
                         </dl>
                         <div className="box_btns">
                           <a
-                            href={receipt_url}
+                            href={card.receiptUrl}
                             className="button cursor"
                             target="_blank"
                             rel="noopner noreferrer"

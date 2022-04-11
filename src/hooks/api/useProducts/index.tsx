@@ -1,12 +1,13 @@
 import { useQuery } from "react-query";
 import axios from "axios";
-import { IProductList } from "@src/typings/db";
+import { IProduct, IProductList } from "@src/typings/db";
 import { getSession } from "next-auth/client";
 
 const fetchProducts = async (
   limit: number,
   pageParam: number,
   genre?: string,
+  searchKeyword?: string,
   creator?: string
 ) => {
   let session;
@@ -14,8 +15,9 @@ const fetchProducts = async (
     session = await getSession();
   }
   console.log("creator creator creator느느느느는", session?.user.uid);
+  console.log("findKeyWord findKeyWord findKeyWord", searchKeyword);
   let parse = await axios.get(
-    `/api/product?limit=${limit}&page=${pageParam}${
+    `/api/product?searchKeyword=${searchKeyword}&limit=${limit}&page=${pageParam}${
       genre ? `&genre=${genre}&` : `&`
     }${creator !== undefined ? `creator=${session?.user.uid}` : ``}`
   );
@@ -28,13 +30,15 @@ const useProducts = (
   limit: number,
   pageParam: number,
   genre?: string,
+  searchKeyword?: string,
   creator?: string,
-  initialData?: any
+  initialData?: IProductList
 ) => {
   return useQuery<IProductList, Error>(
     ["list", genre, String(pageParam)],
-    async () => await fetchProducts(limit, pageParam, genre, creator),
-    { keepPreviousData: true, initialData }
+    async () =>
+      await fetchProducts(limit, pageParam, genre, creator, searchKeyword),
+    { refetchOnWindowFocus: false, keepPreviousData: true, initialData }
   );
 };
 

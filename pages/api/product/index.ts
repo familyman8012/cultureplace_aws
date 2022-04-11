@@ -7,7 +7,7 @@ import { omitBy, isUndefined, isEmpty } from "lodash";
 const productRouter = createHandler();
 
 productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { genre, creator, page, limit } = req.query;
+  const { genre, creator, page, limit, searchKeyword } = req.query;
   const Numberlimit = Number(limit);
   const searchOption = omitBy({ genre, creator }, isUndefined);
 
@@ -46,7 +46,7 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
         Product.find({ genre }).countDocuments()
       ]);
       return res.send({ products, productsCount });
-    } else if (!genre) {
+    } else if (!genre && !searchKeyword) {
       console.log("메인페이지");
       const user = User.find({ _id: creator });
       const [products, productsCount] = await Promise.all([
@@ -58,6 +58,28 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
           .skip((Number(page) - 1) * Numberlimit),
         Product.find({}).countDocuments()
       ]);
+      return res.send({ products, productsCount });
+    } else if (!genre && searchKeyword) {
+      const products = await Product.aggregate([
+        {
+          $search: {
+            index: "productSearch",
+            text: {
+              query: searchKeyword,
+              path: ["title", "people"]
+            }
+          }
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "creator",
+            foreignField: "_id",
+            as: "creator"
+          }
+        }
+      ]);
+      const productsCount = await products.length;
       return res.send({ products, productsCount });
     }
   } catch (err) {
@@ -71,13 +93,10 @@ productRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
     const products = new Product(req.body);
     await products.save();
     return res.send(products);
-  } catch {
+  } catch (err) {
     console.log(JSON.stringify(err));
     res.status(500).send(JSON.stringify(err));
   }
 });
 
 export default productRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

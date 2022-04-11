@@ -1,4 +1,11 @@
-import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+  Dispatch,
+  SetStateAction
+} from "react";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { css } from "@emotion/react";
@@ -8,7 +15,17 @@ import Button from "@components/elements/Button";
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 
-function Chat({ showRoom, setShowRoom }: any) {
+interface IShowRoom {
+  liveMain: boolean;
+  liveRoom: boolean;
+}
+
+interface IChat {
+  showRoom: IShowRoom;
+  setShowRoom: Dispatch<SetStateAction<IShowRoom>>;
+}
+
+function Chat({ showRoom, setShowRoom }: IChat) {
   const [session] = useSession();
   const router = useRouter();
 
@@ -188,8 +205,8 @@ function Chat({ showRoom, setShowRoom }: any) {
       <div
         css={css`
           max-width: 382px;
-          height: auto;
-          padding: 24px;
+          height: 100%;
+          padding: 24px 12px;
         `}
       >
         <div
@@ -221,7 +238,7 @@ function Chat({ showRoom, setShowRoom }: any) {
                 ref={messageBoxRef}
                 css={css`
                   overflow: auto;
-                  height: 300px;
+                  height: calc(100% - 163px);
                   border: 1px solid #e0e0e0;
                   border-top: none;
                   border-bottom: none;

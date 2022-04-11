@@ -18,7 +18,7 @@ reviewRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
     ]);
 
     return res.send({ reviews, count });
-  } catch {
+  } catch (err) {
     console.log(err);
     res.status(500).send(err);
   }
@@ -29,7 +29,7 @@ reviewRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
     const reviews = new Review(req.body);
     await reviews.save();
     return res.send(reviews);
-  } catch {
+  } catch (err) {
     console.log(err);
     res.status(500).send(err);
   }
@@ -40,7 +40,7 @@ reviewRouter.delete(async (req: NextApiRequest, res: NextApiResponse) => {
     const { _id } = req.query;
     const reviews = await Review.findByIdAndDelete(_id);
     return res.send(reviews);
-  } catch {
+  } catch (err) {
     console.log(err);
     res.status(500).send(err);
   }
@@ -54,7 +54,7 @@ reviewRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
       new: true
     });
     return res.send(reviews);
-  } catch {
+  } catch (err) {
     res.status(500).send(err);
   }
 });
@@ -72,6 +72,3 @@ reviewRouter.put(async (req: NextApiRequest, res: NextApiResponse) => {
 // });
 
 export default reviewRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import Card from "@components/elements/Card";
 import Layout from "@components/layouts";
 import { fetchProducts, useProducts } from "@src/hooks/api/useProducts";
-import { IProduct } from "@src/typings/db";
+import { IProduct, IProductList, ISSR } from "@src/typings/db";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useCallback, useEffect, useState } from "react";
@@ -22,7 +22,7 @@ interface IUrl {
   text: string;
 }
 
-function Oneday({ SsrData }: any) {
+function Oneday({ SsrData }: { SsrData: IProductList }) {
   const router = useRouter();
   const { genre } = router.query;
 
@@ -35,6 +35,7 @@ function Oneday({ SsrData }: any) {
     curPage,
     String(genre),
     undefined,
+    "",
     SsrData
   );
 
@@ -120,7 +121,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   return {
     props: {
       SsrData: {
-        products: JSON.parse(JSON.stringify(result))
+        products: JSON.parse(JSON.stringify(result)),
+        productsCount: 20
       }
     }
   };

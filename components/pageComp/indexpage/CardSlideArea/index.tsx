@@ -33,15 +33,9 @@ function Index({ genreData, isLoading, genreTitle, type }: IGenreData) {
       slidesPerView: 4,
       spaceBetween: 20
     }
-    // 751: {
-    //   slidesPerView: 4,
-    //   spaceBetween: 24
-    // }
   };
 
-  const startDayCal = useCallback((val: Date) => {
-    return dayjs(val).diff(dayjs(), "d");
-  }, []);
+  console.log("isLoading isLoading isLoading", isLoading);
 
   return (
     <div

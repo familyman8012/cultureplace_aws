@@ -6,7 +6,7 @@ import {
 } from "@components/modules/Board/styles";
 import Write from "@components/modules/Board/Write";
 import { useBoardDetail } from "@src/hooks/api/useBoard/useBoardDetail";
-import Errorhandler from "lib";
+import { Errorhandler } from "lib";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

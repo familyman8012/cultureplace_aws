@@ -116,7 +116,7 @@ handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
               passwordResetCode: ""
             }
           )
-            .then((user: any) => {
+            .then(user => {
               if (!user)
                 return res
                   .status(400)
@@ -125,9 +125,8 @@ handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
                   );
               return res.json({ ok: true });
             })
-            .catch((error: any) => {
-              console.log("hmm");
-              console.log(err);
+            .catch(error => {
+              console.log(error);
               return res.status(400).send("Error! Try again.");
             });
         }

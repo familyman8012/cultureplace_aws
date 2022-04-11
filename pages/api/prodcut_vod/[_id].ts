@@ -13,12 +13,9 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
       islive: { $ne: false }
     });
     return res.send(products);
-  } catch {
+  } catch (err) {
     res.status(500).send(JSON.stringify(err));
   }
 });
 
 export default productRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

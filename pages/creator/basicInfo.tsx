@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
 import router from "next/router";
@@ -63,9 +63,9 @@ function App() {
     [imgData, session?.user.uid]
   );
 
-  const handleCheck = (e: any) => {
+  const handleCheck = useCallback(() => {
     setChk(!chk);
-  };
+  }, [chk]);
 
   return (
     <AdminLayout genre={"creator"}>

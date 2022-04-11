@@ -24,12 +24,9 @@ infoRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
       })
     ]);
     return res.send([convert.xml2js(result.data), result2.data]);
-  } catch {
+  } catch (err) {
     res.status(500).send(err);
   }
 });
 
 export default infoRouter;
-function err(err: any) {
-  throw new Error("Function not implemented.");
-}

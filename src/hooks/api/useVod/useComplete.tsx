@@ -1,4 +1,4 @@
-import { INotice } from "@src/typings/db";
+import { IComplete } from "@src/typings/db";
 import axios from "axios";
 import { useQuery } from "react-query";
 

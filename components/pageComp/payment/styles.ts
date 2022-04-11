@@ -71,6 +71,8 @@ const WrapPayment = styled.div<{ type?: string }>`
     font-size: 13px;
   }
   .btn_pay {
+    display: block;
+    width: 100%;
     color: #fff;
     font-size: 18px;
     font-weight: bold;

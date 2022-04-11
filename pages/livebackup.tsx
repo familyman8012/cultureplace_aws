@@ -148,24 +148,18 @@ function LiveStream() {
   };
   //chat end
 
-  // 방송
-  const [btnDisable, setbtnDisable] = useState(false);
-
   //방송시작
   const [liveStartData, setliveStartData] = useState<any>(null);
   const liveStart = useCallback(() => {
-    setbtnDisable(true);
     axios
       .post(`/api/live`)
       .then((res: any) => {
         console.log(res);
         setliveStartData(res);
-        setbtnDisable(false);
         refetch();
       })
       .catch(err => {
         console.log(err);
-        setbtnDisable(false);
       });
   }, [refetch]);
 
@@ -175,7 +169,6 @@ function LiveStream() {
 
   //방송삭제
   const liveDelete = useCallback(() => {
-    setbtnDisable(true);
     axios
       .delete(
         `/api/live?liveid=${data && data[0]?.result?.uid}&dbid=${
@@ -184,12 +177,10 @@ function LiveStream() {
       )
       .then((res: any) => {
         console.log(res);
-        setbtnDisable(false);
         refetch();
       })
       .catch(err => {
         console.log(err);
-        setbtnDisable(false);
       });
   }, [data, refetch]);
 
@@ -257,7 +248,6 @@ function LiveStream() {
                   color="submit"
                   size="xs"
                   onClick={() => liveDelete()}
-                  disabled={btnDisable}
                   css={css`
                     width: fit-content;
                     padding: 0 10px;
@@ -271,7 +261,6 @@ function LiveStream() {
                   color="primary"
                   size="xs"
                   onClick={liveStart}
-                  disabled={btnDisable}
                   css={css`
                     width: fit-content;
                     padding: 0 10px;

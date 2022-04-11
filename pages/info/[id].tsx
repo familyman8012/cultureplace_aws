@@ -23,7 +23,6 @@ function Index() {
   });
 
   const item: any = data?.data[0].elements[0].elements[0];
-  console.log(item, item && item.elements[1].elements[0].text);
 
   return (
     <Layout>

@@ -32,7 +32,7 @@ const Home = () => {
       {winReady && (
         <Layout>
           <VodSeo />
-          <VodVisual winReady={winReady} />
+          <VodVisual />
           <WrapIndex>
             <CardSlideArea
               genreData={genreData}

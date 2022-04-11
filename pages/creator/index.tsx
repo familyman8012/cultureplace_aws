@@ -22,11 +22,23 @@ import {
 import VodManagement from "@components/pageComp/creator/VodManagement";
 import IsLive from "@components/pageComp/creator/IsLive";
 import MeetInfo from "@components/pageComp/creator/MeetInfo";
+import SearchComForm from "@components/elements/SearchComForm";
 
 dayjs.locale("ko");
 
 export default function List() {
   const queryClient = useQueryClient();
+
+  // 검색을 위한 useState
+  const [findKeyWord, setfindKeyWord] = useState("");
+
+  //검색
+  const handlerSearch = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    refetch();
+    setfindKeyWord("");
+  };
+
   /* 테이블 data 구성 및 pagination */
   const [pageSize, setPageSize] = useState(20);
   const [curPage, setCurPage] = useState(1);
@@ -35,11 +47,12 @@ export default function List() {
   //세션 정보 가져오기
   const [session] = useSession();
 
-  //제품 정보 불러오기  limit, pageParam, genre,  creator?: string, initialData?: any
+  //제품 정보 불러오기  limit, pageParam, genre,  creator?: string
   const { status, data, error, refetch } = useProducts(
     pageSize,
     curPage,
     undefined,
+    findKeyWord,
     "creator"
   );
 
@@ -124,13 +137,20 @@ export default function List() {
           ) : (
             <AdminLayout genre={"creator"}>
               <WrapIndexContent>
-                <p>{session?.user.name} 님 반갑습니다.</p>
+                <div className="wrap_search">
+                  <p>{session?.user.name} 님 반갑습니다.</p>
+                  <SearchComForm
+                    className="search_form"
+                    handlerSearch={handlerSearch}
+                    findKeyWord={findKeyWord}
+                    setfindKeyWord={setfindKeyWord}
+                  />
+                </div>
                 <IndexTable>
                   <colgroup>
                     <col width="*" />
                     <col width="*" />
                     <col width="20%" />
-                    <col width="*" />
                     <col width="*" />
                     <col width="*" />
                     <col width="*" />
@@ -143,9 +163,6 @@ export default function List() {
                       <th scope="col">대표이미지</th>
                       <th scope="col">제목</th>
                       <th scope="col">모임정보</th>
-                      {session?.user.role === "master" && (
-                        <th scope="col">팀리더</th>
-                      )}
                       <th scope="col">장소</th>
                       <th scope="col">시작일</th>
                       <th scope="col">status</th>
@@ -175,13 +192,7 @@ export default function List() {
                             </span>
                           )}
                         </td>
-                        {session?.user.role === "master" && (
-                          <td className="info_creator">
-                            <span>{el.creator.name}</span>
-                            <span>{el.creator.email}</span>
-                            <span>{el.creator.phone}</span>
-                          </td>
-                        )}
+
                         <td>{el.location}</td>
                         <td>{dayjs(el.firstmeet).format(`YY.MM.DD (ddd)`)}</td>
                         <td className="live_status">

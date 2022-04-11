@@ -2,10 +2,11 @@ import createHandler from "../middleware";
 import Payment from "../models/payment";
 import User from "../models/user";
 import Product from "../models/product";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = createHandler();
 
-handler.get(async (req, res) => {
+handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const { userid } = req.query;
   if (userid !== "undefined") {
     const result = await Payment.find({ userid });
@@ -13,29 +14,22 @@ handler.get(async (req, res) => {
   }
 });
 
-handler.post(async (req, res) => {
-  var payments = new Payment(req.body);
+handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
+  const { _id, data, userid } = req.body;
+
   try {
-    const result = await payments.save();
-    return res.status(200).json({ result });
+    const payments = new Payment({ data, userid });
+    const [result, joinMember] = await Promise.all([
+      payments.save(),
+      Product.updateOne(
+        { _id },
+        { $push: { joinMembr: userid } },
+        { upsert: true }
+      )
+    ]);
+    return res.status(200).json({ payments, joinMember });
   } catch (error) {
-    return res.status(400).send(error.message);
-  }
-});
-
-handler.put(async (req, res) => {
-  try {
-    const { _id, userid } = req.body;
-    const joinMember = await Product.updateOne(
-      { _id },
-      { $push: { joinMembr: userid } },
-      { upsert: true }
-    );
-
-    return res.send(joinMember);
-  } catch {
-    console.log(err);
-    res.status(500).send(err);
+    return res.status(400).send(error);
   }
 });
 

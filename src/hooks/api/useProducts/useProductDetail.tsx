@@ -1,4 +1,4 @@
-import { IProductType2 } from "@src/typings/db";
+import { IProduct } from "@src/typings/db";
 import axios from "axios";
 import { useQuery } from "react-query";
 
@@ -8,7 +8,7 @@ const fetchProduct = async (_id: string) => {
 };
 
 const useProdDetail = (_id: string) => {
-  return useQuery<IProductType2, Error>(
+  return useQuery<IProduct, Error>(
     ["detailViewData", _id],
     async () => await fetchProduct(_id)
   );

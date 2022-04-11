@@ -6,7 +6,7 @@ import {
 } from "@components/pageComp/vodmain/styles";
 import { vodPreviewList } from "./VodPreviewList";
 
-function VodVisual({ winReady }: any) {
+function VodVisual() {
   const [videoLoad, setVideoLoad] = useState({ Load: false, Loaded: false });
   const [sound, setSound] = useState(false);
   const [videoSource, setVideoSource] = useState("");

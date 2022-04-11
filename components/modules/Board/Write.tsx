@@ -1,6 +1,6 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import router from "next/router";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { observer } from "mobx-react";
 import { boardStore, QuillStore } from "@src/mobx/store";
 import { runInAction } from "mobx";
@@ -10,6 +10,7 @@ import { WrapCommunityWrite } from "./styles";
 import { useMutation, useQueryClient } from "react-query";
 import { css } from "@emotion/react";
 import { Session } from "next-auth";
+import { IBoardWrite } from "@src/typings/db";
 
 function Write({
   _id,
@@ -26,13 +27,21 @@ function Write({
   noticeManager: boolean;
   listMove?: string;
 }) {
+  // 나갈때
+  useEffect(() => {
+    return () => {
+      boardStore.replyModify = false;
+      boardStore.reset();
+      let qlEditor = document.querySelector(".ql-editor");
+      if (qlEditor !== null) qlEditor.innerHTML = "";
+    };
+  }, []);
+
   const queryClient = useQueryClient();
 
   const [noticeCheckBox, setnoticeCheckBox] = useState(
     boardStore.noticeCheckBox
   );
-
-  const [btnDisable, setbtnDisable] = useState(false);
 
   const onTitle = (e: ChangeEvent<HTMLInputElement>) => {
     runInAction(() => {
@@ -59,19 +68,17 @@ function Write({
           userid: session?.user.uid,
           nickname: session?.user.nickname
         })
-        .then((resp: any) => {
+        .then((resp: AxiosResponse<IBoardWrite>) => {
           boardCheck && router.push(`/${boardname}/detail/${resp.data._id}`);
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();
-          setbtnDisable(false);
         }),
     {
       onSuccess: () => queryClient.invalidateQueries(["boardlist", _id]),
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
-        setbtnDisable(false);
       }
     }
   );
@@ -85,12 +92,13 @@ function Write({
           title: QuillStore.titleData,
           body: QuillStore.data
         })
-        .then((resp: any) => {
-          boardCheck && router.back();
+        .then((resp: AxiosResponse<IBoardWrite>) => {
+          console.log(resp);
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();
-          setbtnDisable(false);
+          boardCheck && router.back();
+
           // router.back();
           // noticeStore.reset();
         }),
@@ -106,7 +114,6 @@ function Write({
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
-        setbtnDisable(false);
       }
     }
   );
@@ -160,12 +167,13 @@ function Write({
           )}
           <QuillEditorView category="board" />
           <AdminBoxBtn>
-            <button onClick={onPrev}>목록으로 이동</button>
+            <button onClick={onPrev} className="btn_go_list">
+              목록으로 이동
+            </button>
             {QuillStore.state === "modify" ? (
               <button
                 onClick={() => {
                   onModifyMutation.mutate();
-                  setbtnDisable(true);
                 }}
               >
                 글수정
@@ -180,10 +188,8 @@ function Write({
                     alert("답글을 남겨보세요!");
                   } else {
                     onSubmitMutation.mutate();
-                    setbtnDisable(true);
                   }
                 }}
-                disabled={btnDisable}
               >
                 {boardCheck ? "글등록" : "답글등록"}
               </button>
