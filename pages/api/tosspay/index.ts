@@ -4,7 +4,6 @@ import createHandler from "../middleware";
 const tossRouter = createHandler();
 
 function base64encode(plaintext: string) {
-  console.log(Buffer.from(plaintext, "utf8").toString("base64"));
   return Buffer.from(plaintext, "utf8").toString("base64");
 }
 

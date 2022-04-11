@@ -33,6 +33,7 @@ function List({ parentId, boardname, boardCheck }: IList) {
 
   // 게시물 리스트 가져오기
   const { status, data, error, refetch } = useBoard(
+    boardCheck,
     parentId,
     pageSize,
     curPage,
@@ -52,6 +53,13 @@ function List({ parentId, boardname, boardCheck }: IList) {
       findKeyWord === "" ? data?.board : data?.board.slice(startPage, viewData)
     );
   }, [data?.board, findKeyWord, startPage, viewData]);
+
+  // list로 들어올때
+  useEffect(() => {
+    boardStore.reset();
+    let qlEditor = document.querySelector(".ql-editor");
+    if (qlEditor !== null) qlEditor.innerHTML = "";
+  }, []);
 
   // 페이징 (페이지 이동)
   const handlePageChange = useCallback((page: number) => {

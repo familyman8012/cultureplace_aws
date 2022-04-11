@@ -7,7 +7,8 @@ export async function dbConnect() {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     bufferCommands: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   });
 }
 

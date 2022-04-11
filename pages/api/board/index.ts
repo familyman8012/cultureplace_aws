@@ -7,15 +7,17 @@ import mongoose from "mongoose";
 const boardRouter = createHandler();
 
 boardRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { parentId, page, limit, searchKeyword } = req.query;
+  const { parentId, page, limit, searchKeyword, boardCheck } = req.query;
   const Numberlimit = Number(limit);
+
+  const listSort = boardCheck === "true" ? { createdAt: -1 } : { createdAt: 1 };
 
   try {
     if (!searchKeyword) {
       const [noticeboard, board, boardCount] = await Promise.all([
         Board.find({ parentId, noticecheck: true }).sort({ createdAt: -1 }),
         Board.find({ parentId })
-          .sort({ createdAt: -1 })
+          .sort(listSort)
           .limit(Numberlimit)
           .skip((Number(page) - 1) * Numberlimit),
         Board.find({ parentId }).countDocuments()

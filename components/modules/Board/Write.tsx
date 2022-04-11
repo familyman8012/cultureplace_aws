@@ -27,16 +27,6 @@ function Write({
   noticeManager: boolean;
   listMove?: string;
 }) {
-  // 나갈때
-  useEffect(() => {
-    return () => {
-      boardStore.replyModify = false;
-      boardStore.reset();
-      let qlEditor = document.querySelector(".ql-editor");
-      if (qlEditor !== null) qlEditor.innerHTML = "";
-    };
-  }, []);
-
   const queryClient = useQueryClient();
 
   const [noticeCheckBox, setnoticeCheckBox] = useState(

@@ -85,7 +85,6 @@ const boardStore = observable({
     this.searchKeyword = this.searchInput;
   },
   async moveModifyBoard(_id: string, boardName: string, boardCheck: boolean) {
-    this.reset();
     QuillStore.state = "modify";
     //s3 경로
     QuillStore.dir = boardName;
@@ -106,6 +105,8 @@ const boardStore = observable({
   reset() {
     QuillStore.reset();
     this.parentId = "";
+    this.noticeCheckBox = false;
+    this.replyModify = false;
   }
 });
 

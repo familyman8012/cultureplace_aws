@@ -7,7 +7,7 @@ const schema = new Schema(
     productId: { type: String, required: true },
     parentId: { type: String, required: true },
     noticecheck: { type: Boolean, required: true, default: false },
-    title: { type: String, required: true },
+    title: { type: String },
     body: { type: String, required: true },
     userid: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     nickname: { type: String, required: true },
