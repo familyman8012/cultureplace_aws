@@ -61,6 +61,7 @@ export const Header = styled.header`
         letter-spacing: -0.15px;
         margin: 0rem 2.4rem 0rem 0px;
         position: relative;
+        cursor: pointer;
         &.my {
           color: #ff5600;
         }
@@ -114,7 +115,10 @@ export const MenuArea = styled.ul`
       font-weight: 400;
       padding-bottom: 0.5rem;
       color: #000;
-    }
+      
+      &.on {
+        text-decoration:undeline
+      }
   }
 
   .categoryLink {
@@ -351,7 +355,7 @@ export const MobileMenu = styled.footer`
     border-top: 1px solid rgb(244, 244, 244);
     span {
       width: 48px;
-      height: 48px;
+      height: 37px;
       display: flex;
       flex-direction: column;
       -webkit-box-pack: center;
@@ -362,8 +366,43 @@ export const MobileMenu = styled.footer`
       line-height: 14px;
       letter-spacing: -0.3px;
       color: rgb(119, 119, 119);
+
+      padding-top: 24px;
+
+      background-size: 24px !important;
+
       &.on {
-        color: rgb(0, 117, 239);
+        color: #ff005a;
+      }
+    }
+    a:nth-of-type(1) span {
+      background: url("/images/ico_menu_1.png") no-repeat center top;
+      &.on {
+        background: url("/images/ico_menu_1_on.png") no-repeat center top;
+      }
+    }
+    a:nth-of-type(2) span {
+      background: url("/images/ico_menu_2.png") no-repeat center top;
+      &.on {
+        background: url("/images/ico_menu_2_on.png") no-repeat center top;
+      }
+    }
+    a:nth-of-type(3) span {
+      background: url("/images/ico_menu_3.png") no-repeat center top;
+      &.on {
+        background: url("/images/ico_menu_3_on.png") no-repeat center top;
+      }
+    }
+    a:nth-of-type(4) span {
+      background: url("/images/ico_menu_4.png") no-repeat center top;
+      &.on {
+        background: url("/images/ico_menu_4_on.png") no-repeat center top;
+      }
+    }
+    a:nth-of-type(5) span {
+      background: url("/images/ico_menu_5.png") no-repeat center top;
+      &.on {
+        background: url("/images/ico_menu_5_on.png") no-repeat center top;
       }
     }
   }

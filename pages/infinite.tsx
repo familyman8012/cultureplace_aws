@@ -120,7 +120,7 @@ export default function Home() {
       ))}
       <div>111</div>
       <InView as="div" onChange={() => fetchNextPage()} rootMargin="500px">
-        <span>test</span>
+        <span></span>
       </InView>
     </div>
   );

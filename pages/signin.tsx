@@ -2,7 +2,6 @@ import { getProviders, getCsrfToken, CtxOrReq } from "next-auth/client";
 import SocialLogin from "../components/modules/SocialLogin";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
 import {
   BtnLogin,
   InfoRegArea,
@@ -60,9 +59,9 @@ export default function SignIn({ providers, csrfToken }: ISignIn) {
                   </div>
                 </label>
                 <InfoRegArea>
-                  <span className="info forget_pwd">
-                    비밀번호를 잊으셨다면, 채널톡으로 문의주세요.
-                  </span>
+                  <Link href="/findaccount">
+                    <a className="info forget_pwd">ID, 비밀번호 찾기</a>
+                  </Link>
                   <span className="info reg">
                     <Link href="/register">회원가입</Link>
                   </span>

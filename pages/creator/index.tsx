@@ -125,8 +125,6 @@ export default function List() {
     setVodManagement({ _id: "", show: false });
   }, []);
 
-  console.log("data data", data);
-
   return (
     <>
       {(session?.user.role === "creator" ||

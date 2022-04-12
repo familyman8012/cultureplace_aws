@@ -26,8 +26,6 @@ function MeetInfo({ showMemInfo, setshowMemInfo, products }: IMeetInfo) {
   const { status, data, error, refetch } = useProdDetail(showMemInfo._id);
   const meetInfoData = data as any;
 
-  console.log("meetInfoData", meetInfoData);
-
   return (
     <MeetInfoLayer>
       <span
@@ -58,7 +56,7 @@ function MeetInfo({ showMemInfo, setshowMemInfo, products }: IMeetInfo) {
         <h2>신청하신 분(결제완료)</h2>
         <table>
           <tbody>
-            {meetInfoData.joinMembr.map((el: IJoinMembr, i: number) => (
+            {meetInfoData?.joinMembr?.map((el: IJoinMembr, i: number) => (
               <tr key={i}>
                 <td>{el.name}</td>
                 <td>{el.email}</td>

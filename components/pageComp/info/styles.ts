@@ -32,6 +32,7 @@ export const InfoWrap = styled.div`
             float: left;
             margin-left: 15px;
             padding-left: 12px;
+            cursor: pointer;
             &.on {
               background: url(https://img.cgv.co.kr/r2014/images/common/ico/ico_arrow07.png)
                 no-repeat left center;
@@ -74,22 +75,28 @@ export const InfoWrap = styled.div`
         }
       }
     }
+    .box-contents {
+      strong {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
     [class|="sect"][class*="chart"] .box-image {
       position: relative;
-      width: 197px;
-      min-height: 272px;
+      width: 50px;
       margin-bottom: 10px;
     }
     .rank {
       display: block;
-      height: 28px;
+      height: 20px;
       margin-bottom: 4px;
       /* border: 6px solid #000000; */
       background: #333333;
       color: #ffffff;
-      font-size: 19px;
+      font-size: 15px;
       text-align: center;
-      line-height: 28px;
+      line-height: 20px;
     }
     ol li:nth-of-type(4n + 1) {
       margin-left: 0;
@@ -132,7 +139,7 @@ export const InfoWrap = styled.div`
       width: 90%;
     }
     [class|="sect"][class*="chart"] .title {
-      font-size: 15px;
+      font-size: 20px;
     }
     .title {
       display: block;

@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
-import router, { useRouter } from "next/router";
+import axios from "axios";
 import Layout from "@components/layouts";
 import RegisterForm from "@components/pageComp/register/styles";
-import { IUser } from "@src/typings/db";
 import { ErrorTxt } from "pages/admin/product/styles";
 import { RegisterSeo } from "@components/elements/CommonSeo";
 import { toast, ToastContainer } from "react-toastify";
-import { css } from "@emotion/react";
 import "react-toastify/dist/ReactToastify.css";
+import { FindIdPwdWrap } from "./styles";
+import { useRouter } from "next/router";
 
 interface IResetPwd {
   email: string;
@@ -18,7 +16,9 @@ interface IResetPwd {
   newPassword: string;
 }
 
-export default function Register() {
+export default function FindPassword() {
+  const router = useRouter();
+
   const {
     register,
     resetField,
@@ -33,7 +33,7 @@ export default function Register() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   const onSubmit = async (data: IResetPwd) => {
     const { email, code, newPassword } = data;
@@ -64,8 +64,7 @@ export default function Register() {
   };
 
   return (
-    <Layout>
-      <RegisterSeo />
+    <FindIdPwdWrap>
       <RegisterForm>
         <div className="login_form">
           <h2>비밀번호 찾기</h2>
@@ -134,6 +133,6 @@ export default function Register() {
         </div>
       </RegisterForm>
       <ToastContainer />
-    </Layout>
+    </FindIdPwdWrap>
   );
 }

@@ -168,7 +168,8 @@ export const LoginWrapper = styled.div`
 
 export const InfoRegArea = styled.div`
   display: flex;
-  span {
+  span,
+  a {
     font-size: 12px;
     color: #cacaca;
   }

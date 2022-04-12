@@ -12,6 +12,8 @@ import { GetServerSideProps } from "next";
 import { IUser } from "@src/typings/db";
 import { ErrorTxt } from "pages/admin/product/styles";
 import { RegisterSeo } from "@components/elements/CommonSeo";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register({ providers, csrfToken }: ISignIn) {
   const {
@@ -46,7 +48,16 @@ export default function Register({ providers, csrfToken }: ISignIn) {
         agegroup,
         gender
       })
-      .then(function (resp) {})
+      .then(function (resp) {
+        toast("축하드립니다. 회원가입이 정상적으로 완료되었습니다.", {
+          position: "top-center",
+          autoClose: 2000
+        });
+        let timer = setTimeout(() => {
+          router.push("/");
+          clearTimeout(timer);
+        }, 2000);
+      })
       .catch(e => {
         if (axios.isAxiosError(e)) {
           console.log({
@@ -96,7 +107,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
               </ErrorTxt>
             )}
             <label>
-              <div className="tit">Name</div>
+              <div className="tit">NickName</div>
 
               <div>
                 <input
@@ -187,7 +198,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
               <ErrorTxt>연락처를 정확하게 입력해주세요.</ErrorTxt>
             )}
             <label>
-              <div className="tit">assword</div>
+              <div className="tit">Password</div>
               <div>
                 <input
                   type="password"
@@ -249,6 +260,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
           <SocialLogin providers={providers} csrfToken={csrfToken} />
         </div>
       </RegisterForm>
+      <ToastContainer />
     </Layout>
   );
 }

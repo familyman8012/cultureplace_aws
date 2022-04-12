@@ -9,7 +9,6 @@ function base64encode(plaintext: string) {
 
 tossRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
   const { amount, orderId, paymentKey } = req.body;
-  console.log(amount, orderId, paymentKey);
   try {
     fetch(`https://api.tosspayments.com/v1/payments/${paymentKey}`, {
       method: "POST",

@@ -61,6 +61,7 @@ export default function Infinity({ querykey, type }: IQuerykey) {
             pageNum={1}
             refetch={refetch}
             className={filterView ? "on" : ""}
+            filterView={filterView}
             handlerFilterView={handlerFilterView}
           />
         )}
@@ -99,7 +100,7 @@ export default function Infinity({ querykey, type }: IQuerykey) {
                 rootMargin="100px 0px 0px 0px"
                 onChange={() => fetchNextPage()}
               >
-                <span className="loadSelector">test</span>
+                <span className="loadSelector"></span>
               </InView>
             </div>
           </>

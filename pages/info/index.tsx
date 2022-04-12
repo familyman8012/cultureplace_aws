@@ -88,7 +88,7 @@ function Index({ item }: any) {
                           <strong className="rank">
                             No.{el.elements[6].elements[0].text}
                           </strong>
-                          <Link
+                          {/* <Link
                             href={`/info/${el.elements[9].elements[0].text}?title=${el.elements[5].elements[0].text}`}
                           >
                             <a>
@@ -101,7 +101,7 @@ function Index({ item }: any) {
                                 />
                               </span>
                             </a>
-                          </Link>
+                          </Link> */}
                         </div>
 
                         <div className="box-contents">

@@ -63,11 +63,13 @@ function Index({
   pageNum,
   refetch,
   className,
+  filterView,
   handlerFilterView
 }: {
   pageNum: number;
   refetch: () => void;
   className: string;
+  filterView: boolean;
   handlerFilterView: () => void;
 }) {
   const handlerReset = useCallback(() => {
@@ -79,10 +81,17 @@ function Index({
   const handlerApply = useCallback(() => {
     searchStore.onApply(pageNum);
     refetch();
-    setTimeout(() => {
-      handlerFilterView();
-    }, 1000);
-  }, [handlerFilterView, pageNum, refetch]);
+    if (filterView) {
+      setTimeout(() => {
+        handlerFilterView();
+      }, 1000);
+    }
+  }, [filterView, handlerFilterView, pageNum, refetch]);
+
+  const submitApply = (e: React.FormEvent) => {
+    e.preventDefault();
+    handlerApply();
+  };
 
   useEffect(() => {
     searchStore.onInit(filterFindList);
@@ -92,7 +101,7 @@ function Index({
   }, [handlerReset]);
 
   return (
-    <SearchWrap className={className}>
+    <SearchWrap className={className} onSubmit={submitApply}>
       <MobileLayerHead>
         <CloseBtn onClick={handlerFilterView} />
         <h1>필터</h1>

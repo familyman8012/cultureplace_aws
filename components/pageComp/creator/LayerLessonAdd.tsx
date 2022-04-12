@@ -79,8 +79,7 @@ function LayerLessonAdd({
         metadata: {
           name: QuillStore.titleData,
           filename: file.name,
-          filetype: file.type,
-          allowedorigins: "https://cultureplace.co.kr"
+          filetype: file.type
         },
         onError: function (error) {
           throw error;

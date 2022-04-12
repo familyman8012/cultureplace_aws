@@ -8,11 +8,8 @@ import {
   MyPageLayer,
   SearchForm
 } from "./styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import { faSortDown } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { css } from "@emotion/react";
 
 export const CategoryLink = [
   { title: "1Day", url: "oneday" },
@@ -39,15 +36,20 @@ function Head() {
   const [showBulbble, setshowBulbble] = useState(false);
 
   const router = useRouter();
-  const { genre } = router.query;
+
+  // 메뉴를 위해 url 가져오기
+  const [headUrl, setheadUrl] = useState("");
+  useEffect(() => {
+    setheadUrl(
+      window?.location?.pathname.substring(
+        window?.location?.pathname.lastIndexOf("/") + 1
+      )
+    );
+  }, []);
 
   useEffect(() => {
     setIsOpenMenu(false);
   }, [router.query]);
-
-  const openCategory = useCallback(() => {
-    setIsOpenMenu(prev => !prev);
-  }, []);
 
   const handlerSearchWrite = useCallback(e => {
     setsearchKeyword(e.target.value);
@@ -100,17 +102,18 @@ function Head() {
           <aside>
             <ul>
               <li>
-                <Link href="/community">
-                  <a>질문</a>
-                </Link>
-              </li>
-              <li>
                 <Link href="/live">
                   <a>라이브</a>
                 </Link>
               </li>
               <li>
-                <a>크리에이터 지원</a>
+                <span
+                  onClick={() =>
+                    alert("크리에이터에 대한 다양한 지원을 준비 중에 있습니다.")
+                  }
+                >
+                  크리에이터 지원
+                </span>
               </li>
               <li className="my">
                 <Link href="/mypage">
@@ -144,17 +147,17 @@ function Head() {
         <MenuArea>
           <li>
             <Link href="/oneday">
-              <a>1Day Club</a>
+              <a className={headUrl === "oneday" ? "on" : "off"}>1Day Club</a>
             </Link>
           </li>
           <li>
             <Link href="/month">
-              <a>1Month Club</a>
+              <a className={headUrl === "month" ? "on" : "off"}>1Month Club</a>
             </Link>
           </li>
           <li>
             <Link href="/vodmain">
-              <a>Vod</a>
+              <a className={headUrl === "vodmain" ? "on" : "off"}>Vod</a>
             </Link>
           </li>
           {/* <li>
@@ -165,7 +168,7 @@ function Head() {
 
           <li>
             <Link href="/notice">
-              <a>News</a>
+              <a className={headUrl === "notice" ? "on" : "off"}>News</a>
             </Link>
           </li>
           {CategoryLink.filter(
@@ -174,51 +177,15 @@ function Head() {
           ).map(el => (
             <li key={el.url}>
               <Link href={`/view/${el.url}`}>
-                <a>{el.title}</a>
+                <a className={headUrl === el.url ? "on" : "off"}>{el.title}</a>
               </Link>
             </li>
           ))}
-          {/* <li className={`categoryLink  ${isOpenMenu ? "on" : ""}`}>
-            <button className="depth1" onClick={openCategory}>
-              <span>전체 카테고리</span>
-              <FontAwesomeIcon icon={faSortDown}></FontAwesomeIcon>
-            </button>
-            <ul className="categoryMenu">
-              {CategoryLink.map((el, i) => (
-                <li key={i}>
-                  <Link href={`/view/${el.url}`}>
-                    <a>{el.title}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li> */}
           <li>
             <Link href="/info">
-              <a>BoxOffice</a>
+              <a className={headUrl === "info" ? "on" : "off"}>BoxOffice</a>
             </Link>
           </li>
-          {/* <li>
-            <Link href="/notice">
-              <a>NTF 전시 &amp; 판매</a>
-            </Link>
-          </li> */}
-
-          {/* <li>
-            <Link href="/notice">
-              <a>블로그</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/notice">
-              <a>인스타</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/notice">
-              <a>유튜브</a>
-            </Link>
-          </li> */}
         </MenuArea>
       </Header>
     </>

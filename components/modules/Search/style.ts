@@ -1,7 +1,7 @@
 import { mq } from "@components/mq";
 import styled from "@emotion/styled";
 
-export const SearchWrap = styled.div`
+export const SearchWrap = styled.form`
   position: relative;
   padding: 18px;
   margin-bottom: 30px;
