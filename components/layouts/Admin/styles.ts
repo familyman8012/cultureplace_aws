@@ -1,3 +1,4 @@
+import { tvq } from "@components/mq";
 import styled from "@emotion/styled";
 
 const breakpoints = [760, 1100];
@@ -28,6 +29,9 @@ export const WrapLayout = styled.div`
     padding: 50px 0;
     background: linear-gradient(45deg, #49a09d, #5f2c82);
 
+    ${tvq} {
+      padding: 0 15px;
+    }
     ${mq[1]} {
       align-items: flex-start;
       padding-top: 50px;

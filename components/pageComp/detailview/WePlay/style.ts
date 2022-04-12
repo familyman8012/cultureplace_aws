@@ -1,7 +1,10 @@
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 import styled from "@emotion/styled";
 
 export const PlayList = styled.div`
+  ${tvq} {
+    width: auto;
+  }
   display: flex;
   width: 690px;
   flex-wrap: wrap;

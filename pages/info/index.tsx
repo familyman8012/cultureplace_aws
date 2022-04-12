@@ -106,7 +106,7 @@ function Index({ item }: any) {
 
                         <div className="box-contents">
                           <Link
-                            href={`/info/${el.elements[9].elements[0].text}`}
+                            href={`/info/${el.elements[9].elements[0].text}?title=${el.elements[5].elements[0].text}`}
                           >
                             <a>
                               <strong className="title">

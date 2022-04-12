@@ -165,7 +165,9 @@ function Write({
                   onModifyMutation.mutate();
                 }}
               >
-                글수정
+                {boardCheck && "글수정"}
+                {!boardCheck && boardStore.replyModify && "글수정"}
+                {!boardCheck && !boardStore.replyModify && "답글등록"}
               </button>
             ) : (
               <button

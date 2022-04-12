@@ -11,3 +11,5 @@ export const mq = breakpoints.map(
         : `@media (max-width: ${bp}px)`
     }`
 );
+
+export const tvq = `@media (min-width:550px) and (max-width: 830px)`;

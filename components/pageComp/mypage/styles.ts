@@ -1,4 +1,4 @@
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 import styled from "@emotion/styled";
 
 // 마이페이지 index.tsx
@@ -7,6 +7,7 @@ export const MypageWrap = styled.div`
   width: 1000px;
   min-height: 100vh;
   margin: 72px auto;
+
   .wrap_menu {
     li {
       margin-top: 15px;
@@ -30,6 +31,13 @@ export const MypageWrap = styled.div`
       margin: 0px;
 
       margin-bottom: 40px;
+    }
+  }
+  ${tvq} {
+    width: 95%;
+    .wrap_menu {
+      min-width: 150px;
+      margin-right: 30px;
     }
   }
   .wrap_cont {
@@ -188,6 +196,7 @@ export const WrapPayedInfo = styled.div`
       .button {
         border: 1px solid #ccc;
         padding: 3px;
+        cursor: pointer;
         border-radius: 50px;
         &:first-of-type {
           margin-right: 10px;

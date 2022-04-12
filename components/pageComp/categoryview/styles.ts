@@ -1,7 +1,10 @@
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 import styled from "@emotion/styled";
 
 export const WrapCategoryView = styled.div`
+  ${tvq} {
+    width: 95%;
+  }
   width: 128rem;
   margin: 5rem auto;
   > div {

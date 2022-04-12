@@ -1,4 +1,4 @@
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 import styled from "@emotion/styled";
 
 export const LoginWrapper = styled.div`
@@ -34,6 +34,15 @@ export const LoginWrapper = styled.div`
     width: 50%;
     background: url("/images/login_bg.jpg") no-repeat center top;
     background-size: cover;
+  }
+
+  ${tvq} {
+    .login_area {
+      width: 100%;
+    }
+    .login_mv {
+      display: none;
+    }
   }
 
   .btn_login {

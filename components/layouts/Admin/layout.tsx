@@ -35,11 +35,11 @@ function Adminlayout({ children, genre }: Props) {
           {genre !== "creator" && (
             <li>
               <a
-                href="https://admin.bootpay.co.kr/receipt"
+                href="https://pgweb.tosspayments.com/ms/mertpotal/retrieveMertAdminLoginPage.do"
                 target="_blank"
                 rel="noreferrer"
               >
-                부트페이관리자
+                토스 상점관리자
               </a>
             </li>
           )}

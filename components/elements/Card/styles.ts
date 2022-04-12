@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 
 export const CardWrap = styled.div<{ type: string }>`
   overflow: hidden;
@@ -101,6 +101,9 @@ export const CardWrap = styled.div<{ type: string }>`
             display: flex;
             font-size: 13px;
             font-weight: 700;
+            ${tvq} {
+              font-size:11px;
+            }
             .saleper {
               color: #fd3049;
             }

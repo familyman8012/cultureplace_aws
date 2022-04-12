@@ -95,9 +95,11 @@ function Index() {
                           >
                             영수증
                           </a>
+
                           <span
                             className="button cursor"
-                            // onClick={() => ChannelIO("show")}
+                            // @ts-ignore
+                            onClick={() => ChannelIO("show")}
                           >
                             취소요청
                           </span>

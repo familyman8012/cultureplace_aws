@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react";
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 
 export const WrapIndexContent = styled.div`
   width: 95%;
@@ -53,6 +53,12 @@ export const WrapIndexContent = styled.div`
 export const IndexTable = styled.table`
   width: 100%;
   box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+
+  ${tvq} {
+    colgroup {
+      display: none;
+    }
+  }
   ${mq[0]} {
     width: 80%;
     margin: 30px auto;
@@ -81,8 +87,15 @@ export const IndexTable = styled.table`
     color: #fff;
     font-weight: 400;
     background-color: #55608f;
+
     ${mq[0]} {
       display: none;
+    }
+    ${tvq} {
+      font-size: 11px;
+      &:nth-of-type(3) {
+        width: 28%;
+      }
     }
   }
   td {
@@ -154,6 +167,10 @@ export const IndexTable = styled.table`
         padding: 8px;
         font-size: 13px;
       }
+    }
+
+    ${tvq} {
+      font-size: 11px;
     }
   }
 `;

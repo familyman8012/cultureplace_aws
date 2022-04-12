@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mq } from "@components/mq";
+import { mq, tvq } from "@components/mq";
 
 export const LayoutWrap = styled.div`
   max-width: 100%;
@@ -16,7 +16,11 @@ export const Header = styled.header`
   height: 12.4rem;
   box-shadow: rgb(239 239 239) 0px -1px 0px inset;
   background: #fff;
+
   .inner {
+    ${tvq} {
+      width: 95%;
+    }
     display: flex;
     position: relative;
     z-index: 100;
@@ -25,6 +29,7 @@ export const Header = styled.header`
     height: 7.2rem;
     margin: 0 auto;
   }
+
   h1 {
     position: relative;
     color: ${({ theme }) => theme.color.brand};
@@ -96,6 +101,10 @@ export const MenuArea = styled.ul`
   ${mq[0]} {
     display: none;
   }
+  ${tvq} {
+    width: 95%;
+  }
+  
   display: flex;
   width: 125rem;
   height: 5.2rem;

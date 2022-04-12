@@ -18,11 +18,10 @@ function MyDocument() {
           defer
           src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.min.js"
         ></script>
-
+        <script defer src="/script/channeltalk.js"></script>
         {/* <script defer src="/script/quill/quill.htmlEditButton.min.js"></script> */}
 
-        <script defer src="/script/quill/table.js"></script>
-        <script defer src="/script/quill/imgresize.js"></script>
+        <script defer src="/script/quill/addplugin.js"></script>
         <link
           href="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.css"
           rel="stylesheet"
