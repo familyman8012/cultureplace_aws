@@ -145,7 +145,7 @@ function LessonManagement({
     <>
       <WrapLessonManagement>
         <div className="head">
-          <span>{selCurriculum?.title}</span>
+          <span className="tit">{selCurriculum?.title}</span>
           <div className="box_btn_group">
             <Button
               color="brand"

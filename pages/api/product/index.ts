@@ -53,7 +53,7 @@ productRouter.get(async (req: NextApiRequest, res: NextApiResponse) => {
           .sort({ firstmeet: 1 })
           .limit(Numberlimit)
           .skip((Number(page) - 1) * Numberlimit),
-        Product.find({}).countDocuments()
+        Product.find(creatorLevel).countDocuments()
       ]);
       return res.send({ products, productsCount });
     } else if (!genre && searchKeyword) {

@@ -8,7 +8,7 @@ import WrapPayment from "./styles";
 // tosspay
 import { loadTossPayments } from "@tosspayments/sdk";
 import { useRouter } from "next/router";
-const clientKey = "test_ck_5GePWvyJnrKODy7KB17rgLzN97Eo";
+const clientKey: string = String(process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY);
 
 interface IPaymentInfo {
   data: IProduct;
@@ -38,23 +38,25 @@ function PaymentInfo({ data, session }: IPaymentInfo) {
   // 결제창이 떴을때는 뒤로 가기 막기
   const [payWindowLoad, setPayWindowLoad] = useState(false);
   // 결제창이 떠있을때는 뒤로가기 막고, 결제창이 없을때는 뒤로보기 클릭시 상세보기로 이동
-  useEffect(() => {
-    const preventGoBack = () => {
-      if (payWindowLoad) {
-        // change start
-        history.pushState(null, "", location.href);
-        // change end
-        console.log("prevent go back!");
-      } else {
-        router.push(`/detailview/${data._id}`);
-      }
-    };
+  // useEffect(() => {
+  //   if (window.innerWidth > 1280 ) {
+  //     const preventGoBack = () => {
+  //       if (payWindowLoad) {
+  //         // change start
+  //         history.pushState(null, "", location.href);
+  //         // change end
+  //         console.log("prevent go back!");
+  //       } else {
+  //         router.push(`/detailview/${data._id}`);
+  //       }
+  //     };
 
-    history.pushState(null, "", location.href);
-    window.addEventListener("popstate", preventGoBack);
+  //     history.pushState(null, "", location.href);
+  //     window.addEventListener("popstate", preventGoBack);
 
-    return () => window.removeEventListener("popstate", preventGoBack);
-  }, [data._id, payWindowLoad, router]);
+  //     return () => window.removeEventListener("popstate", preventGoBack);
+  //   }
+  // }, [data._id, payWindowLoad, router]);
 
   // toss pay
   const tossPayOption = {
@@ -63,8 +65,8 @@ function PaymentInfo({ data, session }: IPaymentInfo) {
     orderId: Math.random().toString(36).substring(2, 12),
     orderName: data?.title,
     customerName: String(session?.user?.name),
-    successUrl: `http://localhost:3000/payment/success?productid=${data._id}`,
-    failUrl: "http://localhost:3000/payment/fail"
+    successUrl: `${process.env.NEXT_PUBLIC_TOSS_REDIRECT_URL}/payment/success?productid=${data._id}`,
+    failUrl: `${process.env.NEXT_PUBLIC_TOSS_REDIRECT_URL}/payment/fail`
   };
 
   // async/await을 사용하는 경우

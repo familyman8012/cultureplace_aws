@@ -55,6 +55,9 @@ const options = {
     })
   },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      return "/";
+    },
     jwt: async (token, user, account, profile, isNewUser) => {
       if (user) {
         token.user = user;

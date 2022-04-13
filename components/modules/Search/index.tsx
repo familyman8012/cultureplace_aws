@@ -70,7 +70,7 @@ function Index({
   refetch: () => void;
   className: string;
   filterView: boolean;
-  handlerFilterView: () => void;
+  handlerFilterView: (status: boolean) => void;
 }) {
   const handlerReset = useCallback(() => {
     searchStore.onInit(filterFindList);
@@ -83,7 +83,7 @@ function Index({
     refetch();
     if (filterView) {
       setTimeout(() => {
-        handlerFilterView();
+        handlerFilterView(false);
       }, 1000);
     }
   }, [filterView, handlerFilterView, pageNum, refetch]);
@@ -103,7 +103,7 @@ function Index({
   return (
     <SearchWrap className={className} onSubmit={submitApply}>
       <MobileLayerHead>
-        <CloseBtn onClick={handlerFilterView} />
+        <CloseBtn onClick={() => handlerFilterView(false)} />
         <h1>필터</h1>
       </MobileLayerHead>
       {/* <Loader /> */}

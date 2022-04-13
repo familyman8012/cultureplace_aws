@@ -17,7 +17,7 @@ tossRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
         //   "test_sk_Wd46qopOB892GpoZ9K53ZmM75y0v:"
         // )}`,
         Authorization: `Basic ${base64encode(
-          "test_sk_Wd46qopOB892GpoZ9K53ZmM75y0v:"
+          `${process.env.TOSS_SECRET_KEY}:`
         )}`,
         "Content-Type": "application/json"
       },

@@ -138,7 +138,15 @@ function Head() {
                       {el.title}
                     </li>
                   ))}
-                  <li onClick={() => signOut()}>로그아웃</li>
+                  <li
+                    onClick={() =>
+                      signOut({
+                        callbackUrl: "/"
+                      })
+                    }
+                  >
+                    로그아웃
+                  </li>
                 </ul>
               </MyPageLayer>
             )}

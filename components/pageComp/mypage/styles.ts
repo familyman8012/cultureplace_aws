@@ -8,6 +8,20 @@ export const MypageWrap = styled.div`
   min-height: 100vh;
   margin: 72px auto;
 
+  .notice_notlogin {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: -150px;
+
+    ${mq[0]} {
+      height: 300px;
+      margin-top: 0;
+    }
+  }
+
   .wrap_menu {
     li {
       margin-top: 15px;

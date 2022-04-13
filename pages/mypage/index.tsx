@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/client";
 import MyJoin from "./MyJoin";
 import Layout from "@components/layouts";
@@ -14,9 +14,15 @@ function Index() {
   const { data: joinData } = useJoin(String(session?.user.uid));
   const { data: favoriteData } = useFavorite(String(session?.user.uid));
 
+  // useEffect(() => {
+  //   !session && router.push("/signin");
+  // }, [router, session]);
+
+  const [winReady, setwinReady] = useState(false);
   useEffect(() => {
-    !session && router.push("/signin");
-  }, [router, session]);
+    setwinReady(true);
+  }, []);
+
   return (
     <Layout>
       <MypageSeo />
@@ -69,13 +75,43 @@ function Index() {
                     뮤지컬, 연극 음악 박스오피스 보러가기
                   </Link>
                 </li>
-                <li onClick={() => signOut()}>로그아웃</li>
+                <li
+                  onClick={() =>
+                    signOut({
+                      callbackUrl: "/"
+                    })
+                  }
+                >
+                  로그아웃
+                </li>
               </ul>
             </div>
           )}
         </MypageWrap>
       ) : (
-        <MypageWrap></MypageWrap>
+        <MypageWrap>
+          <p className="notice_notlogin">
+            로그인 하신 후 이용하실 수 있습니다.
+          </p>
+          {winReady && 550 > window.innerWidth && (
+            <div className="etcMenu">
+              <h2>메뉴</h2>
+              <ul>
+                <li>
+                  <Link href="/notice">
+                    컬쳐플레이스의 새로운 소식 확인하러가기
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/info">
+                    뮤지컬, 연극 음악 박스오피스 보러가기
+                  </Link>
+                </li>
+                <li onClick={() => router.push("/signin")}>로그인</li>
+              </ul>
+            </div>
+          )}
+        </MypageWrap>
       )}
     </Layout>
   );

@@ -37,8 +37,9 @@ export default function Infinity({ querykey, type }: IQuerykey) {
 
   const { data, error, fetchNextPage, status, refetch } = useInfinity(querykey);
 
-  const handlerFilterView = () => {
-    setFilterView(prev => !prev);
+  const handlerFilterView = (status: boolean) => {
+    setFilterView(status);
+    console.log(filterView);
   };
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function Infinity({ querykey, type }: IQuerykey) {
 
   return (
     <Layout>
-      <FilterBtn onClick={handlerFilterView}>
+      <FilterBtn onClick={() => handlerFilterView(true)}>
         <span>필터</span>
       </FilterBtn>
       <WrapInfinityPage>

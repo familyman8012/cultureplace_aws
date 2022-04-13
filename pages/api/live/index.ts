@@ -18,12 +18,11 @@ liveRouter.post(async (req: NextApiRequest, res: NextApiResponse) => {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: JSON.stringify({
-          meta: { name: "test stream 1" },
+          meta: { name: "live stream 1" },
           recording: {
             mode: "automatic",
             timeoutSeconds: 10,
-            requireSignedURLs: false,
-            allowedOrigins: ["localhost:3000"]
+            requireSignedURLs: false
           }
         })
       }

@@ -19,7 +19,9 @@ function Index() {
     axios
       .delete(`/api/user/user?_id=${session?.user.uid}`)
       .then(function (resp) {
-        signOut();
+        signOut({
+          callbackUrl: "/"
+        });
       });
 
     router.push("/");

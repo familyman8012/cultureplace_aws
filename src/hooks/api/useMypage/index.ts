@@ -14,12 +14,13 @@ const useFavorite = (userid: string) => {
 };
 
 const fetchJoin = async (userid: string) => {
+  console.log("useridget", userid);
   const res = await axios.get(`/api/mypage/join?userid=${userid}`);
   return res.data;
 };
 
 const useJoin = (userid: string) => {
-  return useQuery<IProduct[], Error>(["list", "joinfavoriteData"], () =>
+  return useQuery<IProduct[], Error>(["list", "joinfavoriteData"], async () =>
     fetchJoin(userid)
   );
 };

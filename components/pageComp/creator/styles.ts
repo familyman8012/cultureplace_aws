@@ -644,9 +644,23 @@ export const WrapLessonManagement = styled.div`
 
   .head {
     display: flex;
+
     padding: 15px;
+    ${mq[0]} {
+      .tit {
+        width: 47%;
+      }
+    }
     .box_btn_group {
       margin-left: auto;
+      button:nth-of-type(1) {
+        margin-left: 0;
+      }
+      ${mq[0]} {
+        width: 185px;
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
 
@@ -690,6 +704,9 @@ export const WrapLessonManagement = styled.div`
     .bottom {
       button {
         width: 110px;
+        ${mq[0]} {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -717,6 +734,7 @@ export const WrapLessonAdd = styled.div`
     display: flex;
     align-items: center;
     padding: 0 20px 20px;
+
     input {
       width: 350px;
       padding: 5px 10px;

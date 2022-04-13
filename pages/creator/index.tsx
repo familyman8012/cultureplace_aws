@@ -61,8 +61,11 @@ export default function List() {
     setCurPage(page);
   }, []);
 
+  console.log(session);
+
   // 회원은 role 이 있음. master, creator, user. creator 가 아닌 그냥 user 일시, apply 페이지로 이동
   useEffect(() => {
+    session === null && router.back();
     session?.user.role === "user" && router.push("./creator/apply");
   }, [session?.user]);
 
