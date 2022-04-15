@@ -67,7 +67,7 @@ export default function List() {
   useEffect(() => {
     session === null && router.back();
     session?.user.role === "user" && router.push("./creator/apply");
-  }, [session?.user]);
+  }, [session, session?.user]);
 
   //상풍등록하러가기
   const writeProduct = useCallback(() => {

@@ -69,7 +69,7 @@ export const IcoLink = styled.a<{ num?: number }>`
     color: rgb(170, 170, 170) !important;
     box-shadow: none;
     &:nth-of-type(${({ num }) => Number(num) + 1}) {
-      background: url("images/ico_catmenu${({ num }) => Number(num) + 1}.png")
+      background: url("/images/ico_catmenu${({ num }) => Number(num) + 1}.png")
         no-repeat center top;
       background-size: 60px 60px;
     }

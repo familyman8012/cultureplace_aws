@@ -86,7 +86,7 @@ function Index({ item }: any) {
                       <li key={i}>
                         <div className="box-image">
                           <strong className="rank">
-                            No.{el.elements[6].elements[0].text}
+                            No.{el.elements[6]?.elements[0]?.text}
                           </strong>
                           {/* <Link
                             href={`/info/${el.elements[9].elements[0].text}?title=${el.elements[5].elements[0].text}`}
@@ -106,19 +106,19 @@ function Index({ item }: any) {
 
                         <div className="box-contents">
                           <Link
-                            href={`/info/${el.elements[9].elements[0].text}?title=${el.elements[5].elements[0].text}`}
+                            href={`/info/${el.elements[9]?.elements[0]?.text}?title=${el.elements[5]?.elements[0]?.text}`}
                           >
                             <a>
                               <strong className="title">
-                                {el.elements[5].elements[0].text}
+                                {el.elements[5]?.elements[0]?.text}
                               </strong>
                             </a>
                           </Link>
                           <span className="txt-info">
-                            <strong>{el.elements[2].elements[0].text}</strong>
+                            <strong>{el.elements[2]?.elements[0]?.text}</strong>
                           </span>
                           <span className="txt-info">
-                            <strong>{el.elements[4].elements[0].text}</strong>
+                            <strong>{el.elements[4]?.elements[0]?.text}</strong>
                           </span>
                         </div>
                       </li>
@@ -175,6 +175,6 @@ export const getStaticProps: GetStaticProps = async ctx => {
     props: {
       item: result
     },
-    revalidate: 60 * 60 * 24 * 7 //1주일 지나면 재검증
+    revalidate: 60 * 60 * 24 //1일 지나면 재검증
   };
 };

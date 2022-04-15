@@ -20,7 +20,7 @@ const options = {
       },
       async authorize(credentials, req) {
         const response = await axios.post(
-          "http://localhost:3000/api/user/login",
+          `${process.env.NEXTAUTH_URL}/api/user/login`,
           credentials
         );
         var t = response.data;

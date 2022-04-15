@@ -4,10 +4,10 @@ import Footer from "./Foot";
 import { LayoutWrap } from "./styles";
 import MobMenu from "./MobMenu";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
   className?: string;
-};
+}
 
 function Layout({ children, className }: Props) {
   return (

@@ -12,9 +12,7 @@ function Payment() {
   const router = useRouter();
   const { _id } = router.query;
 
-  const { status, data, error, isLoading, isError } = useProdDetail(
-    String(_id)
-  );
+  const { data, error, isLoading, isError } = useProdDetail(String(_id));
 
   useEffect(() => {
     !session && router.push("/");

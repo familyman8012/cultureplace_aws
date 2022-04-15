@@ -90,7 +90,13 @@ handler.patch(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     let { email, code, newPassword } = req.body;
 
-    crypto.randomBytes(64, (err, buf) => {
+    crypto.randomBytes(64, async (err, buf) => {
+      const user = await User.find({ email }, { email: true });
+      if (0 > user.length) {
+        res
+          .status(400)
+          .send("등록된 email이 아닙니다. email을 다시 확인해보세요.");
+      }
       crypto.pbkdf2(
         newPassword,
         buf.toString("base64"),

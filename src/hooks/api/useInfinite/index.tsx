@@ -1,12 +1,9 @@
-import { Iinfinity, IProduct } from "@src/typings/db";
+import { IProduct } from "@src/typings/db";
 import axios from "axios";
-import { useRef } from "react";
 import { useInfiniteQuery } from "react-query";
 import { searchStore } from "@src/mobx/store";
 
 const useInfinity = (querykey: string) => {
-  const { searchInput, filterFind } = searchStore.searchOption;
-
   // useInfiniteQuery에서 쓸 함수
   const fetchPosts = async ({ pageParam = 1 }) => {
     const response = await axios.post(
@@ -14,8 +11,6 @@ const useInfinity = (querykey: string) => {
       searchStore.searchOption
     );
     const result: { products: IProduct[]; is_last: boolean } = response.data;
-
-    // axios로 받아온 데이터를 다음과 같이 변경!
 
     return {
       products: result.products,

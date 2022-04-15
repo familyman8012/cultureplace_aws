@@ -22,7 +22,7 @@ function Index() {
     return getData;
   });
 
-  const item: any = data?.data[0].elements[0].elements[0];
+  const item: any = data?.data[0]?.elements[0]?.elements[0];
 
   return (
     <Layout>
@@ -35,48 +35,53 @@ function Index() {
             <>
               <SummaryInfo>
                 <div className="thumb">
-                  <img src={item.elements[11].elements[0].text} alt="" />
+                  <img src={item.elements[11]?.elements[0]?.text} alt="" />
                 </div>
                 <div className="area_info">
                   <div className="wrap_tit">
-                    <h2 className="tit">{item.elements[1].elements[0].text}</h2>
+                    <h2 className="tit">
+                      {item.elements[1]?.elements[0]?.text}
+                    </h2>
                     <dl>
                       <dt>기간</dt>
                       <dd>
-                        {item.elements[2].elements[0].text} ~{" "}
-                        {item.elements[3].elements[0].text}
+                        {item.elements[2]?.elements[0]?.text} ~{" "}
+                        {item.elements[3]?.elements[0]?.text}
                       </dd>
                     </dl>
                   </div>
                   <dl>
                     <dt>장소</dt>
-                    <dd>{item.elements[4].elements[0].text}</dd>
+                    <dd>{item.elements[4]?.elements[0]?.text}</dd>
                   </dl>
-                  {item.elements[6].elements && (
+                  {item.elements[6]?.elements && (
                     <dl>
                       <dt>출연진</dt>
-                      <dd>{item.elements[6].elements[0].text}</dd>
+                      <dd>{item.elements[6]?.elements[0]?.text}</dd>
                     </dl>
                   )}
-                  {item.elements[7].elements && (
+                  {item.elements[7]?.elements && (
                     <dl>
                       <dt>공연시간</dt>
-                      <dd>{item.elements[7].elements[0].text}</dd>
+                      <dd>{item.elements[7]?.elements[0]?.text}</dd>
                     </dl>
                   )}
                   <dl>
                     <dt>관람연령</dt>
-                    <dd>{item.elements[8].elements[0].text}</dd>
+                    <dd>{item.elements[8]?.elements[0]?.text}</dd>
                   </dl>
-                  {item.elements[9].elements && (
+                  {item.elements[9]?.elements && (
                     <dl>
                       <dt>제작사</dt>
-                      <dd>{item.elements[9].elements[0].text}</dd>
+                      <dd>{item.elements[9]?.elements[0]?.text}</dd>
                     </dl>
                   )}
                   <dl>
                     <dt>가격</dt>
-                    <dd>{item.elements[10].elements[0].text}</dd>
+                    <dd>
+                      {item?.elements[10]["elements"] !== undefined &&
+                        item?.elements[10]?.elements[0]?.text}
+                    </dd>
                   </dl>
                 </div>
               </SummaryInfo>

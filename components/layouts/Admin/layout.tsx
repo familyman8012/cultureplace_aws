@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { WrapLayout } from "./styles";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
   genre?: string;
-};
+}
 
 const AdminMenu = [
   { menuName: "상품등록", url: "/creator" },

@@ -6,12 +6,12 @@ import { TitleArea } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 
-type Props = {
+interface Props {
   i?: number;
   children: React.ReactNode;
   url?: string;
   css?: SerializedStyles;
-};
+}
 
 function Title({ i, children, url = "/", ...rest }: Props) {
   return (
