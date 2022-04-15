@@ -39,7 +39,8 @@ function Success() {
               position: "top-right",
               autoClose: 2000
             });
-            setTimeout(() => router.push("/"), 3000);
+            const successMove = setTimeout(() => router.push("/"), 3000);
+            return () => clearTimeout(successMove);
           }
         })
         .catch(err => console.log(err));

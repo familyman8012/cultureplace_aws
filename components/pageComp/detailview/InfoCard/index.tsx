@@ -29,10 +29,8 @@ function Index({ data, _id, session, community }: InfoCard) {
     meetday,
     people,
     firstmeet,
-    comment,
     saleprice,
     price,
-    joinMembr,
     isvod
   } = data;
 

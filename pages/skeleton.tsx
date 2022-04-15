@@ -78,7 +78,8 @@ function App() {
 
   useEffect(() => {
     // 임의로 로딩 상태 표현
-    setTimeout(() => setLoading(false), 2000);
+    const skeletonAni = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(skeletonAni);
   }, []);
 
   return (

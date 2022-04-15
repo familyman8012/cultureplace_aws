@@ -12,7 +12,8 @@ function Success() {
       position: "top-right",
       autoClose: 2000
     });
-    setTimeout(() => router.push("/"), 2000);
+    const failReturn = setTimeout(() => router.push("/"), 2000);
+    return () => clearTimeout(failReturn);
   }, [router]);
 
   return (

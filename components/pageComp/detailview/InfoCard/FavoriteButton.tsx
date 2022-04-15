@@ -46,15 +46,13 @@ function FavoriteButton({ _id, data }: { _id: string; data: IProduct }) {
         }
         return { previousDetail };
       },
-      onSuccess: () => {
-        focusManager.setFocused(false);
-        setTimeout(() => {
-          queryClient.refetchQueries(["list"]);
-        }, 500);
-      },
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
+      },
+      onSettled: () => {
+        focusManager.setFocused(false);
+        queryClient.refetchQueries(["list"]);
       }
     }
   );

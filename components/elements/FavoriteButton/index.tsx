@@ -26,8 +26,6 @@ export interface IinfinityFavorite {
 function Index({ data, querykey }: IFavoritebtn) {
   const queryClient = useQueryClient();
 
-  console.log("querykey", querykey);
-
   const [session] = useSession();
   const favoriteChk = useMemo(
     () => data?.favoriteduser?.includes(String(session?.user.uid)),
@@ -86,14 +84,12 @@ function Index({ data, querykey }: IFavoritebtn) {
         }
         return { previousDetail };
       },
-      onSuccess: () => {
-        setTimeout(() => {
-          queryClient.refetchQueries(["list"]);
-        }, 500);
-      },
       onError: (error, variables, context) => {
         // I will fire first
         console.log(error, variables);
+      },
+      onSettled: () => {
+        queryClient.refetchQueries(["list"]);
       }
     }
   );
