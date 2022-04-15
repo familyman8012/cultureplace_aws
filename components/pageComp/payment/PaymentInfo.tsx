@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { IProduct } from "@src/typings/db";
+import { useState } from "react";
 import { Session } from "next-auth";
 import Layout from "@components/layouts";
+import { IProduct } from "@src/typings/db";
 import { css } from "@emotion/react";
 import WrapPayment from "./styles";
 

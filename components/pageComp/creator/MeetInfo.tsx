@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { IProduct } from "@src/typings/db";
-import { MeetInfoLayer } from "./styles";
+import { Dispatch, SetStateAction } from "react";
 import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
+import { IProduct } from "@src/typings/db";
 import { css } from "@emotion/react";
+import { MeetInfoLayer } from "./styles";
 
 interface IShowMemInfo {
   show: boolean;

@@ -1,4 +1,6 @@
+import { useCallback, useEffect, useState } from "react";
 import { signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import {
   Header,
@@ -8,8 +10,6 @@ import {
   MyPageLayer,
   SearchForm
 } from "./styles";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 export const CategoryLink = [
   { title: "1Day", url: "oneday" },

@@ -1,7 +1,7 @@
+import { getSession } from "next-auth/client";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { IProduct, IProductList } from "@src/typings/db";
-import { getSession } from "next-auth/client";
+import { IProductList } from "@src/typings/db";
 
 const fetchProducts = async (
   limit: number,

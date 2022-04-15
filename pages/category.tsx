@@ -1,13 +1,11 @@
-import React from "react";
+import Link from "next/link";
 import Layout from "@components/layouts";
-import { css } from "@emotion/react";
 import {
   ListItem,
   WrapCategory,
   WrapCategoryList
 } from "@components/pageComp/category/style";
 import { CategoryLink } from "@components/layouts/Head";
-import Link from "next/link";
 
 function Category() {
   return (

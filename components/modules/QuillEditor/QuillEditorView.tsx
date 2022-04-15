@@ -1,9 +1,7 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
-import Head from "next/head";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { QuillStore } from "@/../src/mobx/store";
 import QuillEditor from "./QuillEditor";
-import Script from "next/script";
 
 interface Props {
   category: string;

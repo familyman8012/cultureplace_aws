@@ -1,16 +1,14 @@
-import dayjs from "dayjs";
-import { useEffect, useMemo, useState } from "react";
-import "dayjs/locale/ko";
-import Button from "../../../elements/Button";
-import router from "next/router";
-import FavoriteButton from "./FavoriteButton";
-import { InfoCard, MobileLinkArea, WrapInfoCard } from "./style";
-import { IProduct } from "@src/typings/db";
-import { css } from "@emotion/react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Session } from "next-auth";
 import { useRouter } from "next/router";
 import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+import Button from "../../../elements/Button";
+import FavoriteButton from "./FavoriteButton";
+import { IProduct } from "@src/typings/db";
+import { InfoCard, MobileLinkArea, WrapInfoCard } from "./style";
 
 dayjs.locale("ko");
 

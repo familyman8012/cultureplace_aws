@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import axios from "axios";
-import Layout from "@components/layouts";
+import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
 import RegisterForm from "@components/pageComp/register/styles";
 import { ErrorTxt } from "pages/admin/product/styles";
-import { RegisterSeo } from "@components/elements/CommonSeo";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FindIdPwdWrap } from "./styles";
-import { useRouter } from "next/router";
 
 interface IResetPwd {
   email: string;

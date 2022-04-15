@@ -1,17 +1,16 @@
 // @ts-nocheck
-import { css } from "@emotion/react";
-import Layout from "@components/layouts";
-import axios from "axios";
-import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
+import axios from "axios";
+import { BoxofficeSeo } from "@components/elements/CommonSeo";
+import Layout from "@components/layouts";
+import dayjs from "dayjs";
 import {
   InfoContWrap,
   SummaryInfo,
   DetailInfo,
   BlogInfo
 } from "@components/pageComp/info/styles";
-import { BoxofficeSeo } from "@components/elements/CommonSeo";
 
 function Index() {
   const router = useRouter();

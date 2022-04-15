@@ -1,9 +1,8 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import Modal from "@components/elements/Modal";
-import { IProduct, IReviewEdit } from "@src/typings/db";
 import React, { Dispatch, SetStateAction } from "react";
 import { UseMutationResult } from "react-query";
+import Modal from "@components/elements/Modal";
+import { IProduct, IReviewEdit } from "@src/typings/db";
+import { css } from "@emotion/react";
 import { ProductInfo, ReviewWrite, SaveButton, WriteArea } from "./style";
 
 interface IReviewModal {

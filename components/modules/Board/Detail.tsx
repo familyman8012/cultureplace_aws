@@ -1,14 +1,13 @@
-import { useCallback, useMemo, useState } from "react";
-import { runInAction } from "mobx";
+import { useCallback } from "react";
 import { Session } from "next-auth";
-import axios from "axios";
 import { NextRouter } from "next/router";
 import { useMutation, useQueryClient } from "react-query";
+import { runInAction } from "mobx";
+import axios from "axios";
 import { boardStore } from "@src/mobx/store";
 import { IBoard } from "@src/typings/db";
-import { WrapPost } from "./styles";
-import dayjs from "dayjs";
 import { DayCal } from "lib";
+import { WrapPost } from "./styles";
 
 export interface IEmProduct {
   creator: string;

@@ -1,8 +1,8 @@
-import Card from "@components/elements/Card";
 import Link from "next/link";
-import { MypageComponent } from "@components/pageComp/mypage/styles";
-import { IProduct, IUser } from "@src/typings/db";
 import { Session } from "next-auth";
+import Card from "@components/elements/Card";
+import { MypageComponent } from "@components/pageComp/mypage/styles";
+import { IProduct } from "@src/typings/db";
 
 interface IMyMeet {
   session: Session;

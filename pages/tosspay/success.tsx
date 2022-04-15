@@ -1,6 +1,6 @@
-import axios from "axios";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import axios from "axios";
 
 function Success() {
   const router = useRouter();

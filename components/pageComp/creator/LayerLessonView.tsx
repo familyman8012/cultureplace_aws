@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import { Stream } from "@cloudflare/stream-react";
 import { ILesson } from "@src/typings/db";
-import { Dispatch, SetStateAction } from "react";
 import { WrapLessonDetailView } from "./styles";
 
 interface ILayerLessonView {

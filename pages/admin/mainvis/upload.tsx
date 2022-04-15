@@ -3,7 +3,6 @@ import router from "next/router";
 import axios from "axios";
 import useMediaUp from "@src/hooks/useMediaUp";
 import AdminLayout from "@components/layouts/Admin/layout";
-
 import { WrapDetailMV } from "./styles";
 import { BoxInput } from "../index/styles";
 

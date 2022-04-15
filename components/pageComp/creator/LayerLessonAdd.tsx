@@ -1,18 +1,18 @@
-import axios from "axios";
 import React, {
-  Dispatch,
-  SetStateAction,
   useCallback,
+  useState,
   useRef,
-  useState
+  Dispatch,
+  SetStateAction
 } from "react";
-import QuillEditorView from "@components/modules/QuillEditor/QuillEditorView";
+import axios from "axios";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { QuillStore } from "@src/mobx/store";
 import * as tus from "tus-js-client";
-import { runInAction } from "mobx";
-import { WrapLessonAdd, WrapSendFile } from "./styles";
+import QuillEditorView from "@components/modules/QuillEditor/QuillEditorView";
 import Button from "@components/elements/Button";
+import { WrapLessonAdd, WrapSendFile } from "./styles";
 
 interface ILessonLayer {
   state: string;

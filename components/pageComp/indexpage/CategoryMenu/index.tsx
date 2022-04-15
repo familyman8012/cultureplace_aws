@@ -1,7 +1,6 @@
-import React from "react";
-import { CategoryMenu, IcoLink } from "./styles";
-import { CategoryLink } from "@components/layouts/Head";
 import Link from "next/link";
+import { CategoryLink } from "@components/layouts/Head";
+import { CategoryMenu, IcoLink } from "./styles";
 
 function index() {
   const CategoryMenuItem = [...CategoryLink];

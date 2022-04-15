@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Link from "next/link";
-import React from "react";
 import Button from "../Button";
 
 interface StyledComponentProps {

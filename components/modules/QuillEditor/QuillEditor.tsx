@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { useState, useEffect, useRef } from "react";
 import ReactS3Client from "react-aws-s3-typescript";
-import { QuillStore } from "@/../src/mobx/store";
 import { runInAction } from "mobx";
+import { QuillStore } from "@/../src/mobx/store";
 import { QuillStyle } from "./styles";
 
 import dayjs from "dayjs";

@@ -1,9 +1,9 @@
+import { useCallback, useState } from "react";
+import Link from "next/link";
 import Title from "../Title";
 import SectionWrap from "../SectionWrap";
-import { RefundTable, ViewMore } from "./style";
-import React, { useCallback, useState } from "react";
 import Modal from "@components/elements/Modal";
-import Link from "next/link";
+import { RefundTable, ViewMore } from "./style";
 
 function Index({ title }: { title: string }) {
   const [modalOpen, setModalOpen] = useState(false);

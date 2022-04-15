@@ -15,9 +15,6 @@ function App() {
     handleSubmit
   } = useForm<IFormInputs>();
   const watchShowAge = watch("showAge", false); // you can supply default value as second argument
-  const watchUserName = watch("username");
-  const watchAllFields = watch(); // when pass nothing as argument, you are watching everything
-  const watchFields = watch(["showAge", "age"]); // you can also target specific fields by their names
 
   // Callback version of watch.  It's your responsibility to unsubscribe when done.
   React.useEffect(() => {

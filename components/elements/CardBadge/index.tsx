@@ -1,6 +1,6 @@
+import { useCallback } from "react";
 import { IProduct } from "@src/typings/db";
 import dayjs from "dayjs";
-import { useCallback } from "react";
 import { CardBadgewWrapper } from "./style";
 
 interface ICardBadge {

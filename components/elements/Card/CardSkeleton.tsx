@@ -1,10 +1,9 @@
-import { CardWrap } from "./styles";
-import { IProduct } from "@src/typings/db";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import Skeleton from "../Skeleton";
+import { CardWrap } from "./styles";
 
 dayjs.locale("ko");
 interface ICard {

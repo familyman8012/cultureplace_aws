@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { vodPreviewList } from "./VodPreviewList";
 import {
   Thumb,
   WrapVideoClip,
   WrapVodVisual
 } from "@components/pageComp/vodmain/styles";
-import { vodPreviewList } from "./VodPreviewList";
 
 function VodVisual() {
   const [videoLoad, setVideoLoad] = useState({ Load: false, Loaded: false });

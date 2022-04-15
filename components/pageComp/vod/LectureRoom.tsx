@@ -5,8 +5,11 @@ import React, {
   useRef,
   useCallback
 } from "react";
+import { useRouter } from "next/router";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "axios";
 import { useVod } from "@src/hooks/api/useVod/useNotice";
-import { css } from "@emotion/react";
+import { useComplete } from "@src/hooks/api/useVod/useComplete";
 import { Stream, StreamPlayerApi } from "@cloudflare/stream-react";
 import Collapsible from "react-collapsible";
 import SimpleBar from "simplebar-react";
@@ -17,9 +20,9 @@ import {
   faAngleLeft,
   faAngleRight
 } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
+import { ICurriculum, ILesson } from "@src/typings/db";
+import { css } from "@emotion/react";
 import "simplebar/dist/simplebar.min.css";
-import axios from "axios";
-import { useComplete } from "@src/hooks/api/useVod/useComplete";
 import {
   BottomBtnArea,
   BtnCollapse,
@@ -31,10 +34,6 @@ import {
   VodMenuList,
   VodWrap
 } from "./styles";
-import { useMutation, useQueryClient } from "react-query";
-import { useRouter } from "next/router";
-import { ICurriculum, ILesson } from "@src/typings/db";
-import Link from "next/link";
 
 interface IMenuArry {
   curriculumId: string;

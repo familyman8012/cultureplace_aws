@@ -1,8 +1,8 @@
+import { useState } from "react";
 import Layout from "@components/layouts";
 import FindId from "@components/pageComp/findaccount/FindId";
 import FindPassword from "@components/pageComp/findaccount/FindPassword";
 import { FindAccountWrap } from "@components/pageComp/findaccount/styles";
-import { useState } from "react";
 
 function Findaccount() {
   const [selFindAccount, setselFindAccount] = useState("id");

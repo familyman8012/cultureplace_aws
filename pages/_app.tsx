@@ -1,25 +1,21 @@
 import React, { useEffect } from "react";
-import "../styles/globals.css";
+import Head from "next/head";
+import { Provider } from "next-auth/client";
 import type { AppProps } from "next/app";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from "@emotion/react";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+import "../styles/globals.css";
 
 // Import Swiper styles
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import { ThemeProvider } from "@emotion/react";
 
 // Import FontAwesome
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
-
-//next-auth
-import { Provider } from "next-auth/client";
-import { useRouter } from "next/router";
-import { searchStore } from "@src/mobx/store";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());

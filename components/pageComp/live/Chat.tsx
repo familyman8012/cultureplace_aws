@@ -10,7 +10,9 @@ import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import io, { Socket } from "socket.io-client";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
+import { toast, ToastContainer } from "react-toastify";
 import Button from "@components/elements/Button";
+import "react-toastify/dist/ReactToastify.css";
 import {
   ChatWrap,
   ExitArea,
@@ -18,8 +20,6 @@ import {
   LiveRoom,
   WriteArea
 } from "./styles";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 

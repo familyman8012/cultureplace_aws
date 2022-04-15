@@ -3,10 +3,10 @@ import axios, { AxiosResponse } from "axios";
 import { Chart, ChartData } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Doughnut } from "react-chartjs-2";
+import { sortBy } from "lodash";
 import Title from "../Title";
 import SectionWrap from "../SectionWrap";
 import { Btn, BtnBox, InfoMemberChartBox } from "./style";
-import { sortBy } from "lodash";
 
 interface Istatics {
   byAgegroup: { _id: string; count: number }[];

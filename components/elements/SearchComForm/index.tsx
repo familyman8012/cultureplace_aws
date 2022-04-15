@@ -1,7 +1,6 @@
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import { SearchForm } from "@components/layouts/styles";
 import { css } from "@emotion/react";
-import { Dispatch, SetStateAction, SyntheticEvent } from "react";
-
 interface ISearchComForm {
   handlerSearch: (e: SyntheticEvent) => void;
   findKeyWord: string;

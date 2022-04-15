@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { runInAction } from "mobx";
-import { boardStore } from "@src/mobx/store";
-import { useBoard } from "@src/hooks/api/useBoard";
+import router from "next/router";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
-import "rc-pagination/assets/index.css";
-import Pagination from "rc-pagination";
-import router from "next/router";
-import { css } from "@emotion/react";
+import { useBoard } from "@src/hooks/api/useBoard";
+import { runInAction } from "mobx";
+import { boardStore } from "@src/mobx/store";
 import { observer } from "mobx-react";
-import { BoardTable, WrapBoardContent, WrapReply } from "./styles";
+import Pagination from "rc-pagination";
 import Button from "@components/elements/Button";
 import SearchComForm from "@components/elements/SearchComForm";
 import { DayCal } from "lib";
+import { css } from "@emotion/react";
+import "rc-pagination/assets/index.css";
+import { BoardTable, WrapBoardContent, WrapReply } from "./styles";
 // import dayjs from "dayjs";
 
 interface IList {

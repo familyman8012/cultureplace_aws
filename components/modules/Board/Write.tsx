@@ -1,16 +1,16 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
+import { Session } from "next-auth";
 import router from "next/router";
+import { useMutation, useQueryClient } from "react-query";
 import axios, { AxiosResponse } from "axios";
+import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { boardStore, QuillStore } from "@src/mobx/store";
-import { runInAction } from "mobx";
 import QuillEditorView from "@components/modules/QuillEditor/QuillEditorView";
 import { AdminBoxBtn } from "@components/modules/QuillEditor/styles";
-import { WrapCommunityWrite } from "./styles";
-import { useMutation, useQueryClient } from "react-query";
-import { css } from "@emotion/react";
-import { Session } from "next-auth";
 import { IBoardWrite } from "@src/typings/db";
+import { WrapCommunityWrite } from "./styles";
+import { css } from "@emotion/react";
 
 function Write({
   _id,

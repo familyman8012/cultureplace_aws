@@ -1,5 +1,4 @@
-import dayjs from "dayjs";
-import { ChangeEventHandler, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import ReactS3Client from "react-aws-s3-typescript";
 
 const useDeleteImg = (

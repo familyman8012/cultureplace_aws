@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./Head";
 import Footer from "./Foot";
-import { LayoutWrap } from "./styles";
 import MobMenu from "./MobMenu";
+import { LayoutWrap } from "./styles";
 
 interface Props {
   children: React.ReactNode;

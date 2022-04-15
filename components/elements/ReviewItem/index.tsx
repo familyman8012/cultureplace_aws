@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 
 function index() {
   const Item = styled.div<{ active?: boolean }>`

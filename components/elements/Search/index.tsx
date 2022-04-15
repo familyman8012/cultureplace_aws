@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
-import React from "react";
 import { darken, lighten } from "polished";
 
 const SearchInp = styled.div`

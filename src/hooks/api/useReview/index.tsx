@@ -1,7 +1,6 @@
-import { IProduct, IReview } from "@src/typings/db";
-import axios from "axios";
 import { useQuery } from "react-query";
-
+import axios from "axios";
+import { IReview } from "@src/typings/db";
 interface IReivewData {
   count: number;
   reviews: IReview[];

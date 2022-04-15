@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Layout from "@components/layouts";
 import { ITossPay } from "@src/typings/db";
-import Link from "next/link";
 import WrapPayment from "./styles";
 
 function PaymentComplete({ completeData }: { completeData: ITossPay }) {

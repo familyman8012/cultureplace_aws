@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
 import router from "next/router";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import RegisterForm from "@components/pageComp/register/styles";
 import { IUser } from "@src/typings/db";
 import { ErrorTxt } from "pages/admin/product/styles";
-import { css } from "@emotion/react";
 import { FindIdPwdWrap, ResultBox } from "./styles";
 
 interface IFindId {

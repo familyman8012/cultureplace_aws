@@ -1,9 +1,8 @@
-import { IReview, IReviewEdit } from "@src/typings/db";
+import React, { useState } from "react";
 import { Session } from "next-auth";
-import React from "react";
-import { useState } from "react";
 import { UseMutationResult } from "react-query";
 import { IReviewModify } from ".";
+import { IReview } from "@src/typings/db";
 import { Item } from "./style";
 
 export interface IReviewListItem {

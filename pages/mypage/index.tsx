@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/client";
-import MyJoin from "./MyJoin";
-import Layout from "@components/layouts";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { MypageWrap } from "@components/pageComp/mypage/styles";
+import Link from "next/link";
 import { useFavorite, useJoin } from "@src/hooks/api/useMypage";
+import Layout from "@components/layouts";
+import MyJoin from "./MyJoin";
+import { MypageWrap } from "@components/pageComp/mypage/styles";
 import { MypageSeo } from "@components/elements/CommonSeo";
 
 function Index() {

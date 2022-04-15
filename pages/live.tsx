@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Chat from "@components/pageComp/live/Chat";
 import LiveStream from "@components/pageComp/live/LiveStream";
 import { LiveStreamWrap } from "@components/pageComp/live/styles";

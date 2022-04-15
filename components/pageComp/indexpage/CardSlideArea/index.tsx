@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { SwiperSlide } from "swiper/react";
 import Slider from "@components/modules/Slider";
-import styled from "@emotion/styled";
 import Card from "@components/elements/Card";
 import Title from "@components/elements/Title";
-import { IProduct } from "@src/typings/db";
-import dayjs from "dayjs";
-import React, { useCallback, useMemo, useState } from "react";
 import CardBadge from "@components/elements/CardBadge";
 import CardSkeleton from "@components/elements/Card/CardSkeleton";
+import { IProduct } from "@src/typings/db";
 import { css } from "@emotion/react";
 import { WrapCategoryArea } from "./styles";
 

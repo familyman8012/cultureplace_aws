@@ -1,6 +1,6 @@
-import { PolicySeo } from "@components/elements/CommonSeo";
 import Layout from "@components/layouts";
-import { WrapYakwan } from "../../components/pageComp/yakwan/styles";
+import { PolicySeo } from "@components/elements/CommonSeo";
+import { WrapYakwan } from "@components/pageComp/yakwan/styles";
 
 function Policy() {
   return (

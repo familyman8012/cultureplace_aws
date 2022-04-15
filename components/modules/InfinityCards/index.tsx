@@ -1,26 +1,14 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import { useEffect, useState, Fragment } from "react";
 import Link from "next/link";
-import { css } from "@emotion/react";
+import { useInfinity } from "@src/hooks/api/useInfinite";
+import InView from "react-intersection-observer";
 import Card from "@components/elements/Card";
 import Layout from "@components/layouts";
-import { useInfinity } from "@src/hooks/api/useInfinite";
-import { Iinfinity, IProduct } from "@src/typings/db";
-import InView from "react-intersection-observer";
-import {
-  FilterBtn,
-  InfinityCardwrap,
-  LinkCard,
-  WrapInfinityPage
-} from "./style";
 import Search from "@components/modules/Search";
 import CardBadge from "@components/elements/CardBadge";
 import CardSkeleton from "@components/elements/Card/CardSkeleton";
+import { Iinfinity, IProduct } from "@src/typings/db";
+import { FilterBtn, InfinityCardwrap, WrapInfinityPage } from "./style";
 
 interface IQuerykey {
   querykey: string;

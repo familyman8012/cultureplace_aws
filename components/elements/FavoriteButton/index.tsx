@@ -2,13 +2,10 @@ import { useMemo } from "react";
 import { useSession } from "next-auth/client";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
-import { FavoriteBtn } from "./styles";
 import { IinfinityProduct, IProduct, IProductList } from "@src/typings/db";
-import { AnyArray } from "mongoose";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
-
 import { css } from "@emotion/react";
 
 export interface IFavoritebtn {
@@ -28,6 +25,8 @@ export interface IinfinityFavorite {
 
 function Index({ data, querykey }: IFavoritebtn) {
   const queryClient = useQueryClient();
+
+  console.log("querykey", querykey);
 
   const [session] = useSession();
   const favoriteChk = useMemo(

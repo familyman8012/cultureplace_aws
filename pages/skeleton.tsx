@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import Skeleton from "@components/elements/Skeleton";
 import { useEffect, useState } from "react";
+import Skeleton from "@components/elements/Skeleton";
+import styled from "@emotion/styled";
 
 const Base = styled.div`
   display: grid;

@@ -11,7 +11,6 @@ import {
 } from "@components/modules/QuillEditor/styles";
 import AdminLayout from "@components/layouts/Admin/layout";
 import { BoxInput, WrapNotice } from "./styles";
-import { css } from "@emotion/react";
 
 function Detail() {
   const [imgData, onImgUpHadler] = useMediaUp("noticeoriginal");

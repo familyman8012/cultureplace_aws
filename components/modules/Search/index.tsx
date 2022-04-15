@@ -1,9 +1,6 @@
-import styled from "@emotion/styled";
+import { useEffect, useCallback } from "react";
 import { observer } from "mobx-react";
-import { MutableRefObject, useCallback, useEffect } from "react";
 import { searchStore } from "@src/mobx/store";
-import { mq } from "@components/mq";
-import { css } from "@emotion/react";
 import {
   Content,
   FilterFindWrap,
@@ -12,7 +9,6 @@ import {
   SearchInputWrap,
   SearchWrap
 } from "./style";
-import Loader from "@components/elements/Loader";
 import { CloseBtn } from "@components/elements/CloseBtn/style";
 
 const filterFindList = [

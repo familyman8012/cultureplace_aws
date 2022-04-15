@@ -1,7 +1,7 @@
-import { IProduct } from "@src/typings/db";
-import axios from "axios";
 import { useInfiniteQuery } from "react-query";
+import axios from "axios";
 import { searchStore } from "@src/mobx/store";
+import { IProduct } from "@src/typings/db";
 
 const useInfinity = (querykey: string) => {
   // useInfiniteQuery에서 쓸 함수

@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import { useState, Dispatch, SetStateAction } from "react";
 import LayerCurriculumAdd from "./LayerCurriculumAdd";
 import LayerCurriculumMain from "./LayerCurriculumMain";

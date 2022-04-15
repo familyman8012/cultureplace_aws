@@ -1,17 +1,17 @@
-import { useCallback, useMemo, useState } from "react";
-import { useQueryClient, useMutation, useQuery } from "react-query";
-import { fetchProducts, useProducts } from "@src/hooks/api/useProducts";
+import { useCallback, useState } from "react";
+import { useQueryClient, useMutation } from "react-query";
+import { useProducts } from "@src/hooks/api/useProducts";
 import axios from "axios";
 import { runInAction } from "mobx";
 import { prodUpStore } from "@src/mobx/store";
-import AdminLayout from "@components/layouts/Admin/layout";
-import { WrapIndexContent, IndexTable, GlowBtn } from "./styles";
-import "rc-pagination/assets/index.css";
 import Pagination from "rc-pagination";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
-import { IProductList, IUser } from "@src/typings/db";
+import AdminLayout from "@components/layouts/Admin/layout";
+import { IUser } from "@src/typings/db";
 import { css } from "@emotion/react";
+import { WrapIndexContent, IndexTable, GlowBtn } from "./styles";
+import "rc-pagination/assets/index.css";
 
 dayjs.locale("ko");
 

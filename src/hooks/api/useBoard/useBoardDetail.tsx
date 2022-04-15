@@ -1,6 +1,6 @@
-import { IBoard } from "@src/typings/db";
-import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
+import axios, { AxiosError } from "axios";
+import { IBoard } from "@src/typings/db";
 
 const fetchBoard = async (_id: string) => {
   const res = await axios.get(`/api/board/${_id}`);

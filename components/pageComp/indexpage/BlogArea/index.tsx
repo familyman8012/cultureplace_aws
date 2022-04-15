@@ -1,9 +1,7 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
+import Link from "next/link";
 import BlogCard from "@components/elements/BlogCard";
 import Title from "@components/elements/Title";
 import { INotice } from "@src/typings/db";
-import Link from "next/link";
 import { NoticeTitle, WrapBlogArea, WrapBlogCont } from "./styles";
 
 export interface IBlogData {

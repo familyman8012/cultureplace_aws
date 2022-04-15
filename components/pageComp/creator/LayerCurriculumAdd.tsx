@@ -1,9 +1,9 @@
-import Button from "@components/elements/Button";
-import React, { useState, useCallback, Dispatch, SetStateAction } from "react";
-import { WrapCurriculumAddLayer } from "./styles";
+import React, { useState, useCallback } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import Button from "@components/elements/Button";
 import { ISetuCrriculumInfo } from "./VodManagement";
+import { WrapCurriculumAddLayer } from "./styles";
 
 function LayerCurriculumAdd({
   _id,

@@ -1,12 +1,11 @@
 import { useCallback } from "react";
 import { css } from "@emotion/react";
+import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { WrapCurriculumLayer } from "./styles";
-import Button from "@components/elements/Button";
-import { IProduct } from "@src/typings/db";
-import { ICurriculum, ISetuCrriculumInfo } from "./VodManagement";
 import { useVod } from "@src/hooks/api/useVod/useNotice";
+import { ICurriculum, ISetuCrriculumInfo } from "./VodManagement";
+import Button from "@components/elements/Button";
+import { WrapCurriculumLayer } from "./styles";
 
 function LayerCurriculumMain({
   _id,

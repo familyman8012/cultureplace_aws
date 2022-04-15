@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { CardWrap } from "./styles";
-import FavoriteButton from "../FavoriteButton";
 import { IProduct } from "@src/typings/db";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import FavoriteButton from "../FavoriteButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
+import { CardWrap } from "./styles";
 
 dayjs.locale("ko");
 interface ICard {

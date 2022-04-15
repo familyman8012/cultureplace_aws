@@ -1,7 +1,6 @@
-import { IPayment, ITossPay } from "@src/typings/db";
-import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
-
+import axios, { AxiosError } from "axios";
+import { ITossPay } from "@src/typings/db";
 interface ITossPayData {
   data: ITossPay;
 }

@@ -1,6 +1,6 @@
-import { INotice, IProduct } from "@src/typings/db";
-import axios from "axios";
 import { useQuery } from "react-query";
+import axios from "axios";
+import { IProduct } from "@src/typings/db";
 
 const fetchCurriculum = async (_id: string) => {
   const res: { data: IProduct[] } = await axios.get(`/api/curriculum/${_id}`);

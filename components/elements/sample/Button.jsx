@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { css } from "styled-components";
 import { darken, lighten } from "polished";
 
@@ -18,21 +17,21 @@ const colorStyles = css`
 `;
 
 const sizeStyles = css`
-  ${(props) =>
+  ${props =>
     props.size === "large" &&
     css`
       height: 3rem;
       font-size: 1.25rem;
     `}
 
-  ${(props) =>
+  ${props =>
     props.size === "medium" &&
     css`
       height: 2.25rem;
       font-size: 1rem;
     `}
 
-    ${(props) =>
+    ${props =>
     props.size === "small" &&
     css`
       height: 1.75rem;
@@ -73,7 +72,7 @@ function Button({ children, color, size, ...rest }) {
 }
 
 Button.defaultProps = {
-  color: "blue",
+  color: "blue"
 };
 
 export default Button;

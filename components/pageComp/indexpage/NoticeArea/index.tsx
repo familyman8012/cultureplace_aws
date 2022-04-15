@@ -1,8 +1,7 @@
-import { css } from "@emotion/react";
-import Title from "@components/elements/Title";
-import { INotice } from "@src/typings/db";
-import dayjs from "dayjs";
 import Link from "next/link";
+import Title from "@components/elements/Title";
+import dayjs from "dayjs";
+import { INotice } from "@src/typings/db";
 import { NoticeBox, NoticeWidth, TitleML, WrapNoticeArea } from "./styles";
 
 export interface INoticeData {

@@ -1,5 +1,8 @@
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { GetServerSideProps } from "next";
 import { dbConnect, Product, Notice } from "../pages/api";
+import { dehydrate, QueryClient } from "react-query";
+import { useProductsMain } from "@src/hooks/api/useProducts/useProductsMain";
+import { IndexSeo } from "@components/elements/CommonSeo";
 import Layout from "@components/layouts";
 import Morebtn from "@components/pageComp/indexpage/Morebtn";
 import {
@@ -10,11 +13,7 @@ import {
   BlogArea,
   NoticeArea
 } from "@components/pageComp/indexpage";
-import { fetchProducts } from "@src/hooks/api/useProducts";
-import { GetServerSideProps } from "next";
 import { ISSR } from "@src/typings/db";
-import { IndexSeo } from "@components/elements/CommonSeo";
-import { useProductsMain } from "@src/hooks/api/useProducts/useProductsMain";
 
 const Home = ({ SsrData }: ISSR) => {
   const { blogData, noticeData, products } = SsrData;

@@ -1,7 +1,7 @@
-import { IBoard, INotice, IProduct } from "@src/typings/db";
-import axios, { AxiosResponse } from "axios";
+import { ChangeEvent } from "react";
 import router from "next/router";
-import { ChangeEvent, MutableRefObject } from "react";
+import axios, { AxiosResponse } from "axios";
+import { IBoard, INotice, IProduct } from "@src/typings/db";
 
 interface IQuill {
   title: string;

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Detail from "@components/modules/Board/Detail";
 import List from "@components/modules/Board/List";
 import {
@@ -9,7 +10,6 @@ import { useBoardDetail } from "@src/hooks/api/useBoard/useBoardDetail";
 import { Errorhandler } from "lib";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

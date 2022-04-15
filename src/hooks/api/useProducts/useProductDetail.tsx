@@ -1,6 +1,6 @@
-import { IProduct } from "@src/typings/db";
-import axios from "axios";
 import { useQuery } from "react-query";
+import axios from "axios";
+import { IProduct } from "@src/typings/db";
 
 const fetchProduct = async (_id: string) => {
   const res = await axios.get(`/api/product/${_id}`);

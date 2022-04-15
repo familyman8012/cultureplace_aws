@@ -1,9 +1,6 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { useVod } from "@src/hooks/api/useVod/useNotice";
-import { css } from "@emotion/react";
-import LectureRoom from "@components/pageComp/vod/LectureRoom";
 import { useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import LectureRoom from "@components/pageComp/vod/LectureRoom";
 
 function Vod() {
   const router = useRouter();

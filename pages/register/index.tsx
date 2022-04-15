@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { getProviders } from "next-auth/client";
-import SocialLogin from "../../components/modules/SocialLogin";
-import { ISignIn } from "../signin";
-import Layout from "../../components/layouts";
-import RegisterForm from "../../components/pageComp/register/styles";
 import { GetServerSideProps } from "next";
-import { IUser } from "@src/typings/db";
-import { ErrorTxt } from "pages/admin/product/styles";
-import { RegisterSeo } from "@components/elements/CommonSeo";
+import Link from "next/link";
+import { getProviders } from "next-auth/client";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
+import { ISignIn } from "../signin";
+import { RegisterSeo } from "@components/elements/CommonSeo";
+import Layout from "@components/layouts";
+import SocialLogin from "@components/modules/SocialLogin";
+import { IUser } from "@src/typings/db";
+import RegisterForm from "@components/pageComp/register/styles";
+import { ErrorTxt } from "pages/admin/product/styles";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Register({ providers, csrfToken }: ISignIn) {

@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import Layout from "@components/layouts";
 import {
   DetailViewWrap,
@@ -5,7 +6,6 @@ import {
 } from "@components/pageComp/detailview/styles";
 import { InfoCard } from "@components/pageComp/detailview";
 import { IProduct } from "@src/typings/db";
-import { Session } from "next-auth";
 
 interface IQuestionLayout {
   children: React.ReactNode;

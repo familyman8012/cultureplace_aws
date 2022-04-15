@@ -1,21 +1,20 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { useMemo } from "react";
+import { GetServerSideProps } from "next";
+import { dbConnect, Notice } from "../../pages/api";
+import { useRouter } from "next/router";
+import { dehydrate, QueryClient } from "react-query";
+import dayjs from "dayjs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "@components/elements/Button";
 import Layout from "@components/layouts";
 import { useNotice } from "@src/hooks/api/useNotices/useNotice";
-import dayjs from "dayjs";
-import { useRouter } from "next/router";
-import { useMemo } from "react";
 import {
   CreateAt,
   NoticeButton,
   NoticeView,
   Title
 } from "@components/pageComp/notice/styles";
-
-import { dehydrate, QueryClient, useQuery } from "react-query";
-import { dbConnect, Notice } from "../../pages/api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 function DetailView() {
   const router = useRouter();

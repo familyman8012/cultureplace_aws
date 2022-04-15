@@ -1,10 +1,9 @@
-import { SerializedStyles } from "@emotion/react";
-import Link from "next/link";
 import React from "react";
-import { TitleArea } from "./styles";
-
+import Link from "next/link";
+import { SerializedStyles } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
+import { TitleArea } from "./styles";
 
 interface Props {
   i?: number;

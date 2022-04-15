@@ -1,10 +1,9 @@
-import PaymentInfo from "@components/pageComp/payment/PaymentInfo";
-import PaymentComplete from "@components/pageComp/payment/PaymentComplete";
-import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
+import { useEffect } from "react";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { PaymentCompleteSeo, PaymentSeo } from "@components/elements/CommonSeo";
+import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
+import PaymentInfo from "@components/pageComp/payment/PaymentInfo";
+import { PaymentSeo } from "@components/elements/CommonSeo";
 
 function Payment() {
   const [session] = useSession();

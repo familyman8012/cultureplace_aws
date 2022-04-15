@@ -1,18 +1,11 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/client";
 import { dbConnect, Product } from "../../pages/api";
+import { dehydrate, QueryClient, useQuery } from "react-query";
+import { DetailSeo } from "@components/elements/CommonSeo";
 import Layout from "@components/layouts";
-import { IProduct } from "@src/typings/db";
-import { css } from "@emotion/react";
 import {
-  Content,
-  DetailViewWrap,
-  EditTxt
-} from "@components/pageComp/detailview/styles";
-import {
-  BannerImg,
   Benefit,
   ClubDetailInfo,
   Faq,
@@ -21,12 +14,14 @@ import {
   InfoMemberChart,
   InfoCard
 } from "@components/pageComp/detailview";
-import React from "react";
-import Modal from "@components/elements/Modal";
 import Review from "@components/pageComp/detailview/Review";
-import { useSession } from "next-auth/client";
 import Curriculum from "@components/pageComp/detailview/Curriculum";
-import { DetailSeo } from "@components/elements/CommonSeo";
+import { IProduct } from "@src/typings/db";
+import {
+  Content,
+  DetailViewWrap,
+  EditTxt
+} from "@components/pageComp/detailview/styles";
 
 export interface IDetail {
   item: IProduct;

@@ -1,8 +1,8 @@
 import React, { useRef, Fragment } from "react";
-import axios from "axios";
-import { useInfiniteQuery } from "react-query";
-import { InView } from "react-intersection-observer";
 import Link from "next/link";
+import { useInfiniteQuery } from "react-query";
+import axios from "axios";
+import { InView } from "react-intersection-observer";
 import { css } from "@emotion/react";
 
 const fetchAnime = async (page: number) => {

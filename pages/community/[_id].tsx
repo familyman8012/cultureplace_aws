@@ -1,11 +1,11 @@
-import List from "@components/modules/Board/List";
-import { useSession } from "next-auth/client";
-import QuestionLayout from "../../components/pageComp/community/layout";
 import { useEffect, useState } from "react";
-import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
+import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { Errorhandler } from "lib";
+import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import { ToastContainer } from "react-toastify";
+import { Errorhandler } from "lib";
+import List from "@components/modules/Board/List";
+import QuestionLayout from "@components/pageComp/community/layout";
 
 function Board() {
   const router = useRouter();
@@ -28,6 +28,7 @@ function Board() {
 
   useEffect(() => {
     if (session === null) {
+      alert("로그인 후 커뮤니티 사용 가능합니다.");
       router.push("/");
     }
   }, [router, session]);

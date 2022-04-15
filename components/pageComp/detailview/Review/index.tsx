@@ -1,16 +1,16 @@
 import { useCallback, useMemo, useState } from "react";
+import { useSession } from "next-auth/client";
 import { useMutation, useQueryClient } from "react-query";
-import { useReview } from "@src/hooks/api/useReview";
 import axios from "axios";
+import { useReview } from "@src/hooks/api/useReview";
+import Pagination from "rc-pagination";
 import SectionWrap from "../SectionWrap";
 import ListItem from "./ListItem";
 import ReviewModal from "./ReviewModal";
-import Pagination from "rc-pagination";
 import Button from "@components/elements/Button";
-import { ReviewList, ReviewTitle, WriteBtn } from "./style";
+import { IProduct } from "@src/typings/db";
 import "rc-pagination/assets/index.css";
-import { IProduct, IReview } from "@src/typings/db";
-import { useSession } from "next-auth/client";
+import { ReviewList, ReviewTitle, WriteBtn } from "./style";
 
 export interface IReviewModify {
   [key: string]: string;

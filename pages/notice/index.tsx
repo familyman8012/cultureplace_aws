@@ -1,4 +1,8 @@
-import { css } from "@emotion/react";
+import { useState } from "react";
+import { dbConnect, Notice } from "../../pages/api";
+import Link from "next/link";
+import { dehydrate, QueryClient } from "react-query";
+import { NewsSeo } from "@components/elements/CommonSeo";
 import BannerImg from "@components/elements/BannerImg";
 import BlogCard from "@components/elements/BlogCard";
 import Layout from "@components/layouts";
@@ -9,11 +13,7 @@ import {
   WrapNotice
 } from "@components/pageComp/notice/styles";
 import { INotice } from "@src/typings/db";
-import Link from "next/link";
-import { useState } from "react";
-import { dehydrate, QueryClient } from "react-query";
-import { dbConnect, Notice } from "../../pages/api";
-import { NewsSeo } from "@components/elements/CommonSeo";
+import { css } from "@emotion/react";
 
 interface INoticeList {
   noticeData: INotice[];

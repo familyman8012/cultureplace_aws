@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
+import dayjs from "dayjs";
+import { IDetail } from "pages/detailview/[_id]";
 import Title from "../Title";
 import SectionWrap from "../SectionWrap";
 import { ClubInfoTable } from "./style";
-import { IDetail } from "pages/detailview/[_id]";
-import dayjs from "dayjs";
 
 function Index({ item }: IDetail) {
   const {

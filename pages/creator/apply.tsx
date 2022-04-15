@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import { useCallback } from "react";
 import { useSession } from "next-auth/client";
 import router from "next/router";
-import { useCallback, useEffect } from "react";
+import axios, { AxiosResponse } from "axios";
 
 function Apply() {
   const [session] = useSession();

@@ -1,6 +1,5 @@
-import { SerializedStyles } from "@emotion/react";
+import React from "react";
 import styled from "@emotion/styled";
-import React, { Children } from "react";
 
 const SectionWrap = styled.section`
   padding: 30px 20px;

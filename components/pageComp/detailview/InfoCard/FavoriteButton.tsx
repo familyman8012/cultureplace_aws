@@ -1,8 +1,8 @@
-import { IProduct } from "@src/typings/db";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/client";
-import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient, focusManager } from "react-query";
+import axios from "axios";
+import { IProduct } from "@src/typings/db";
 import { FavoriteState } from "./style";
 
 function FavoriteButton({ _id, data }: { _id: string; data: IProduct }) {

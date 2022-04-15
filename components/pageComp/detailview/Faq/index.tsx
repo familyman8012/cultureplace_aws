@@ -1,11 +1,6 @@
-import React from "react";
-import Title from "../Title";
-import styled from "@emotion/styled";
-import Accordion from "../../../modules/Accordion";
-import Link from "next/link";
-import SectionWrap from "../SectionWrap";
 import Collapsible from "react-collapsible";
-import { css } from "@emotion/react";
+import Title from "../Title";
+import SectionWrap from "../SectionWrap";
 import { FaqWrap } from "./style";
 
 function index() {

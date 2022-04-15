@@ -3,11 +3,11 @@ import router from "next/router";
 import { observer } from "mobx-react";
 import AdminLayout from "@components/layouts/Admin/layout";
 import QuillEditorView from "@components/modules/QuillEditor/QuillEditorView";
+import { css } from "@emotion/react";
 import {
   AdminBoxBtn,
   WrapQuillText
 } from "@components/modules/QuillEditor/styles";
-import { css } from "@emotion/react";
 
 function Detail() {
   // basicinfo 화면으로 이동

@@ -1,6 +1,6 @@
-import { INotice } from "@src/typings/db";
-import axios from "axios";
 import { useQuery } from "react-query";
+import axios from "axios";
+import { INotice } from "@src/typings/db";
 
 const fetchNotice = async (_id: string) => {
   if (_id === "undefined") return null;

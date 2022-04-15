@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css, keyframes } from "@emotion/react";
+import { keyframes } from "@emotion/react";
 import { mq, tvq } from "@components/mq";
 
 export const WrapIndexContent = styled.div`

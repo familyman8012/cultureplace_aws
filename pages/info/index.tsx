@@ -1,18 +1,11 @@
-import { css } from "@emotion/react";
-import Layout from "@components/layouts";
-import axios from "axios";
-import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
-import { dehydrate, QueryClient, useQuery } from "react-query";
-import dayjs from "dayjs";
+import { GetStaticProps } from "next";
 import Link from "next/link";
-
+import axios from "axios";
 import { observer } from "mobx-react";
 import { infoStore } from "@src/mobx/store";
-
-import { GetStaticProps } from "next";
-import { dbConnect, Notice } from "../../pages/api";
+import dayjs from "dayjs";
 import convert from "xml-js";
+import Layout from "@components/layouts";
 import { InfoWrap } from "@components/pageComp/info/styles";
 import { BoxofficeSeo } from "@components/elements/CommonSeo";
 

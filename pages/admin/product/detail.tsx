@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import router from "next/router";
 import { observer } from "mobx-react";
+import { prodUpStore } from "@src/mobx/store";
 import AdminLayout from "@components/layouts/Admin/layout";
 import QuillEditorView from "@components/modules/QuillEditor/QuillEditorView";
 import {
   AdminBoxBtn,
   WrapQuillText
 } from "@components/modules/QuillEditor/styles";
-import { prodUpStore } from "@src/mobx/store";
 
 function Detail() {
   // basicinfo 화면으로 이동

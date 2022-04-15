@@ -1,14 +1,14 @@
-import { getProviders, getCsrfToken, CtxOrReq } from "next-auth/client";
-import SocialLogin from "../components/modules/SocialLogin";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { getProviders, getCsrfToken, CtxOrReq } from "next-auth/client";
+import { useRouter } from "next/router";
+import { SignInSeo } from "@components/elements/CommonSeo";
+import SocialLogin from "../components/modules/SocialLogin";
+import MobMenu from "@components/layouts/MobMenu";
 import {
   BtnLogin,
   InfoRegArea,
   LoginWrapper
 } from "@components/pageComp/signin/style";
-import { SignInSeo } from "@components/elements/CommonSeo";
-import MobMenu from "@components/layouts/MobMenu";
 
 export interface ISignIn {
   providers: object;

@@ -1,6 +1,5 @@
-import { IComplete } from "@src/typings/db";
-import axios from "axios";
 import { useQuery } from "react-query";
+import axios from "axios";
 
 const fetchComplete = async (userid: string, productId: string) => {
   const res: { data: any } = await axios.get(
