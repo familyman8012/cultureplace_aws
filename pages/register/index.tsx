@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GetServerSideProps } from "next";
+import { signIn } from "next-auth/client";
 import Link from "next/link";
 import { getProviders } from "next-auth/client";
 import { useRouter } from "next/router";
@@ -53,6 +54,7 @@ export default function Register({ providers, csrfToken }: ISignIn) {
           position: "top-center",
           autoClose: 2000
         });
+        signIn("credentials", { email, userpwd });
         let timer = setTimeout(() => {
           router.push("/");
           clearTimeout(timer);

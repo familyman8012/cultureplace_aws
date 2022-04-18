@@ -210,7 +210,6 @@ function LayerLessonAdd({
   return (
     <WrapLessonAdd>
       <div className="head">
-        레슨 추가
         <input
           type="text"
           name="title"

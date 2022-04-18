@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Session } from "next-auth";
 import { useRouter } from "next/router";
-import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import Button from "../../../elements/Button";
@@ -20,8 +19,6 @@ interface InfoCard {
 }
 
 function Index({ data, _id, session, community }: InfoCard) {
-  const { data: buttonData, isFetched } = useProdDetail(String(_id));
-
   const {
     imgurl,
     title,
@@ -136,9 +133,9 @@ function Index({ data, _id, session, community }: InfoCard) {
                 나를 위한 경험, 지금 시작
               </Button>
             )}
-            {buttonData && isvod && (
+            {data && isvod && (
               <>
-                {buttonData?.joinMembr?.some(
+                {data?.joinMembr?.some(
                   (user: any) => user._id === String(session?.user?.uid)
                 ) ? (
                   <Button

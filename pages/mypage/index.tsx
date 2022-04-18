@@ -7,12 +7,11 @@ import Layout from "@components/layouts";
 import MyJoin from "./MyJoin";
 import { MypageWrap } from "@components/pageComp/mypage/styles";
 import { MypageSeo } from "@components/elements/CommonSeo";
+import MyFavorite from "./MyFavorite";
 
 function Index() {
   const [session] = useSession();
   const router = useRouter();
-  const { data: joinData } = useJoin(String(session?.user.uid));
-  const { data: favoriteData } = useFavorite(String(session?.user.uid));
 
   // useEffect(() => {
   //   !session && router.push("/signin");
@@ -42,24 +41,12 @@ function Index() {
           </div>
 
           <div className="wrap_cont">
-            {joinData && (
-              <div className="myjoin">
-                <MyJoin
-                  session={session}
-                  title={"신청한 클래스"}
-                  data={joinData}
-                />
-              </div>
-            )}
-            {favoriteData && (
-              <div>
-                <MyJoin
-                  session={session}
-                  title={"찜한 클래스"}
-                  data={favoriteData}
-                />
-              </div>
-            )}
+            <div className="myjoin">
+              <MyJoin session={session} title={"신청한 클래스"} />
+            </div>
+            <div>
+              <MyFavorite session={session} title={"찜한 클래스"} />
+            </div>
           </div>
           {550 > window.innerWidth && (
             <div className="etcMenu">

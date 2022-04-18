@@ -27,16 +27,19 @@ function FavoriteButton({ _id, data }: { _id: string; data: IProduct }) {
     () => axios.post("/api/favorite", variables),
     {
       onMutate: async () => {
-        await queryClient.cancelQueries("detail");
-        const previousDetail = queryClient.getQueryData<IProduct>("detail");
+        await queryClient.cancelQueries(["detailViewData", _id]);
+        const previousDetail = queryClient.getQueryData<IProduct>([
+          "detailViewData",
+          _id
+        ]);
         if (previousDetail) {
           if (!favorite && session) {
-            queryClient.setQueryData<IProduct>("detail", {
+            queryClient.setQueryData<IProduct>(["detailViewData", _id], {
               ...previousDetail,
               favoriteduser: [...previousDetail.favoriteduser, session.user.uid]
             });
           } else {
-            queryClient.setQueryData<IProduct>("detail", {
+            queryClient.setQueryData<IProduct>(["detailViewData", _id], {
               ...previousDetail,
               favoriteduser: previousDetail.favoriteduser.filter(
                 el => el !== session?.user.uid
@@ -52,7 +55,7 @@ function FavoriteButton({ _id, data }: { _id: string; data: IProduct }) {
       },
       onSettled: () => {
         focusManager.setFocused(false);
-        queryClient.refetchQueries(["list"]);
+        queryClient.refetchQueries(["detailViewData", _id]);
       }
     }
   );

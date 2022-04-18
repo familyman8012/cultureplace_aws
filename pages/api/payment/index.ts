@@ -15,21 +15,29 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
 });
 
 handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { _id, data, userid } = req.body;
-
+  var payments = new Payment(req.body);
   try {
-    const payments = new Payment({ data, userid });
-    const [result, joinMember] = await Promise.all([
-      payments.save(),
-      Product.updateOne(
-        { _id },
-        { $push: { joinMembr: userid } },
-        { upsert: true }
-      )
-    ]);
-    return res.status(200).json({ payments, joinMember });
-  } catch (error) {
-    return res.status(400).send(error);
+    const result = await payments.save();
+    console.log(result);
+    return res.status(200).json({ result });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+handler.put(async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { _id, userid } = req.body;
+    const joinMember = await Product.updateOne(
+      { _id },
+      { $push: { joinMembr: userid } },
+      { upsert: true }
+    );
+
+    return res.send(joinMember);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
   }
 });
 

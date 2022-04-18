@@ -22,6 +22,7 @@ import {
   DetailViewWrap,
   EditTxt
 } from "@components/pageComp/detailview/styles";
+import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 
 export interface IDetail {
   item: IProduct;
@@ -33,6 +34,7 @@ const DetailView = ({ item }: IDetail) => {
   const { _id } = router.query;
 
   const { data } = useQuery("detail", () => item);
+  const { data: data2 } = useProdDetail(String(_id));
 
   return (
     <>
@@ -43,10 +45,10 @@ const DetailView = ({ item }: IDetail) => {
       />
       <Layout className="detail">
         <DetailViewWrap>
-          {data && _id !== undefined && (
+          {data && _id !== undefined && data2 !== undefined && (
             <>
               <InfoCard
-                data={data}
+                data={data2}
                 _id={String(_id)}
                 session={session}
                 community={false}

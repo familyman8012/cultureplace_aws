@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import PaymentInfo from "@components/pageComp/payment/PaymentInfo";
+import PaymentComplete from "@components/pageComp/payment/PaymentComplete";
+import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useProdDetail } from "@src/hooks/api/useProducts/useProductDetail";
-import PaymentInfo from "@components/pageComp/payment/PaymentInfo";
-import { PaymentSeo } from "@components/elements/CommonSeo";
+import { useEffect, useState } from "react";
 
 function Payment() {
   const [session] = useSession();
@@ -11,10 +11,17 @@ function Payment() {
   const router = useRouter();
   const { _id } = router.query;
 
-  const { data, error, isLoading, isError } = useProdDetail(String(_id));
+  const [completeData, setcompleteData] = useState<any>({
+    data: { item_name: "", order_id: "", payment_data: "" }
+  });
+  const [payComplete, setpayComplete] = useState(false);
+
+  const { status, data, error, isLoading, isError } = useProdDetail(
+    String(_id)
+  );
 
   useEffect(() => {
-    !session && router.push("/");
+    !session && router.push("/signin");
   }, [router, session]);
 
   if (isLoading) {
@@ -27,11 +34,19 @@ function Payment() {
 
   return (
     <>
-      {data && session && (
-        <>
-          <PaymentSeo />
-          <PaymentInfo data={data} session={session} />
-        </>
+      {!payComplete ? (
+        data && session ? (
+          <PaymentInfo
+            data={data}
+            session={session}
+            setcompleteData={setcompleteData}
+            setpayComplete={setpayComplete}
+          />
+        ) : (
+          <div></div>
+        )
+      ) : (
+        <PaymentComplete completeData={completeData} />
       )}
     </>
   );

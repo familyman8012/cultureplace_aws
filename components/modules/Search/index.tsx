@@ -78,8 +78,9 @@ function Index({
     searchStore.onApply(pageNum);
     refetch();
     if (filterView) {
-      setTimeout(() => {
+      const ApplyTime = setTimeout(() => {
         handlerFilterView(false);
+        clearTimeout(ApplyTime);
       }, 1000);
     }
   }, [filterView, handlerFilterView, pageNum, refetch]);

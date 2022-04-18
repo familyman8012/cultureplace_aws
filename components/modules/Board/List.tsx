@@ -13,6 +13,7 @@ import { DayCal } from "lib";
 import { css } from "@emotion/react";
 import "rc-pagination/assets/index.css";
 import { BoardTable, WrapBoardContent, WrapReply } from "./styles";
+import { useSession } from "next-auth/client";
 // import dayjs from "dayjs";
 
 interface IList {
@@ -23,6 +24,7 @@ interface IList {
 
 function List({ parentId, boardname, boardCheck }: IList) {
   const queryClient = useQueryClient();
+  const [session] = useSession();
 
   /* 테이블 data 구성 및 pagination */
   const [pageSize, setPageSize] = useState(20);
@@ -248,32 +250,34 @@ function List({ parentId, boardname, boardCheck }: IList) {
                         className="content"
                         dangerouslySetInnerHTML={{ __html: String(el.body) }}
                       />
-                      <div className="comment__features flex-row">
-                        <div className="flex-right">
-                          <button
-                            className="ac-button"
-                            onClick={e => {
-                              e.stopPropagation();
-                              runInAction(() => {
-                                boardStore.replyModify = true;
-                              });
-                              modifyBoard(el._id);
-                            }}
-                          >
-                            수정
-                          </button>
+                      {el.userid === session?.user.uid && (
+                        <div className="comment__features flex-row">
+                          <div className="flex-right">
+                            <button
+                              className="ac-button"
+                              onClick={e => {
+                                e.stopPropagation();
+                                runInAction(() => {
+                                  boardStore.replyModify = true;
+                                });
+                                modifyBoard(el._id);
+                              }}
+                            >
+                              수정
+                            </button>
 
-                          <button
-                            className="ac-button"
-                            onClick={e => {
-                              e.stopPropagation();
-                              deleteMutation.mutate(el._id);
-                            }}
-                          >
-                            삭제
-                          </button>
+                            <button
+                              className="ac-button"
+                              onClick={e => {
+                                e.stopPropagation();
+                                deleteMutation.mutate(el._id);
+                              }}
+                            >
+                              삭제
+                            </button>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>

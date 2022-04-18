@@ -724,7 +724,7 @@ export const WrapLessonAdd = styled.div`
   background: #fff;
 
   ${mq[0]} {
-    width: 100vw;
+    width: 95vw;
     * {
       font-size: 13px;
     }
@@ -733,12 +733,13 @@ export const WrapLessonAdd = styled.div`
   .head {
     display: flex;
     align-items: center;
-    padding: 0 20px 20px;
+    padding: 0 10px 20px 0;
 
     input {
       width: 350px;
       padding: 5px 10px;
       margin-left: 10px;
+      margin-right: 10px;
     }
     input {
       border: 1px solid;
@@ -802,6 +803,11 @@ export const WrapLessonDetailView = styled.div`
   border: 1px solid;
   transform: translate(-50%, -50%);
   background: #fff;
+  ${mq[0]} {
+    * {
+      font-size: 12px;
+    }
+  }
 
   .head {
     margin-bottom: 20px;
@@ -818,6 +824,9 @@ export const WrapLessonDetailView = styled.div`
     height: 169px;
     margin: 20px 0;
     background: #000;
+    ${mq[0]} {
+      width: 100%;
+    }
   }
   .cont_txt {
     overflow: auto;

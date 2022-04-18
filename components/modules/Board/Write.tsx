@@ -56,10 +56,13 @@ function Write({
           title: boardCheck ? QuillStore.titleData : "comment",
           body: QuillStore.data,
           userid: session?.user.uid,
-          nickname: session?.user.nickname
+          nickname:
+            session?.user?.nickname === undefined
+              ? session?.user.name
+              : session?.user.nickname
         })
         .then((resp: AxiosResponse<IBoardWrite>) => {
-          boardCheck && router.push(`/${boardname}/detail/${resp.data._id}`);
+          boardCheck && router.push(`/board/detail/${resp.data._id}`);
           let qlEditor = document.querySelector(".ql-editor");
           if (qlEditor !== null) qlEditor.innerHTML = "";
           boardStore.reset();
@@ -149,7 +152,10 @@ function Write({
             <div className="comment__header flex-row">
               <div className="flex-column">
                 <h5 className="comment__user-name">
-                  {session.user.nickname}님, 답글을 남겨보세요!
+                  {session.user.nickname === undefined
+                    ? session.user.name
+                    : session.user.nickname}
+                  님, 답글을 남겨보세요!
                 </h5>
               </div>
             </div>

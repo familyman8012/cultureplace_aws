@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Session } from "next-auth";
-import { useJoin } from "@src/hooks/api/useMypage";
+import { useFavorite, useJoin } from "@src/hooks/api/useMypage";
 import Card from "@components/elements/Card";
 import { MypageComponent } from "@components/pageComp/mypage/styles";
 import { IProduct } from "@src/typings/db";
@@ -11,7 +11,7 @@ interface IMyMeet {
 }
 
 function MyJoin({ session, title }: IMyMeet) {
-  const { data } = useJoin(String(session?.user.uid));
+  const { data } = useFavorite(String(session?.user.uid));
   return (
     <MypageComponent>
       <h3>

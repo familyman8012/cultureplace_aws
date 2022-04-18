@@ -1,9 +1,6 @@
+import axios from "axios";
 import { useQuery } from "react-query";
-import axios, { AxiosError } from "axios";
-import { ITossPay } from "@src/typings/db";
-interface ITossPayData {
-  data: ITossPay;
-}
+import { IPayment } from "@src/typings/db";
 
 const fetchPayment = async (userid: string | undefined) => {
   const res = await axios.get(`/api/payment?userid=${userid}`);
@@ -11,7 +8,7 @@ const fetchPayment = async (userid: string | undefined) => {
 };
 
 const usePayment = (userid: string | undefined) => {
-  return useQuery<ITossPayData[], AxiosError>(
+  return useQuery<IPayment[], Error>(
     ["paymentData", userid],
     async () => await fetchPayment(userid)
   );
